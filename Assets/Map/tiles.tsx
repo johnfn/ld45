@@ -3,9 +3,7 @@
  <image source="../Graphics/tileset1.png" width="1024" height="1280"/>
  <tile id="0">
   <objectgroup draworder="index">
-   <object id="1" x="262" y="32">
-    <polygon points="0,0 -163.798,17.3333 -230,52.6667 -230,97.3333 -0.682493,98"/>
-   </object>
+   <object id="1" x="66.6667" y="31.3333" width="193.333" height="98.6667"/>
   </objectgroup>
  </tile>
  <tile id="1">
@@ -15,9 +13,7 @@
  </tile>
  <tile id="2">
   <objectgroup draworder="index">
-   <object id="1" x="-4.66667" y="33.3333">
-    <polygon points="0,0 96.5281,2.52903 239.281,46.7871 242,97.3677 0.679775,98"/>
-   </object>
+   <object id="1" x="-4" y="31.3333" width="204" height="98.6667"/>
   </objectgroup>
  </tile>
  <tile id="3">
@@ -27,7 +23,7 @@
  </tile>
  <tile id="4">
   <objectgroup draworder="index">
-   <object id="1" x="18" y="77.3333" width="239.333" height="153.333"/>
+   <object id="1" x="25.3333" y="77.3333" width="236" height="153.333"/>
   </objectgroup>
  </tile>
  <tile id="5">
@@ -37,7 +33,7 @@
  </tile>
  <tile id="6">
   <objectgroup draworder="index">
-   <object id="1" x="-6" y="75.3333" width="246" height="152"/>
+   <object id="1" x="-2.66667" y="77.3333" width="225.333" height="153.333"/>
   </objectgroup>
  </tile>
  <tile id="7">
@@ -47,7 +43,7 @@
  </tile>
  <tile id="8">
   <objectgroup draworder="index">
-   <object id="1" x="19.3333" y="76.6667" width="243.333" height="181.333"/>
+   <object id="1" x="49.3333" y="77.3333" width="216" height="190.667"/>
   </objectgroup>
  </tile>
  <tile id="9">
@@ -57,17 +53,17 @@
  </tile>
  <tile id="10">
   <objectgroup draworder="index">
-   <object id="1" x="-10" y="79.3333" width="232" height="181.333"/>
+   <object id="2" x="-20" y="77.3333" width="225.333" height="190.667"/>
   </objectgroup>
  </tile>
  <tile id="11">
   <objectgroup draworder="index">
-   <object id="1" x="40.6667" y="83.3333" width="172" height="182"/>
+   <object id="1" x="40.6667" y="83.3333" width="181.333" height="182"/>
   </objectgroup>
  </tile>
  <tile id="12">
   <objectgroup draworder="index">
-   <object id="1" x="21.3333" y="-4.66667" width="244.667" height="271.333"/>
+   <object id="2" x="49.3333" y="-18.6667" width="216" height="286.667"/>
   </objectgroup>
  </tile>
  <tile id="13">
@@ -77,32 +73,32 @@
  </tile>
  <tile id="14">
   <objectgroup draworder="index">
-   <object id="1" x="-6" y="-6" width="226.667" height="266.667"/>
+   <object id="2" x="-20" y="-9.33337" width="225.333" height="277.334"/>
   </objectgroup>
  </tile>
  <tile id="15">
   <objectgroup draworder="index">
-   <object id="1" x="32" y="-9.33333" width="198.667" height="280.667"/>
+   <object id="1" x="40.6667" y="-12.6667" width="181.333" height="278"/>
   </objectgroup>
  </tile>
  <tile id="16">
   <objectgroup draworder="index">
-   <object id="1" x="24.6667" y="-4.66667" width="237.333" height="244.667"/>
+   <object id="2" x="49.3333" y="-21.3334" width="257.333" height="245.334"/>
   </objectgroup>
  </tile>
  <tile id="17">
   <objectgroup draworder="index">
-   <object id="1" x="-6" y="-8" width="272" height="244"/>
+   <object id="2" x="-20" y="-21.3334" width="297.333" height="245.334"/>
   </objectgroup>
  </tile>
  <tile id="18">
   <objectgroup draworder="index">
-   <object id="1" x="-8" y="-2.66667" width="229.333" height="236"/>
+   <object id="2" x="-20" y="-21.3334" width="225.333" height="245.334"/>
   </objectgroup>
  </tile>
  <tile id="19">
   <objectgroup draworder="index">
-   <object id="1" x="34" y="-10.6667" width="190" height="238.667"/>
+   <object id="1" x="40.6667" y="-11.3334" width="181.333" height="226"/>
   </objectgroup>
  </tile>
 </tileset>
