@@ -1,72 +1,13 @@
-
-
-#if !UNITY_EDITOR
-#define DEBUG_LOG_OVERWRAP
-#endif
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
+using Microsoft.CSharp;
 
-#if DEBUG_LOG_OVERWRAP
-public static class Debug
-{
-    static public void Break ()
-    {
-        if (IsEnable ())
-        {
-            UnityEngine.Debug.Break ();
-        }
-    }
- 
-    static public void Log (object message)
-    {
-        if (IsEnable ()) {
-            UnityEngine.Debug.Log (message);
-        }
-    }
- 
-    static public void Log (object message, Object context)
-    {
-        if (IsEnable ()) {
-            UnityEngine.Debug.Log (message, context);
-        }
-    }
 
-    static public void LogWarning (object message)
-    {
-        if (IsEnable ()) {
-            UnityEngine.Debug.LogWarning (message);
-        }
-    }
- 
-    static public void LogWarning (object message, Object context)
-    {
-        if (IsEnable ()) {
-            UnityEngine.Debug.LogWarning (message, context);
-        }
-    }
- 
-    static public void LogError (object message)
-    {
-        if (IsEnable ()) {
-            UnityEngine.Debug.LogError (message);
-        }
-    }
- 
-    static public void LogError (object message, Object context)
-    {
-        if (IsEnable ()) {
-            UnityEngine.Debug.LogError (message, context);
-        }
-    }
- 
-    static public void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.0F, bool depthTest = true) {
-        UnityEngine.Debug.DrawLine(start, end, color, duration, depthTest);
-    }
- 
-    static bool IsEnable ()
-    {
-        return UnityEngine.Debug.isDebugBuild;
-    }
-
+public static class Util {
   public static string ConvertToString(object obj, int depth) {
     depth++;
 
@@ -107,7 +48,7 @@ public static class Debug
         var result = "[";
 
         for (var i = 0; i < arr.Length; i++) {
-          result += D.ConvertToString(arr[i], depth) + ", ";
+          result += Util.ConvertToString(arr[i], depth) + ", ";
         }
 
         return result + "]";
@@ -121,7 +62,7 @@ public static class Debug
           for (var j = 0; j < 20; j++) {
             result += "[";
             for (var k = 0; k < 20; k++) {
-              result += D.ConvertToString(arr[i,j,k], depth) + ", ";
+              result += Util.ConvertToString(arr[i,j,k], depth) + ", ";
             }
             result += "]";
           }
@@ -170,7 +111,7 @@ public static class Debug
       var listStr = "";
 
       foreach (var x in (dynamic) obj) {
-        listStr += D.ConvertToString(x, depth) + ", ";
+        listStr += Util.ConvertToString(x, depth) + ", ";
       }
 
       return listStr;
@@ -211,7 +152,7 @@ public static class Debug
 
           object propValue = prop.GetValue(obj);
 
-          return $"{ prop.Name }: { D.ConvertToString(prop.GetValue(obj), depth) }";
+          return $"{ prop.Name }: { Util.ConvertToString(prop.GetValue(obj), depth) }";
         })
     );
 
@@ -219,5 +160,45 @@ public static class Debug
 
     return objectStr;
   }
+
+  public static void Log(object obj) {
+    Debug.Log(Util.ConvertToString(obj, 0));
+  }
+
+  public static void Log(object o1, object o2) {
+    Debug.Log(Util.ConvertToString(o1, 0) + ", " + Util.ConvertToString(o2, 0));
+  }
+
+  public static void Log(object o1, object o2, object o3) {
+    Debug.Log(Util.ConvertToString(o1, 0) + ", " + Util.ConvertToString(o2, 0) + ", " + Util.ConvertToString(o3, 0));
+  }
+
+  public static void Log(object o1, object o2, object o3, object o4) {
+    Debug.Log(Util.ConvertToString(o1, 0) + ", " + Util.ConvertToString(o2, 0) + ", " + Util.ConvertToString(o3, 0) + ", " + Util.ConvertToString(o4, 0));
+  }
+
+  public static void DrawPoint(Vector3 pt, Color c = default(Color)) {
+    if (c == default(Color)) c = Color.cyan;
+
+    Debug.DrawLine(
+      new Vector3(pt.x - 1, pt.y - 1, pt.z - 1),
+      new Vector3(pt.x + 1, pt.y + 1, pt.z + 1),
+      c,
+      0.1f
+    );
+
+    Debug.DrawLine(
+      new Vector3(pt.x + 1, pt.y - 1, pt.z - 1),
+      new Vector3(pt.x - 1, pt.y + 1, pt.z + 1),
+      c,
+      0.1f
+    );
+
+    Debug.DrawLine(
+      new Vector3(pt.x - 1, pt.y + 1, pt.z - 1),
+      new Vector3(pt.x + 1, pt.y - 1, pt.z + 1),
+      c,
+      0.1f
+    );
+  }
 }
-#endif

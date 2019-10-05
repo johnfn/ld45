@@ -3,27 +3,46 @@ using System.Linq;
 using UnityEngine;
 
 public class HitFlags {
-  public bool Top = false;
-  public bool Left = false;
-  public bool Right = false; 
-  public bool Bottom = false;
+  public float XHit = 0f;
+  public float YHit = 0f;
+
+  public List<GameObject> XHitObjects;
+  public List<GameObject> YHitObjects;
+
+  public bool HitTop() {
+    return YHit > 0;
+  }
+
+  public bool HitBottom() {
+    return YHit < 0;
+  }
+
+  public bool HitLeft() {
+    return XHit < 0;
+  }
+
+  public bool HitRight() {
+    return XHit > 0;
+  }
 
   override public string ToString() {
     if (HitAnything()) {
-      return $"Hit: {(Top ? "Top" : "")} {(Left ? "Left" : "")} {(Right ? "Right" : "")} {(Bottom ? "Bottom" : "")}";
+      return $"Hit: {(HitTop() ? "Top" : "")} {(HitLeft() ? "Left" : "")} {(HitRight() ? "Right" : "")} {(HitBottom() ? "Bottom" : "")}";
     } else {
       return "";
     }
   }
 
   public bool HitAnything() {
-    return (Top || Left || Right || Bottom);
+    return XHit != 0f || YHit != 0f;
   }
 }
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player: MonoBehaviour {
-  public float movementSpeed = 5;
+  public float movementSpeed = 0.2f;
+
+  public float fallingSpeed = -0.3f;
 
   public float Width { get { return boxCollider.bounds.size.x; } }
 
@@ -42,23 +61,30 @@ public class Player: MonoBehaviour {
   private float velocityX = 0f;
   private float velocityY = 0f;
 
+  private float accelerationY = 0f;
+
+  private HitFlags lastHitFlags;
+
   void Start() {
-    boxCollider = GetComponent<BoxCollider2D>();
+    boxCollider  = GetComponent<BoxCollider2D>();
+    lastHitFlags = new HitFlags();
   }
 
-  bool containsWall(RaycastHit2D[] raycastResult) {
+  List<RaycastHit2D> GetColliders(RaycastHit2D[] raycastResult) {
+    var result = new List<RaycastHit2D>();
+
     foreach (var x in raycastResult) {
       if (x.collider.GetComponent<Player>() != null) {
         continue;
       }
 
-      return true;
+      result.Add(x);
     }
 
-    return false;
+    return result;
   }
 
-  HitFlags Move(Vector3 desiredMovement) {
+  HitFlags CheckForHit(Vector3 desiredMovement) {
     var hitFlagsResult = new HitFlags();
 
     var xComponent = new Vector3(desiredMovement.x, 0                , 0);
@@ -66,29 +92,22 @@ public class Player: MonoBehaviour {
     var x = desiredMovement.x;
     var y = desiredMovement.y;
 
-    var actualMovementDelta = desiredMovement;
-
     if (x != 0) {
       var start  = transform.position + new Vector3(Mathf.Sign(x) * Width / 2,  Height / 2, 0);
       var end    = transform.position + new Vector3(Mathf.Sign(x) * Width / 2, -Height / 2, 0);
       var middle = (start + end) / 2f;
-      var hit    = Physics2D.RaycastAll(start, xComponent);
 
       var pointsToCheck = new List<Vector3> { start, middle, end };
 
       foreach (var point in pointsToCheck) {
-        if (containsWall(Physics2D.RaycastAll(point, xComponent, xComponent.magnitude))) {
+        var result = Physics2D.RaycastAll(point, xComponent, xComponent.magnitude);
+        var colliders = GetColliders(result);
+
+        if (colliders.Count > 0) {
           // we have a hit
 
-          actualMovementDelta.x = 0;
-
-          if (x > 0) {
-            hitFlagsResult.Right = true;
-          }
-
-          if (x < 0) {
-            hitFlagsResult.Left = true;
-          }
+          hitFlagsResult.XHit = Mathf.Sign(x);
+          hitFlagsResult.XHitObjects = colliders.Select(collider => collider.collider.gameObject).ToList();
         }
       }
     }
@@ -97,52 +116,86 @@ public class Player: MonoBehaviour {
       var start  = transform.position + new Vector3(Width / 2, Mathf.Sign(y) *  Height / 2, 0);
       var end    = transform.position + new Vector3(Width / 2, Mathf.Sign(y) * -Height / 2, 0);
       var middle = (start + end) / 2f;
-      var hit    = Physics2D.RaycastAll(start, yComponent);
 
       var pointsToCheck = new List<Vector3> { start, middle, end };
 
       foreach (var point in pointsToCheck) {
-        if (containsWall(Physics2D.RaycastAll(point, yComponent, yComponent.magnitude))) {
+        var result = Physics2D.RaycastAll(point, yComponent, yComponent.magnitude);
+        var colliders = GetColliders(result);
+
+        if (colliders.Count > 0) {
           // we have a hit
 
-          actualMovementDelta.y = 0;
-
-          if (y > 0) {
-            hitFlagsResult.Top = true;
-          }
-          if (y < 0) {
-            hitFlagsResult.Bottom = true;
-          }
+          hitFlagsResult.YHit = Mathf.Sign(y);
+          hitFlagsResult.YHitObjects = colliders.Select(collider => collider.collider.gameObject).ToList();
         }
       }
     }
 
-    transform.position += actualMovementDelta;
-
     return hitFlagsResult;
   }
 
-  Vector3 calculateDesiredMovement() {
+  Vector3 calculateVelocity() {
+    velocityY += accelerationY;
+    accelerationY /= 1.4f;
+
+    if (lastHitFlags.HitBottom() && velocityY < 0.3f) {
+      velocityY = -0.3f;
+    }
+
     var dx = 0;
     var dy = velocityY;
-
-    if (Input.GetKey("w")) { dy += 1; }
-    if (Input.GetKey("s")) { dy -= 1; }
 
     if (Input.GetKey("a")) { dx -= 1; }
     if (Input.GetKey("d")) { dx += 1; }
 
+    if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = 1; }
+
     return new Vector3(dx, dy, 0) * movementSpeed;
+  }
+
+  HitFlags Move(Vector3 desiredMovement) {
+    var hit = CheckForHit(desiredMovement);
+
+    if (hit.HitAnything()) {
+      var stepSize = 0.01f;
+
+      for (var x = 0f; Mathf.Abs(x) < Mathf.Abs(desiredMovement.x); x += stepSize * Mathf.Sign(desiredMovement.x)) {
+        var step = new Vector3(Mathf.Sign(desiredMovement.x) * stepSize, 0, 0);
+        var xHit = CheckForHit(step);
+
+        if (xHit.HitAnything()) {
+          break;
+        }
+
+        transform.position += step;
+      }
+
+      for (var y = 0f; Mathf.Abs(y) < Mathf.Abs(desiredMovement.y); y += stepSize * Mathf.Sign(desiredMovement.y)) {
+        var step = new Vector3(0, Mathf.Sign(desiredMovement.y) * stepSize, 0);
+        var yHit = CheckForHit(step);
+
+        if (yHit.HitAnything()) {
+          break;
+        }
+
+        transform.position += step;
+      }
+
+      return hit;
+    } 
+
+    transform.position += desiredMovement;
+
+    return hit;
   }
 
   void Update() {
     velocityY -= 0.3f;
 
-    var desiredMovement = calculateDesiredMovement();
-    var hit = Move(desiredMovement);
+    var desiredMovement = calculateVelocity();
+    var hitFlags = Move(desiredMovement);
 
-    if (hit.HitAnything()) {
-      velocityY = 0;
-    }
+    this.lastHitFlags = hitFlags;
   }
 }
