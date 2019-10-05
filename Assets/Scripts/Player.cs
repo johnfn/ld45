@@ -203,5 +203,9 @@ public class Player: MonoBehaviour {
     var hitFlags = Move(desiredMovement);
 
     this.lastHitFlags = hitFlags;
+
+    if (Input.GetKeyDown("e")) {
+      Manager.CreateNewDialog("Hello world!", this.gameObject);
+    }
   }
 }
