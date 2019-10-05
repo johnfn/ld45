@@ -8,12 +8,12 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="5" source="../../../../Images/Ld45/tiles.tsx"/>
+ <tileset firstgid="5" source="tiles.tsx"/>
  <layer id="1" name="Tile Layer 1" width="32" height="32">
   <data encoding="csv">
    <chunk x="0" y="0" width="16" height="16">
-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 20,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,
 20,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,
 20,0,0,0,0,0,0,13,15,0,0,0,0,0,0,0,
