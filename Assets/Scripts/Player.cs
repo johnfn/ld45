@@ -39,6 +39,7 @@ public class HitFlags {
 }
 
 [RequireComponent(typeof(BoxCollider2D))]
+// extends MonoBehaviour = is component
 public class Player: MonoBehaviour {
   public float movementSpeed = 0.2f;
 
@@ -90,8 +91,8 @@ public class Player: MonoBehaviour {
   HitFlags CheckForHit(Vector3 desiredMovement) {
     var hitFlagsResult = new HitFlags();
 
-    var xComponent = new Vector3(desiredMovement.x, 0                , 0);
-    var yComponent = new Vector3(0                , desiredMovement.y, 0);
+    var xComponent = new Vector3(desiredMovement.x,                 0, 0);
+    var yComponent = new Vector3(                0, desiredMovement.y, 0);
     var x = desiredMovement.x;
     var y = desiredMovement.y;
 
