@@ -44,6 +44,9 @@ public class Player: MonoBehaviour {
 
   public float fallingSpeed = -0.3f;
 
+  [Header("1 = infinite floaty. 1.5 = normal floaty. 2 = kind of floaty")]
+  public float gravityScaleFactor = 1.3f;
+
   public float Width { get { return boxCollider.bounds.size.x; } }
 
   public float Height { get { return boxCollider.bounds.size.y; } }
@@ -137,10 +140,12 @@ public class Player: MonoBehaviour {
 
   Vector3 calculateVelocity() {
     velocityY += accelerationY;
-    accelerationY /= 1.4f;
+    accelerationY /= gravityScaleFactor;
 
-    if (lastHitFlags.HitBottom() && velocityY < 0.3f) {
-      velocityY = -0.3f;
+    // cap velocity at gravity so it doesn't become arbitrarily huge when you
+    // stand on a platform
+    if (lastHitFlags.HitBottom() && velocityY < fallingSpeed) {
+      velocityY = fallingSpeed;
     }
 
     var dx = 0;
