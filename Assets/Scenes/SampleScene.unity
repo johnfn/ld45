@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -304,6 +305,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1201363d2776049978f0f0fbe10668d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothing: 0.1
+  player: {fileID: 1022136877}
 --- !u!114 &590345342 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 179974085585297907, guid: 14537079c180b4c66895b7e47f1a3b8a,
@@ -398,7 +413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022136877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.91, y: 0.88, z: 0}
+  m_LocalPosition: {x: -4.12, y: 4.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -533,6 +548,8 @@ MonoBehaviour:
   text: {fileID: 590345342}
   sprite: {fileID: 1533982060}
   textScaleFactor: 100
+  maxDialogWidth: 400
+  textSpeed: 4
 --- !u!212 &1533982060 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 179974085992194279, guid: 14537079c180b4c66895b7e47f1a3b8a,
@@ -625,6 +642,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 179974085585297904, guid: 14537079c180b4c66895b7e47f1a3b8a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 415.532
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14537079c180b4c66895b7e47f1a3b8a, type: 3}
