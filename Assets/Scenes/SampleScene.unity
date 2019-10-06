@@ -250,7 +250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPrefab: {fileID: 5903884507917441638, guid: 14537079c180b4c66895b7e47f1a3b8a,
     type: 3}
-  CuriosityCuePrefab: {fileID: 0}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
   Player: {fileID: 1022136880}
