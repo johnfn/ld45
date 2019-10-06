@@ -26,6 +26,7 @@ public class InteractableManager: MonoBehaviour {
     var player = Manager.Instance.Player;
     var sortedByDistance = Interactables.OrderBy(x => Util.Distance(x.gameObject, player.gameObject));
     // Figure out which interactable is currently targetted
+
     var newTarget = sortedByDistance.First().gameObject;
 
     // Handle

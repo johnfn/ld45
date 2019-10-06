@@ -3,27 +3,30 @@ using System.Linq;
 using UnityEngine;
 
 public class HitFlags {
+  // Hit information (for solid things that stop you)
   public float XHit = 0f;
   public float YHit = 0f;
 
   public List<GameObject> XHitObjects;
   public List<GameObject> YHitObjects;
 
-  public bool HitTop() {
-    return YHit > 0;
-  }
+  public bool HitTop() { return YHit > 0; } 
+  public bool HitBottom() { return YHit < 0; } 
+  public bool HitLeft() { return XHit < 0; } 
+  public bool HitRight() { return XHit > 0; } 
 
-  public bool HitBottom() {
-    return YHit < 0;
-  }
+  // Touch information (for things that you can walk through, but impact you somehow)
+  public float XTouch = 0f;
+  public float YTouch = 0f;
 
-  public bool HitLeft() {
-    return XHit < 0;
-  }
+  public List<GameObject> XTouchedObjects;
+  public List<GameObject> YTouchedObjects;
 
-  public bool HitRight() {
-    return XHit > 0;
-  }
+  public bool TouchTop() { return YTouch > 0; } 
+  public bool TouchBottom() { return YTouch < 0; } 
+  public bool TouchLeft() { return XTouch < 0; } 
+  public bool TouchRight() { return XTouch > 0; } 
+
 
   override public string ToString() {
     if (HitAnything()) {
@@ -35,6 +38,10 @@ public class HitFlags {
 
   public bool HitAnything() {
     return XHit != 0f || YHit != 0f;
+  }
+
+  public bool TouchAnything() {
+    return XTouch != 0f || YTouch != 0f;
   }
 }
 
@@ -83,11 +90,33 @@ public class Player: MonoBehaviour {
     lastHitFlags = new HitFlags();
   }
 
-  List<RaycastHit2D> GetColliders(RaycastHit2D[] raycastResult) {
+  List<RaycastHit2D> GetSolidColliders(RaycastHit2D[] raycastResult) {
     var result = new List<RaycastHit2D>();
 
     foreach (var x in raycastResult) {
       if (x.collider.GetComponent<Player>() != null) {
+        continue;
+      }
+
+      if (x.collider.tag == "Vines") {
+        continue;
+      }
+
+      result.Add(x);
+    }
+
+    return result;
+  }
+
+  List<RaycastHit2D> GetPassableColliders(RaycastHit2D[] raycastResult) {
+    var result = new List<RaycastHit2D>();
+
+    foreach (var x in raycastResult) {
+      if (x.collider.GetComponent<Player>() != null) {
+        continue;
+      }
+
+      if (x.collider.tag != "Vines") {
         continue;
       }
 
@@ -114,15 +143,21 @@ public class Player: MonoBehaviour {
 
       foreach (var point in pointsToCheck) {
         var result = Physics2D.RaycastAll(point, xComponent, xComponent.magnitude);
-        var colliders = GetColliders(result);
+        var solidColliders = GetSolidColliders(result);
 
-        if (colliders.Count > 0) {
+        if (solidColliders.Count > 0) {
           // we have a hit
 
           hitFlagsResult.XHit = Mathf.Sign(x);
-          hitFlagsResult.XHitObjects = colliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.XHitObjects = solidColliders.Select(collider => collider.collider.gameObject).ToList();
 
           break;
+        }
+
+        var passableColliders = GetPassableColliders(result);
+
+        if (passableColliders.Count > 0) {
+          hitFlagsResult.XTouchedObjects = passableColliders.Select(collider => collider.collider.gameObject).ToList();
         }
       }
     }
@@ -136,15 +171,21 @@ public class Player: MonoBehaviour {
 
       foreach (var point in pointsToCheck) {
         var result = Physics2D.RaycastAll(point, yComponent, yComponent.magnitude);
-        var colliders = GetColliders(result);
+        var solidColliders = GetSolidColliders(result);
 
-        if (colliders.Count > 0) {
+        if (solidColliders.Count > 0) {
           // we have a hit
 
           hitFlagsResult.YHit = Mathf.Sign(y);
-          hitFlagsResult.YHitObjects = colliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.YHitObjects = solidColliders.Select(collider => collider.collider.gameObject).ToList();
 
           break;
+        }
+
+        var passableColliders = GetPassableColliders(result);
+
+        if (passableColliders.Count > 0) {
+          hitFlagsResult.YTouchedObjects = passableColliders.Select(collider => collider.collider.gameObject).ToList();
         }
       }
     }
@@ -160,6 +201,10 @@ public class Player: MonoBehaviour {
     // stand on a platform
     if (lastHitFlags.HitBottom() && velocityY < fallingSpeed) {
       velocityY = fallingSpeed;
+    }
+
+    if (lastHitFlags.TouchAnything()) {
+      velocityY = 0f;
     }
 
     var dx = 0;
@@ -202,7 +247,7 @@ public class Player: MonoBehaviour {
       }
 
       return hit;
-    } 
+    }
 
     transform.position += desiredMovement;
 
@@ -219,10 +264,7 @@ public class Player: MonoBehaviour {
 
     this.lastHitFlags = hitFlags;
 
-    if (Input.GetKeyDown("e")) {
-      // Show dialog
-      Manager.CreateNewDialog("Hello world!", this.gameObject);
-    } else if (Input.GetKeyDown("1")) {
+    if (Input.GetKeyDown("1")) {
       // Show emotion
     }
   }
@@ -232,7 +274,7 @@ public class Player: MonoBehaviour {
   /**
    * 
    */
-  public showEmotionCue(EmotionType emotionType) {
+  public void showEmotionCue(EmotionType emotionType) {
     
   }
 }
