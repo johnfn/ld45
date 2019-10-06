@@ -37,6 +37,10 @@ public class EmotionInteractable: Interactable {
     override public void Interact() {
         Util.Log("Interact() called");
         // Call HudEmotionCue.SetActive somehow
+        HudEmotionCue HudEmotionCue = EmotionCue.GetComponent<HudEmotionCue>();
+        if (HudEmotionCue != null) {
+            HudEmotionCue.SetActive();
+        }
     }
 
 }
