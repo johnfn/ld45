@@ -9,7 +9,7 @@ public class InteractableManager: MonoBehaviour {
 
   public int MaxDistanceToInteractable;
 
-  private GameObject targettedInteractable;
+  private GameObject currentTarget;
 
   void Update() {
     if (Interactables.Count == 0) {
@@ -18,18 +18,26 @@ public class InteractableManager: MonoBehaviour {
 
     var player = Manager.Instance.Player;
     var sortedByDistance = Interactables.OrderBy(x => Util.Distance(x.gameObject, player.gameObject));
-    var closest = sortedByDistance.First();
+    var newTarget = sortedByDistance.First().gameObject;
 
-    if (targettedInteractable) {
-      targettedInteractable.transform.localScale = new Vector3(1, 1, 1);
+    if (Util.Distance(player.gameObject, newTarget) > MaxDistanceToInteractable) {
+      newTarget = null;
     }
 
-    if (Util.Distance(player.gameObject, closest.gameObject) < MaxDistanceToInteractable) {
-      targettedInteractable = closest.gameObject;
+    if ((newTarget != null || currentTarget != null) && newTarget != currentTarget) {
+      if (newTarget) {
+        newTarget.GetComponent<Interactable>().ShowAsInteractable();
+      }
 
-      targettedInteractable.transform.localScale = new Vector3(2f, 2f, 2f);
+      if (currentTarget) {
+        currentTarget.GetComponent<Interactable>().ShowAsNormal();
+      }
+    }
+
+    if (newTarget) {
+      currentTarget = newTarget;
     } else {
-      targettedInteractable = null;
+      currentTarget = null;
     }
   }
 }

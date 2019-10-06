@@ -11,6 +11,14 @@ public class Interactable: MonoBehaviour {
     InteractableManager.Interactables.Remove(this);
   }
 
+  public void ShowAsInteractable() {
+    transform.localScale = new Vector3(2, 2, 2);
+  }
+
+  public void ShowAsNormal() {
+    transform.localScale = new Vector3(1, 1, 1);
+  }
+
   void Update() {
 
   }
