@@ -331,11 +331,10 @@ public class Player: MonoBehaviour {
     return hit;
   }
 
-  void Update() {
+  void FixedUpdate() {
     velocityY -= 0.3f;
 
     var desiredMovement = calculateVelocity();
-
 
     // Set Animator parameters based on new and previous states
 
