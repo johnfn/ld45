@@ -501,8 +501,9 @@ MonoBehaviour:
   Camera: {fileID: 519420031}
   CurrentGameState: 1
   IntroductionPlayerPosition: {fileID: 1699614726}
-  FirstGameplayPlayerPosition: {fileID: 1699614726}
+  FirstGameplayPlayerPosition: {fileID: 324968617}
   FullFade: {fileID: 4285615079742527641}
+  CircleFade: {fileID: 1981088907}
 --- !u!1 &324968617
 GameObject:
   m_ObjectHideFlags: 0
