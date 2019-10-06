@@ -56,6 +56,8 @@ public class EmotionState {
   public bool Remorse = false;
 
   public bool Betrayal = false;
+
+  public bool Forgiveness = false;
 }
 
 [RequireComponent(typeof(BoxCollider2D))]
