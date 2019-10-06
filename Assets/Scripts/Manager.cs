@@ -6,14 +6,6 @@ public enum GameState {
   FirstGameplay
 }
 
-enum EmotionType {
-  Curiosity,
-  Affection,
-  Remorse,
-  Betrayal,
-  Forgiveness,
-}
-
 public class Manager: MonoBehaviour {
   // Prefabs 
   public GameObject DialogPrefab;
@@ -22,7 +14,7 @@ public class Manager: MonoBehaviour {
 
   // Objects
 
-  public GameObject Player;
+  public Player Player;
 
   public GameObject OtherGuy;
 
