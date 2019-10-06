@@ -52,8 +52,7 @@ public class Manager: MonoBehaviour {
   void StartNewScene() {
     switch (CurrentGameState) {
       case GameState.Introduction:
-        FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        SetInstruction("Press X to continue.");
+        //FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
@@ -63,7 +62,7 @@ public class Manager: MonoBehaviour {
     }
   }
 
-    void SetInstruction(string instructText)
+    public void SetInstruction(string instructText)
     {
         CanvasGroup canvasGroup = InstructObj.GetComponent<CanvasGroup>();
 
@@ -93,7 +92,6 @@ public class Manager: MonoBehaviour {
     };
 
     Player.transform.position = IntroductionPlayerPosition.transform.position;
-
     DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
   }
 
