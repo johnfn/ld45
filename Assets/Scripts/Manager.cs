@@ -54,11 +54,12 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static void CreateNewDialog(string text, GameObject target) {
-    GameObject.Instantiate(
+  public static Dialog CreateNewDialog(string text, GameObject Target) {
+    var NewDialog = GameObject.Instantiate(
         Instance.DialogPrefab,
         target.transform.position,
         Quaternion.identity
     );
+    return NewDialog;
   }
 }

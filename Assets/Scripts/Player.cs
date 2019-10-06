@@ -211,7 +211,6 @@ public class Player: MonoBehaviour {
 
     this.lastHitFlags = hitFlags;
 
-    // Keys
     if (Input.GetKeyDown("e")) {
       // Show dialog
       Manager.CreateNewDialog("Hello world!", this.gameObject);
