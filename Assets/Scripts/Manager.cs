@@ -50,10 +50,11 @@ public class Manager: MonoBehaviour {
     switch (CurrentGameState) {
       case GameState.Introduction:
         FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        SetInstruction("Press X to continue.");
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
-        SetInstruction("Press X to continue.");
+        
         StartFirstGameplay();
         break;
     }
@@ -66,7 +67,7 @@ public class Manager: MonoBehaviour {
         canvasGroup.alpha = 0;
         InstructObj.gameObject.SetActive(true);
         LeanTween.alphaCanvas(canvasGroup, 0.5f, 1f).setEaseInOutQuad().setOnComplete(() => {
-            LeanTween.alphaCanvas(canvasGroup, 0.7f, 0.5f).setLoopPingPong();
+            LeanTween.alphaCanvas(canvasGroup, 0.7f, 1.5f).setLoopPingPong();
         });
         InstructObj.text = instructText;
     }

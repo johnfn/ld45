@@ -271,13 +271,14 @@ GameObject:
   - component: {fileID: 101003461}
   - component: {fileID: 101003463}
   - component: {fileID: 101003462}
+  - component: {fileID: 101003464}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &101003461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -416,6 +417,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101003460}
   m_CullTransparentMesh: 0
+--- !u!225 &101003464
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101003460}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &129639394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,11 +667,13 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 1022136880}
   OtherGuy: {fileID: 1529586512}
+  InstructObj: {fileID: 101003462}
   Camera: {fileID: 519420031}
   CurrentGameState: 0
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 0}
   FullFade: {fileID: 4285615079742527641}
+  CircleFade: {fileID: 0}
 --- !u!1 &324968617
 GameObject:
   m_ObjectHideFlags: 0
