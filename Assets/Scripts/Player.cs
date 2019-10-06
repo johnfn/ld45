@@ -276,7 +276,7 @@ public class Player: MonoBehaviour {
     anim.SetBool("walking", Mathf.Abs(desiredMovement.x) > 0);
     anim.SetBool("jumping", isJumping());
     anim.SetBool("climbing", isTouchingLadder);
-    if (isTouchingLadder)
+    if (anim.GetBool("climbing"))
     {
       anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
     }
