@@ -99,6 +99,7 @@ public class Manager: MonoBehaviour {
   public static GameObject CreateNewEmotionCue(EmotionType emotionType, GameObject Target) {
     GameObject OriginalPrefab = null;
     GameObject EmotionCue = null;
+    Vector3 offset = new Vector3(-0.5f, -1.5f, 0);
 
     // Decide which emotion type to use
     switch (emotionType) {
@@ -112,11 +113,9 @@ public class Manager: MonoBehaviour {
     }
 
     // Create & return
-    Util.Log(OriginalPrefab);
-    Util.Log(Target.transform.position);
     EmotionCue = GameObject.Instantiate(
       OriginalPrefab,
-      Target.transform.position + new Vector3(0, 2, 0),
+      Target.transform.position + offset,
       Quaternion.identity
     );
     // Nest in parent
