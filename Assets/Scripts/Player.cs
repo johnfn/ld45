@@ -71,6 +71,7 @@ public class Player: MonoBehaviour {
 
   void Start() {
     boxCollider  = GetComponent<BoxCollider2D>();
+
     lastHitFlags = new HitFlags();
   }
 

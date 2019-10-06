@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Manager: MonoBehaviour {
     public GameObject DialogPrefab;
+
+    public GameObject Player;
+
     public static Manager Instance;
 
     void Awake() {
