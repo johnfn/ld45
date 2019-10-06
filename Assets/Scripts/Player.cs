@@ -74,6 +74,10 @@ public class Player: MonoBehaviour {
   [Header("1 = infinite floaty. 1.5 = normal floaty. 2 = kind of floaty")]
   public float gravityScaleFactor = 1.3f;
 
+  public ParticleSystem dustPuffs;
+
+  public GameObject shadow;
+
   [HideInInspector]
   public Character character;
 
@@ -108,6 +112,7 @@ public class Player: MonoBehaviour {
     anim = GetComponent<Animator>();
     spriteRenderer = GetComponent<SpriteRenderer>();
     character = GetComponent<Character>();
+    dustPuffs.Stop();
 
     lastHitFlags = new HitFlags();
   }
@@ -293,19 +298,29 @@ public class Player: MonoBehaviour {
 
     var desiredMovement = calculateVelocity();
 
-    anim.SetBool("walking", Mathf.Abs(desiredMovement.x) > 0);
-    anim.SetBool("jumping", isJumping());
-    anim.SetBool("climbing", isTouchingLadder);
-    if (anim.GetBool("climbing"))
-    {
+
+    // Set Animator parameters based on new and previous states
+
+    bool prevWalk = anim.GetBool("walking"), prevJump = anim.GetBool("jumping"), prevClimb = anim.GetBool("climb");
+    bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, nextJump = !isTouchingLadder && isJumping(), nextClimb = isTouchingLadder;
+
+    if (!prevWalk && nextWalk) dustPuffs.Play();
+    if (prevWalk && !nextWalk) dustPuffs.Stop();
+    if (!prevClimb && nextClimb) anim.Play("Climb");
+    if (prevClimb || nextClimb) {
       anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
-    }
-    else {
-      anim.speed = 1;
+    } else { anim.speed = 1; }
+    shadow.SetActive(!nextJump && !nextClimb);
 
-    }
 
-    //Make the sprite face the right way
+
+    anim.SetBool("walking", nextWalk);
+    anim.SetBool("climbing", nextClimb);
+    anim.SetBool("jumping", nextJump);
+
+
+    //Make the sprite and particle system face the right way
+    bool prevDir = isFacingRight;
     if (desiredMovement.x > 0)
     {
       isFacingRight = true;
@@ -313,7 +328,9 @@ public class Player: MonoBehaviour {
       isFacingRight = false;
     }
     spriteRenderer.flipX = !isFacingRight;
-   
+    if (prevDir != isFacingRight) dustPuffs.transform.RotateAround(Vector2.up, Mathf.Deg2Rad * 180);
+
+
 
     // This is pretty important. Hit() does not properly update your currently
     // touching objects if you try to raycast with a zero length vector, so
