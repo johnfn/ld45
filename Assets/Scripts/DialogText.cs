@@ -68,7 +68,7 @@ public class DialogText {
   };
 
   public static List<DialogEvent> Trudialog = new List<DialogEvent> {
-    new DialogEvent { Name = CharacterName.Blank, Contents = "Um... hi." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "<color=red>Um... hi.</color>" },
     new DialogEvent { Name = CharacterName.Trudy, Contents = "Hewwwwoooo" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "I am quite alarmed right now." },
   };

@@ -24,6 +24,24 @@ public class Dialog: MonoBehaviour {
   private string entireDialog;
   private int tick = 0;
 
+  private string currentTagName = "";
+
+  private string visibleDialog = "";
+
+  private int index = 0;
+
+  char? getNextChar() {
+    if (index >= entireDialog.Length) {
+      return null;
+    } else {
+      var result = entireDialog[index];
+
+      ++index;
+
+      return result;
+    }
+  }
+
   public float Width { get { return this.sprite.bounds.size.x; } }
 
   public float Height { get { return this.sprite.bounds.size.y; } }
@@ -55,35 +73,98 @@ public class Dialog: MonoBehaviour {
   }
 
   public void StartDialog(string dialog) {
-    text.text = "";
+    visibleDialog = "";
     entireDialog = dialog;
 
     CalculateDialogSize(dialog);
 
     state = DialogState.WritingText;
+
+    text.text = "";
+  }
+
+  string GetCloseTagName(string tagName) {
+    var result = "";
+
+    foreach (var ch in tagName) {
+      if (ch == '=') {
+        break;
+      }
+
+      result += ch;
+    }
+
+    return result;
   }
 
   void WriteLetter() {
-    var currentDialog = text.text;
+    var nextCharacter = getNextChar();
 
-    if (currentDialog == this.entireDialog) {
+    if (nextCharacter == null) {
       this.state = DialogState.FinishedAndWaitingForInput;
 
       return;
     }
 
-    var nextCharacter = entireDialog[currentDialog.Length];
-    text.text += nextCharacter;
+    // read entire tag at once
+
+    if (nextCharacter == '<') {
+      var nextTagName = "";
+
+      nextCharacter = getNextChar();
+
+      while (nextCharacter != '>') {
+        nextTagName += nextCharacter;
+        nextCharacter = getNextChar();
+
+        if (nextCharacter == null) {
+          throw new System.Exception("no close tag found");
+        }
+      }
+
+      if (nextTagName[0] != '/') {
+        // <color=red>
+
+        visibleDialog += $"<{ nextTagName }>"; // e.g. <color=red>
+        currentTagName = GetCloseTagName(nextTagName); // e.g. color
+      } else {
+        // </color>
+
+        visibleDialog += $"</{ currentTagName }>";
+        currentTagName = "";
+      }
+    } else {
+      visibleDialog += nextCharacter;
+    }
   }
 
   void SkipToEnd() {
     this.state = DialogState.FinishedAndWaitingForInput;
 
-    text.text = entireDialog;
+    currentTagName = "";
+    visibleDialog = entireDialog;
+  }
+
+  void UpdateText() {
+    if (!text) {
+      return;
+    }
+
+    var newText = "";
+
+    if (currentTagName != "") {
+      newText = $"{ visibleDialog }</{ currentTagName }>";
+    } else {
+      newText = visibleDialog;
+    }
+
+    text.text = newText;
   }
 
   void Update() {
     ++tick;
+
+    UpdateText();
 
     switch (state) {
       case DialogState.Done:
