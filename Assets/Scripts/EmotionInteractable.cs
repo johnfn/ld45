@@ -6,13 +6,17 @@ public class EmotionInteractable: Interactable {
 
     private GameObject EmotionCue;
 
+    /*
+    (the base class handles these for you)
+
     void Start() {
         InteractableManager.Interactables.Add(this);
     }
 
     void OnDestroy() {
         InteractableManager.Interactables.Remove(this);
-    }
+    } 
+    */
 
     override public void ShowAsInteractable() {
         transform.localScale = new Vector3(2, 2, 2);
@@ -24,6 +28,10 @@ public class EmotionInteractable: Interactable {
         if (EmotionCue != null) {
             Object.Destroy(EmotionCue);
         }
+    }
+
+    override public void Interact() {
+        Util.Log("My name is david and i should implement this");
     }
 
     void Update() {

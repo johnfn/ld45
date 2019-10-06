@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 public enum CharacterName {
   Blank,
-  Ash
+  Ash,
+
+  Trudy
 }
 
 public class Fade {
@@ -23,8 +25,6 @@ public class DialogText {
     new DialogItem { Fade = new Fade { Immediate = true, RectangleFadeOpacity = 1.0f } },
 
     new DialogItem { Name = CharacterName.Ash  , Contents = "Hey!" },
-
-
     new DialogItem { Name = CharacterName.Blank, Contents = "..." },
 
     new DialogItem { Name = CharacterName.Ash  , Contents = "What happened? Are you okay?" },
@@ -59,5 +59,11 @@ public class DialogText {
     new DialogItem { Name = CharacterName.Ash  , Contents = "I’ll head up to a resting point, and every time you catch up, I’ll answer one of your questions." },
     new DialogItem { Name = CharacterName.Ash  , Contents = "Sound good?" },
     new DialogItem { Name = CharacterName.Blank, Contents = "Sure!" },
+  };
+
+  public static List<DialogItem> Trudialog = new List<DialogItem> {
+    new DialogItem { Name = CharacterName.Blank, Contents = "Um... hi." },
+    new DialogItem { Name = CharacterName.Trudy, Contents = "Hewwwwoooo" },
+    new DialogItem { Name = CharacterName.Blank, Contents = "I am quite alarmed right now." },
   };
 }

@@ -285,6 +285,14 @@ public class Player: MonoBehaviour {
       this.lastHitFlags = hitFlags;
     }
 
+    if (Input.GetKeyDown("x")) {
+      var interactable = InteractableManager.Instance.GetInteractableTarget();
+
+      if (interactable) {
+        interactable.Interact();
+      }
+    }
+
     if (Input.GetKeyDown("1")) {
       // Show emotion
     }
