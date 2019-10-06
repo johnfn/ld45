@@ -107,7 +107,6 @@ public class Player: MonoBehaviour {
   private bool isTouchingLadder = false;
   private bool isFacingRight = true;
 
-  private float velocityX = 0f;
   private float velocityY = 0f;
 
   private float accelerationY = 0f;
