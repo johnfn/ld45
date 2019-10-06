@@ -12,6 +12,8 @@ public class Manager: MonoBehaviour {
 
   public GameObject Player;
 
+  public GameObject OtherGuy;
+
   public Camera Camera;
 
   public GameState CurrentGameState;
