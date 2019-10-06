@@ -249,7 +249,7 @@ MonoBehaviour:
   Player: {fileID: 1022136877}
   OtherGuy: {fileID: 1529586512}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 1
 --- !u!1 &514880180
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,9 +833,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1022136877}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf2e533c60bf4150a1b540e158f08f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d463dd6166c34e5b8e6eea4ae85d940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveMode: 0
 --- !u!1 &1384122345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1017,9 +1018,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1529586512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf2e533c60bf4150a1b540e158f08f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d463dd6166c34e5b8e6eea4ae85d940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ActiveMode: 0
 --- !u!1 &1532042997
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,3 +1381,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2384be0e53c43f8aba9e820d261aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentGameMode: 0

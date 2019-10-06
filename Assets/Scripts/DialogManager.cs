@@ -48,6 +48,8 @@ public class DialogManager: MonoBehaviour {
     }
 
     state = DialogManagerState.Done;
+
+    ModeManager.SetGameMode(GameMode.Playing);
   }
 
   void ShowNextDialog() {
@@ -68,6 +70,8 @@ public class DialogManager: MonoBehaviour {
   }
 
   public void StartDialogSequence(List<DialogItem> items) {
+    ModeManager.SetGameMode(GameMode.Dialog);
+
     currentSequence = items;
     state = DialogManagerState.ShouldShowNextDialog;
   }
