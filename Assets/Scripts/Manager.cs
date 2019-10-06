@@ -54,7 +54,7 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static Dialog CreateNewDialog(string text, GameObject Target) {
+  public static GameObject CreateNewDialog(string text, GameObject Target) {
     var NewDialog = GameObject.Instantiate(
         Instance.DialogPrefab,
         Target.transform.position,
