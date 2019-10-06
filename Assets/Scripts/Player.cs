@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -68,6 +68,8 @@ public class Player: MonoBehaviour {
   private float accelerationY = 0f;
 
   private HitFlags lastHitFlags;
+
+  private GameObject dialog;
 
   void Start() {
     boxCollider  = GetComponent<BoxCollider2D>();
@@ -205,7 +207,11 @@ public class Player: MonoBehaviour {
     this.lastHitFlags = hitFlags;
 
     if (Input.GetKeyDown("e")) {
-      Manager.CreateNewDialog("Hello world!", this.gameObject);
+      if (!dialog) {
+        this.dialog = Manager.CreateNewDialog("Hello world!", this.gameObject);
+      } else {
+        Object.Destroy(this.dialog);
+      }
     }
   }
 }
