@@ -85,6 +85,9 @@ public class Player: MonoBehaviour {
   [HideInInspector]
   public Character character;
 
+  [HideInInspector]
+  private Vector3 LookingDirection = Vector3.zero;
+
   public float Width { get { return boxCollider.bounds.size.x; } }
 
   public float Height { get { return boxCollider.bounds.size.y; } }
@@ -119,6 +122,10 @@ public class Player: MonoBehaviour {
     dustPuffs.Stop();
 
     lastHitFlags = new HitFlags();
+  }
+
+  public Vector3 GetLookingDirection() {
+    return LookingDirection;
   }
 
   private bool IsColliderAVine(Collider2D obj) {
@@ -214,12 +221,24 @@ public class Player: MonoBehaviour {
     var dx = 0f;
     var dy = 0f;
 
-    if (Input.GetKey("a")) { dx -= 1; }
-    if (Input.GetKey("d")) { dx += 1; }
+    if (Input.GetKey("a")) { 
+      dx -= 1; 
+      LookingDirection = new Vector3(-1f, 0f, 0f);
+    }
+    if (Input.GetKey("d")) { 
+      dx += 1; 
+      LookingDirection = new Vector3(1f, 0f, 0f);
+    }
 
     if (isTouchingLadder) {
-      if (Input.GetKey("w")) { dy += 1; }
-      if (Input.GetKey("s")) { dy -= 1; }
+      if (Input.GetKey("w")) { 
+        dy += 1; 
+        LookingDirection = new Vector3(0f, 1f, 0f);
+      }
+      if (Input.GetKey("s")) { 
+        dy -= 1; 
+        LookingDirection = new Vector3(0f, -1f, 0f);
+      }
 
       accelerationY = 0f;
       velocityY     = 0f;
@@ -325,8 +344,7 @@ public class Player: MonoBehaviour {
 
     //Make the sprite and particle system face the right way
     bool prevDir = isFacingRight;
-    if (desiredMovement.x > 0)
-    {
+    if (desiredMovement.x > 0) {
       isFacingRight = true;
     } else if (desiredMovement.x < 0) {
       isFacingRight = false;

@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CameraFollow: MonoBehaviour {
   public float smoothing;
-  public GameObject player;
+  public Player player;
 
   private Camera followCamera;
+
+  private Vector3 effectiveLookingDirection = Vector3.zero;
 
   void Start() {
     followCamera = GetComponent<Camera>();
@@ -19,11 +21,17 @@ public class CameraFollow: MonoBehaviour {
   }
 
   void FixedUpdate() {
+    effectiveLookingDirection = new Vector3(
+      Mathf.Lerp(effectiveLookingDirection.x, player.GetLookingDirection().x, 0.04f),
+      Mathf.Lerp(effectiveLookingDirection.y, player.GetLookingDirection().y, 0.04f),
+      Mathf.Lerp(effectiveLookingDirection.z, player.GetLookingDirection().z, 0.04f)
+    );
+
     var desiredPosition = new Vector3(
       x: player.transform.position.x,
       y: player.transform.position.y,
       z: followCamera.transform.position.z
-    );
+    ) + effectiveLookingDirection * 10f;
 
     followCamera.transform.position = new Vector3(
       x: Mathf.Lerp(followCamera.transform.position.x, desiredPosition.x, smoothing),
