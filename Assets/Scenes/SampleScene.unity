@@ -441,6 +441,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CuriosityCue
       objectReference: {fileID: 0}
+    - target: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6711652922937176222, guid: 8beaa63ddaa2444939d8eabfad19728f,
         type: 3}
       propertyPath: m_LocalPosition.x
