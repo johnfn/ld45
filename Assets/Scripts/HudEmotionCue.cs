@@ -48,18 +48,18 @@ public class HudEmotionCue: MonoBehaviour {
 
     /* Other */
 
-    void SetActive() {
+    public void SetActive() {
         State = HudEmotionCueState.Active;
-        Util.Log("hud emotion cue active");
+        Util.Log("hud emotion cue active. insert fadeout here.");
     }
 
     /// Handle Active state.
-    void UpdateActive() {
+    private void UpdateActive() {
         float scale = 1.4f;
         transform.localScale = new Vector3(scale, scale, scale);
     }
 
-    void UpdateVisible() {
+    private void UpdateVisible() {
         Move(new Vector3(velocityX, velocityY, 0));
         Accelerate();
         Jerk();
