@@ -184,9 +184,7 @@ public class Dialog: MonoBehaviour {
       case DialogState.WritingText:
         if (Input.GetKeyDown("x")) {
           Finish();
-        }
-
-        if (tick % textSpeed == 0) {
+        } else if (tick % textSpeed == 0) {
           WriteLetter();
         }
 
