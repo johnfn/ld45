@@ -57,12 +57,17 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static GameObject CreateNewDialog(string text, GameObject Target) {
-    var NewDialog = GameObject.Instantiate(
+  public static Dialog CreateNewDialog(string text, GameObject Target) {
+    var dialogGO = GameObject.Instantiate(
         Instance.DialogPrefab,
         Target.transform.position,
         Quaternion.identity
     );
-    return NewDialog;
+
+    var dialog = dialogGO.GetComponent<Dialog>();
+
+    dialog.StartDialog(text);
+
+    return dialog;
   }
 }

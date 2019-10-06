@@ -28,11 +28,6 @@ public class Dialog: MonoBehaviour {
 
   public float Height { get { return this.sprite.bounds.size.y; } }
 
-
-  void Start() {
-    state = TextState.Empty;
-  }
-
   void CalculateDialogSize(string dialog) {
     // Figure out how tall and wide this dialog should be
 
@@ -55,7 +50,7 @@ public class Dialog: MonoBehaviour {
     );
   }
 
-  void ShowDialog(string dialog) {
+  public void StartDialog(string dialog) {
     text.text = "";
     entireDialog = dialog;
 
