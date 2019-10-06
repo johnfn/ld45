@@ -22,6 +22,11 @@ public class Manager: MonoBehaviour {
 
   public GameState CurrentGameState;
 
+  [Header("Where you start at for each state")]
+  public GameObject IntroductionPlayerPosition;
+
+  public GameObject FirstGameplayPlayerPosition;
+
   [Header("Objects used to fade game in and out")]
 
   public GameObject FullFade;
@@ -62,6 +67,8 @@ public class Manager: MonoBehaviour {
       Betrayal = false,
     };
 
+    Player.transform.position = IntroductionPlayerPosition.transform.position;
+
     DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
   }
 
@@ -73,6 +80,8 @@ public class Manager: MonoBehaviour {
       Remorse = false,
       Betrayal = false,
     };
+
+    Player.transform.position = FirstGameplayPlayerPosition.transform.position;
   }
 
   void Update() {
@@ -98,6 +107,7 @@ public class Manager: MonoBehaviour {
   public static GameObject CreateNewEmotionCue(EmotionType emotionType, GameObject Target) {
     GameObject OriginalPrefab = null;
     GameObject EmotionCue = null;
+    Vector3 offset = new Vector3(-0.5f, -1.5f, 0);
 
     // Decide which emotion type to use
     switch (emotionType) {
@@ -111,11 +121,9 @@ public class Manager: MonoBehaviour {
     }
 
     // Create & return
-    Util.Log(OriginalPrefab);
-    Util.Log(Target.transform.position);
     EmotionCue = GameObject.Instantiate(
       OriginalPrefab,
-      Target.transform.position + new Vector3(0, 2, 0),
+      Target.transform.position + offset,
       Quaternion.identity
     );
     // Nest in parent

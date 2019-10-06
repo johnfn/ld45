@@ -128,6 +128,10 @@ public class Player: MonoBehaviour {
     return LookingDirection;
   }
 
+  public void SetLookingDirection(Vector3 direction) {
+    LookingDirection = direction.normalized;
+  }
+
   private bool IsColliderAVine(Collider2D obj) {
     var parent = obj.gameObject.transform.parent;
 
@@ -221,23 +225,23 @@ public class Player: MonoBehaviour {
     var dx = 0f;
     var dy = 0f;
 
-    if (Input.GetKey("a")) { 
-      dx -= 1; 
-      LookingDirection = new Vector3(-1f, 0f, 0f);
+    if (Input.GetKey("a")) {
+      dx -= 1;
+      SetLookingDirection(new Vector3(-1f, 0, 0));
     }
     if (Input.GetKey("d")) { 
       dx += 1; 
-      LookingDirection = new Vector3(1f, 0f, 0f);
+      SetLookingDirection(new Vector3(1f, 0, 0));
     }
 
     if (isTouchingLadder) {
       if (Input.GetKey("w")) { 
         dy += 1; 
-        LookingDirection = new Vector3(0f, 1f, 0f);
+        SetLookingDirection(new Vector3(0f, 1f, 0f));
       }
       if (Input.GetKey("s")) { 
         dy -= 1; 
-        LookingDirection = new Vector3(0f, -1f, 0f);
+        SetLookingDirection(new Vector3(0f, -1f, 0f));
       }
 
       accelerationY = 0f;
