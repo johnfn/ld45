@@ -6,13 +6,20 @@ public enum CharacterName {
   Ash
 }
 
-public struct DialogItem {
+public enum SpecialDialogEvent {
+  FadeToBlack
+}
+
+public class DialogItem {
   public CharacterName Name;
   public string Contents;
+  public SpecialDialogEvent SpecialEvent;
 }
 
 public class DialogText {
   public static List<DialogItem> FirstDialog = new List<DialogItem> {
+    new DialogItem { SpecialEvent = SpecialDialogEvent.FadeToBlack },
+
     new DialogItem { Name = CharacterName.Ash  , Contents = "Hey!" },
     new DialogItem { Name = CharacterName.Blank, Contents = "..." },
     new DialogItem { Name = CharacterName.Ash  , Contents = "What happened? Are you okay?" },

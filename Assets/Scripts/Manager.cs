@@ -44,6 +44,9 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
+    FullFade.gameObject.SetActive(false);
+    CircleFade.gameObject.SetActive(false);
+
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
   }
