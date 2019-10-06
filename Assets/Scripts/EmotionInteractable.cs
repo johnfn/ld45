@@ -4,6 +4,8 @@ using UnityEngine;
 public class EmotionInteractable: Interactable {
     public EmotionType myEmotionType;
 
+    private GameObject EmotionCue;
+
     void Start() {
         InteractableManager.Interactables.Add(this);
     }
@@ -14,11 +16,14 @@ public class EmotionInteractable: Interactable {
 
     override public void ShowAsInteractable() {
         transform.localScale = new Vector3(2, 2, 2);
-        Manager.Instance.Player.ShowEmotionCue(myEmotionType);
+        EmotionCue = Manager.Instance.Player.ShowEmotionCue(myEmotionType);
     }
 
     override public void ShowAsNormal() {
         transform.localScale = new Vector3(1, 1, 1);
+        if (EmotionCue != null) {
+            Object.Destroy(EmotionCue);
+        }
     }
 
     void Update() {
