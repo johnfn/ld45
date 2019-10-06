@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum GameState {
   Introduction,
@@ -17,6 +18,7 @@ public class Manager: MonoBehaviour {
   public Player Player;
 
   public GameObject OtherGuy;
+  public TextMeshProUGUI InstructObj;
 
   public Camera Camera;
 
@@ -40,8 +42,7 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 1f);
-    //CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+    
 
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
@@ -50,6 +51,7 @@ public class Manager: MonoBehaviour {
   void StartNewScene() {
     switch (CurrentGameState) {
       case GameState.Introduction:
+        FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
