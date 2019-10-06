@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class InteractableManager: MonoBehaviour {
 
+  public static InteractableManager Instance;
+
   /** All Interactables currently alive add themselves to this. */
   public static List<Interactable> Interactables = new List<Interactable>();
 
   public int MaxDistanceToInteractable;
 
   private GameObject currentTarget;
+
+  void Awake() {
+    Instance = this;
+  }
 
   void Update() {
     if (Interactables.Count == 0) {
