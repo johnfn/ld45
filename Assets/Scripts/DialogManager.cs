@@ -7,13 +7,6 @@ public enum FadeType {
   Both
 }
 
-public class FadeState {
-  public float RectOpacityGoal;
-  public float CircleOpacityGoal;
-
-  public FadeType FadeType;
-}
-
 public enum DialogManagerState {
   Done,
   Fading,
@@ -27,7 +20,7 @@ public class DialogManager: MonoBehaviour {
   [Header("Smaller is slower, 0 is infinitly long")]
   public float FadeSpeed = 0.01f;
 
-  private List<DialogItem> currentSequence;
+  private List<DialogEvent> currentSequence;
 
   private Fade fadeState;
 
@@ -113,6 +106,30 @@ public class DialogManager: MonoBehaviour {
       return;
     }
 
+    if (currentDialogItem.ReceiveEmotion != EmotionType.None) {
+      var emo = currentDialogItem.ReceiveEmotion;
+
+      if (emo == EmotionType.AffectionCurrentlyUnused) {
+        Manager.Instance.Player.Emotions.Affection = true;
+      } else if (emo == EmotionType.BetrayalCurrentlyUnused) {
+        Manager.Instance.Player.Emotions.Betrayal = true;
+      } else if (emo == EmotionType.Curiosity) {
+        Manager.Instance.Player.Emotions.Curiosity = true;
+      } else if (emo == EmotionType.ForgivenessCurrentlyUnused) {
+        Manager.Instance.Player.Emotions.Forgiveness = true;
+      } else if (emo == EmotionType.RemorseCurrentlyUnused) {
+        Manager.Instance.Player.Emotions.Remorse = true;
+      } else {
+        Debug.LogError("Uhhhhhhhhhhhh");
+      }
+
+      Debug.Log("TODO: Some sort of receive animation??!");
+
+      state = DialogManagerState.ShouldShowNextDialog;
+
+      return;
+    }
+
     var characterName = currentDialogItem.Name;
     var speaker = Character.Speakers.First(guy => guy.CharacterName == characterName);
 
@@ -121,7 +138,7 @@ public class DialogManager: MonoBehaviour {
     state = DialogManagerState.ShowingDialog;
   }
 
-  public void StartDialogSequence(List<DialogItem> items) {
+  public void StartDialogSequence(List<DialogEvent> items) {
     ModeManager.SetGameMode(GameMode.Dialog);
 
     currentSequence = items;
