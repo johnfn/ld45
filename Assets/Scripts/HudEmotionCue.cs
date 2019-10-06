@@ -13,13 +13,10 @@ public class HudEmotionCue: MonoBehaviour {
 
     /* Main */
 
-    /** 
-     * Change position by velocity.
-     * It's a UI element, so it doesn't collide with anything.
-     */
+    /// Change position by velocity.
     void Move(Vector3 deltaPositon) {
         transform.position += deltaPositon;
-        Util.Log(velocityX, velocityY);
+        // It's a UI element, so no need to worry about collision
     }
 
     /** Change velocity by acceleration. */
