@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EmotionInteractable: Interactable {
-    public EmotionType myEmotionType;
+    public EmotionType myEmotionType = EmotionType.Curiosity;
 
     private GameObject EmotionCue;
 
@@ -18,6 +18,9 @@ public class EmotionInteractable: Interactable {
     } 
     */
 
+    void Awake() {
+    }
+
     override public void ShowAsInteractable() {
         transform.localScale = new Vector3(2, 2, 2);
         EmotionCue = Manager.Instance.Player.ShowEmotionCue(myEmotionType);
@@ -31,9 +34,7 @@ public class EmotionInteractable: Interactable {
     }
 
     override public void Interact() {
-        Util.Log("My name is david and i should implement this");
+        Util.Log("Interact() called");
     }
 
-    void Update() {
-    }
 }

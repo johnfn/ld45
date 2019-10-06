@@ -54,3 +54,6 @@ TagManager:
   - name: Closest
     uniqueID: 2323985321
     locked: 0
+  - name: Overlay
+    uniqueID: 1047985779
+    locked: 0

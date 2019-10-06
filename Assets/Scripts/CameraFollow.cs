@@ -1,8 +1,9 @@
 using UnityEngine;
 
+/** Camera follows the player. */
 public class CameraFollow: MonoBehaviour {
   public float smoothing;
-  public Player player;
+  private Player player;
 
   private Camera followCamera;
 
@@ -10,9 +11,9 @@ public class CameraFollow: MonoBehaviour {
 
   void Start() {
     followCamera = GetComponent<Camera>();
+    player = Manager.Instance.Player;
 
-    // immediately snap cam to player at beginning of game 
-
+    // Immediately snap cam to player at beginning of game 
     followCamera.transform.position = new Vector3(
       x: player.transform.position.x,
       y: player.transform.position.y,
@@ -22,16 +23,16 @@ public class CameraFollow: MonoBehaviour {
 
   void FixedUpdate() {
     effectiveLookingDirection = new Vector3(
-      Mathf.Lerp(effectiveLookingDirection.x, player.GetLookingDirection().x, 0.04f),
-      Mathf.Lerp(effectiveLookingDirection.y, player.GetLookingDirection().y, 0.04f),
-      Mathf.Lerp(effectiveLookingDirection.z, player.GetLookingDirection().z, 0.04f)
+      Mathf.Lerp(effectiveLookingDirection.x, player.GetLookingDirection().x, 0.80f),
+      Mathf.Lerp(effectiveLookingDirection.y, player.GetLookingDirection().y, 0.80f),
+      Mathf.Lerp(effectiveLookingDirection.z, player.GetLookingDirection().z, 0.80f)
     );
 
     var desiredPosition = new Vector3(
       x: player.transform.position.x,
       y: player.transform.position.y,
       z: followCamera.transform.position.z
-    ) + effectiveLookingDirection * 7f;
+    ) + effectiveLookingDirection * 1f;
 
     followCamera.transform.position = new Vector3(
       x: Mathf.Lerp(followCamera.transform.position.x, desiredPosition.x, smoothing),

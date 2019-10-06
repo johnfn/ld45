@@ -25,8 +25,7 @@ public class Manager: MonoBehaviour {
   [Header("Objects used to fade game in and out")]
 
   public GameObject FullFade;
-
-  public GameObject CircleFade;
+  //public GameObject CircleFade;
 
   /** Singleton instance of the Manager. */
   public static Manager Instance;
@@ -36,8 +35,8 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 0f);
-    CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 1f);
+    //CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
@@ -99,6 +98,7 @@ public class Manager: MonoBehaviour {
   public static GameObject CreateNewEmotionCue(EmotionType emotionType, GameObject Target) {
     GameObject OriginalPrefab = null;
     GameObject EmotionCue = null;
+    Vector3 offset = new Vector3(-0.5f, -1.5f, 0);
 
     // Decide which emotion type to use
     switch (emotionType) {
@@ -112,11 +112,9 @@ public class Manager: MonoBehaviour {
     }
 
     // Create & return
-    Util.Log(OriginalPrefab);
-    Util.Log(Target.transform.position);
     EmotionCue = GameObject.Instantiate(
       OriginalPrefab,
-      Target.transform.position + new Vector3(0, 2, 0),
+      Target.transform.position + offset,
       Quaternion.identity
     );
     // Nest in parent
