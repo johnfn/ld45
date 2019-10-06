@@ -75,9 +75,12 @@ public class Manager: MonoBehaviour {
         InstructObj.text = instructText;
     }
 
-    void HideInstruction()
+    public void HideInstruction()
     {
-        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad();
+        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad().setOnComplete(() =>
+        {
+            InstructObj.gameObject.SetActive(false);
+        });
     }
 
   void StartIntroduction() {
