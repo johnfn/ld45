@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public enum GameState {
   Introduction,
@@ -18,16 +17,10 @@ public class Manager: MonoBehaviour {
   public Player Player;
 
   public GameObject OtherGuy;
-  public TextMeshProUGUI InstructObj;
 
   public Camera Camera;
 
   public GameState CurrentGameState;
-
-  [Header("Where you start at for each state")]
-  public GameObject IntroductionPlayerPosition;
-
-  public GameObject FirstGameplayPlayerPosition;
 
   [Header("Objects used to fade game in and out")]
 
@@ -42,12 +35,8 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-<<<<<<< HEAD
-    
-=======
-    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 0f);
-    CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
->>>>>>> 127f73c684f89f36a21f1b997e0607554a848d42
+    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 1f);
+    //CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
@@ -56,7 +45,6 @@ public class Manager: MonoBehaviour {
   void StartNewScene() {
     switch (CurrentGameState) {
       case GameState.Introduction:
-        FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
@@ -74,8 +62,6 @@ public class Manager: MonoBehaviour {
       Betrayal = false,
     };
 
-    Player.transform.position = IntroductionPlayerPosition.transform.position;
-
     DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
   }
 
@@ -87,8 +73,6 @@ public class Manager: MonoBehaviour {
       Remorse = false,
       Betrayal = false,
     };
-
-    Player.transform.position = FirstGameplayPlayerPosition.transform.position;
   }
 
   void Update() {
