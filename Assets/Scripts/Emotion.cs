@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Emotion: MonoBehaviour {
     void Start() {
-
+        
     }
 
     void Update() {
-        
+
     }
 }
