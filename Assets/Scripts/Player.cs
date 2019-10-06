@@ -67,9 +67,11 @@ public class Player: MonoBehaviour {
 
   [Header("Controls")]
 
-  public float MovementSpeed = 0.2f;
+  public float MovementSpeed;
 
-  public float FallingSpeed = -0.3f;
+  public float FallingSpeed;
+
+  public float JumpStrength;
 
   [Header("1 = infinite floaty. 1.5 = normal floaty. 2 = kind of floaty")]
   public float gravityScaleFactor = 1.3f;
@@ -231,7 +233,7 @@ public class Player: MonoBehaviour {
 
       dy = velocityY;
 
-      if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = 1; }
+      if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = JumpStrength; }
     }
 
     var result = new Vector3(dx, dy, 0) * MovementSpeed;
@@ -242,8 +244,6 @@ public class Player: MonoBehaviour {
   bool isJumping() {
     return !this.lastHitFlags.HitBottom();
   }
-
-
 
   private void OnTriggerEnter2D(Collider2D other) {
     if (IsColliderAVine(other)) {
@@ -301,7 +301,7 @@ public class Player: MonoBehaviour {
 
     // Set Animator parameters based on new and previous states
 
-    bool prevWalk = anim.GetBool("walking"), prevJump = anim.GetBool("jumping"), prevClimb = anim.GetBool("climb");
+    bool prevWalk = anim.GetBool("walking"), prevJump = anim.GetBool("jumping"), prevClimb = anim.GetBool("climbing");
     bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, nextJump = !isTouchingLadder && isJumping(), nextClimb = isTouchingLadder;
 
     if (!prevWalk && nextWalk) dustPuffs.Play();
@@ -311,8 +311,6 @@ public class Player: MonoBehaviour {
       anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
     } else { anim.speed = 1; }
     shadow.SetActive(!nextJump && !nextClimb);
-
-
 
     anim.SetBool("walking", nextWalk);
     anim.SetBool("climbing", nextClimb);
