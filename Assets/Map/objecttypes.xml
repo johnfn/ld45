@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="FPC" color="#a0a0a4">
+  <property name="type" type="string" default="fpc"/>
+ </objecttype>
+</objecttypes>

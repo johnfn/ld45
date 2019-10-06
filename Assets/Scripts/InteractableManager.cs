@@ -12,10 +12,14 @@ public class InteractableManager: MonoBehaviour {
 
   public int MaxDistanceToInteractable;
 
-  private GameObject currentTarget;
+  private Interactable currentTarget;
 
   void Awake() {
     Instance = this;
+  }
+
+  public Interactable GetInteractableTarget() {
+    return currentTarget;
   }
 
   void Update() {
@@ -27,10 +31,10 @@ public class InteractableManager: MonoBehaviour {
     var sortedByDistance = Interactables.OrderBy(x => Util.Distance(x.gameObject, player.gameObject));
     // Figure out which interactable is currently targetted
 
-    var newTarget = sortedByDistance.First().gameObject;
+    var newTarget = sortedByDistance.First();
 
     // Handle
-    if (Util.Distance(player.gameObject, newTarget) > MaxDistanceToInteractable) {
+    if (Util.Distance(player.gameObject, newTarget.gameObject) > MaxDistanceToInteractable) {
       newTarget = null;
     }
 

@@ -19,6 +19,10 @@ public class Interactable: MonoBehaviour {
     transform.localScale = new Vector3(1, 1, 1);
   }
 
+  virtual public void Interact() {
+
+  }
+
   void Update() {
 
   }
