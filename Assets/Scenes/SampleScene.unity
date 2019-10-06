@@ -669,11 +669,11 @@ MonoBehaviour:
   OtherGuy: {fileID: 1529586512}
   InstructObj: {fileID: 101003462}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 1
   IntroductionPlayerPosition: {fileID: 1699614726}
-  FirstGameplayPlayerPosition: {fileID: 0}
+  FirstGameplayPlayerPosition: {fileID: 324968617}
   FullFade: {fileID: 4285615079742527641}
-  CircleFade: {fileID: 0}
+  CircleFade: {fileID: 1542407818}
 --- !u!1 &324968617
 GameObject:
   m_ObjectHideFlags: 0
