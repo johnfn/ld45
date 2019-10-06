@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parallax : MonoBehaviour
-{
+public class Parallax : MonoBehaviour {
   public GameObject player;
-  public static int numLayers = 1;
+  public static int numLayers = 2;
   public GameObject[] layers = new GameObject[numLayers];
   private Renderer[] layerRenderers = new Renderer[numLayers];
 

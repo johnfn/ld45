@@ -13,6 +13,7 @@ public class Dialog: MonoBehaviour {
   public Canvas canvas;
   public Text text;
   public SpriteRenderer sprite;
+  public Text ReactionText;
 
   public float textScaleFactor;
   public float maxDialogWidth;
@@ -23,6 +24,7 @@ public class Dialog: MonoBehaviour {
   private DialogState state;
   private string entireDialog;
   private int tick = 0;
+  private Dictionary<EmotionType, List<DialogEvent>> emotionReactions;
 
   private string currentTagName = "";
 
@@ -45,6 +47,10 @@ public class Dialog: MonoBehaviour {
   public float Width { get { return this.sprite.bounds.size.x; } }
 
   public float Height { get { return this.sprite.bounds.size.y; } }
+
+  void Start() {
+    ReactionText.gameObject.SetActive(false);
+  }
 
   void CalculateDialogSize(string dialog) {
     // Figure out how tall and wide this dialog should be
@@ -72,7 +78,7 @@ public class Dialog: MonoBehaviour {
     return state;
   }
 
-  public void StartDialog(string dialog) {
+  public void StartDialog(string dialog, Dictionary<EmotionType, List<DialogEvent>> emotionReactions = null) {
     visibleDialog = "";
     entireDialog = dialog;
 
@@ -81,6 +87,7 @@ public class Dialog: MonoBehaviour {
     state = DialogState.WritingText;
 
     text.text = "";
+    this.emotionReactions = emotionReactions;
   }
 
   string GetCloseTagName(string tagName) {
@@ -101,7 +108,7 @@ public class Dialog: MonoBehaviour {
     var nextCharacter = getNextChar();
 
     if (nextCharacter == null) {
-      this.state = DialogState.FinishedAndWaitingForInput;
+      Finish();
 
       return;
     }
@@ -138,11 +145,16 @@ public class Dialog: MonoBehaviour {
     }
   }
 
-  void SkipToEnd() {
+  void Finish() {
     this.state = DialogState.FinishedAndWaitingForInput;
 
     currentTagName = "";
     visibleDialog = entireDialog;
+
+    if (this.emotionReactions != null) {
+      ReactionText.gameObject.SetActive(true);
+      ReactionText.text = "Hewo";
+    }
   }
 
   void UpdateText() {
@@ -171,7 +183,7 @@ public class Dialog: MonoBehaviour {
         break;
       case DialogState.WritingText:
         if (Input.GetKeyDown("x")) {
-          SkipToEnd();
+          Finish();
         }
 
         if (tick % textSpeed == 0) {

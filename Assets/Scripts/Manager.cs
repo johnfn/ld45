@@ -44,6 +44,9 @@ public class Manager: MonoBehaviour {
   void Start() {
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
+
+    //FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+    CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
   }
 
   void StartNewScene() {
@@ -72,9 +75,12 @@ public class Manager: MonoBehaviour {
         InstructObj.text = instructText;
     }
 
-    void HideInstruction()
+    public void HideInstruction()
     {
-        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad();
+        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad().setOnComplete(() =>
+        {
+            InstructObj.gameObject.SetActive(false);
+        });
     }
 
   void StartIntroduction() {
@@ -107,7 +113,7 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static Dialog CreateNewDialog(string text, GameObject target) {
+  public static Dialog CreateNewDialog(string text, GameObject target, Dictionary<EmotionType, List<DialogEvent>> emotionReactions) {
     var dialogGO = GameObject.Instantiate(
       Instance.DialogPrefab,
       target.transform.position,
@@ -116,7 +122,7 @@ public class Manager: MonoBehaviour {
 
     var dialog = dialogGO.GetComponent<Dialog>();
 
-    dialog.StartDialog(text);
+    dialog.StartDialog(text, emotionReactions);
 
     return dialog;
   }
