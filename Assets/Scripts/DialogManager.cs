@@ -130,7 +130,7 @@ public class DialogManager: MonoBehaviour {
     var characterName = currentDialogItem.Name;
     var speaker = Character.Speakers.First(guy => guy.CharacterName == characterName);
 
-    currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject);
+    currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject, currentDialogItem.EmotionReactions);
 
     state = DialogManagerState.ShowingDialog;
   }

@@ -10,7 +10,7 @@ public enum CharacterName {
 
 public class Fade {
   public float RectangleFadeOpacity = 1.0f;
-    public float CircleFadeOpacity = 1.0f;
+  public float CircleFadeOpacity = 1.0f;
   public bool Immediate = false;
 }
 
@@ -20,9 +20,12 @@ public class DialogEvent {
 
   // other events that can happen during dialog
 
-  public Fade Fade = null;  public EmotionType ReceiveEmotion = EmotionType.None; public bool hideInstruct = false;
-}
+  public Dictionary<EmotionType, List<DialogEvent>> EmotionReactions = null;
 
+  public Fade Fade = null;
+  public EmotionType ReceiveEmotion = EmotionType.None; 
+  public bool hideInstruct = false;
+}
 
 public class DialogText {
   public static List<DialogEvent> FirstDialog = new List<DialogEvent> {
@@ -73,7 +76,17 @@ public class DialogText {
 
   public static List<DialogEvent> Trudialog = new List<DialogEvent> {
     new DialogEvent { Name = CharacterName.Blank, Contents = "<color=red>Um... hi.</color>" },
-    new DialogEvent { Name = CharacterName.Trudy, Contents = "Hewwwwoooo" },
-    new DialogEvent { Name = CharacterName.Blank, Contents = "I am quite alarmed right now." },
+    new DialogEvent { 
+      Name = CharacterName.Trudy, 
+      Contents = "Hewwwwoooo",
+      EmotionReactions = new Dictionary<EmotionType, List<DialogEvent>> {
+        { 
+          EmotionType.Curiosity, 
+          new List<DialogEvent> {
+            new DialogEvent { Name = CharacterName.Blank, Contents = "I'm really curious about your lack of non w consonant sounds" },
+          }
+        }
+      }
+    }
   };
 }

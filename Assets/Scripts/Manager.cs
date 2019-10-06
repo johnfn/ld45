@@ -110,7 +110,7 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static Dialog CreateNewDialog(string text, GameObject target) {
+  public static Dialog CreateNewDialog(string text, GameObject target, Dictionary<EmotionType, List<DialogEvent>> emotionReactions) {
     var dialogGO = GameObject.Instantiate(
       Instance.DialogPrefab,
       target.transform.position,
@@ -119,7 +119,7 @@ public class Manager: MonoBehaviour {
 
     var dialog = dialogGO.GetComponent<Dialog>();
 
-    dialog.StartDialog(text);
+    dialog.StartDialog(text, emotionReactions);
 
     return dialog;
   }
