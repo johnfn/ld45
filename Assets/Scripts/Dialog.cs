@@ -152,8 +152,10 @@ public class Dialog: MonoBehaviour {
     visibleDialog = entireDialog;
 
     if (this.emotionReactions != null) {
-      ReactionText.gameObject.SetActive(true);
-      ReactionText.text = "Hewo";
+      foreach (var reaction in emotionReactions) {
+        ReactionText.gameObject.SetActive(true);
+        ReactionText.text = reaction.Key.ToString();
+      }
     }
   }
 
