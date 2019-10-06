@@ -197,6 +197,11 @@ PrefabInstance:
       propertyPath: m_Properties.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3069374540203771807, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Vines
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
     type: 3}

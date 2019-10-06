@@ -73,7 +73,7 @@ public class Player: MonoBehaviour {
   private HitFlags lastHitFlags;
 
   void Start() {
-    boxCollider  = GetComponent<BoxCollider2D>();
+    boxCollider = GetComponent<BoxCollider2D>();
     anim = GetComponent<Animator>();
     spriteRenderer = GetComponent<SpriteRenderer>();
     character = GetComponent<Character>();
@@ -119,6 +119,8 @@ public class Player: MonoBehaviour {
 
           hitFlagsResult.XHit = Mathf.Sign(x);
           hitFlagsResult.XHitObjects = colliders.Select(collider => collider.collider.gameObject).ToList();
+
+          break;
         }
       }
     }
@@ -139,6 +141,8 @@ public class Player: MonoBehaviour {
 
           hitFlagsResult.YHit = Mathf.Sign(y);
           hitFlagsResult.YHitObjects = colliders.Select(collider => collider.collider.gameObject).ToList();
+
+          break;
         }
       }
     }
