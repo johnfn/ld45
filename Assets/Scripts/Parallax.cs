@@ -12,7 +12,6 @@ public class Parallax : MonoBehaviour {
   void Start() {
     for (int i = 0; i < numLayers; i++) {
       layerRenderers[i] = layers[i].GetComponent<Renderer>();
-      layerRenderers[i].material.mainTextureOffset = new Vector2(Random.Range(0, layerRenderers[i].material.mainTexture.width), 0);
     }
   }
 
@@ -21,13 +20,6 @@ public class Parallax : MonoBehaviour {
     for (int i = 0; i < numLayers; i++) {
       Vector2 textureOffset = new Vector2(player.transform.position.x / ((i + 1) * 100), 0);
       layerRenderers[i].material.mainTextureOffset = textureOffset;
-      Debug.Log(layerRenderers[i].material);
-
-      
-      Color c = layerRenderers[i].material.color;
-      layerRenderers[i].material.color = new Color(c.r, c.b, c.g, c.a * Mathf.Max(0.1f, (numLayers - i) / numLayers));
-      
-      
     }
   }
 }

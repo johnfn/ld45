@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public enum GameState {
   Introduction,
@@ -17,6 +18,7 @@ public class Manager: MonoBehaviour {
   public Player Player;
 
   public GameObject OtherGuy;
+  public TextMeshProUGUI InstructObj;
 
   public Camera Camera;
 
@@ -30,7 +32,7 @@ public class Manager: MonoBehaviour {
   [Header("Objects used to fade game in and out")]
 
   public GameObject FullFade;
-  //public GameObject CircleFade;
+  public GameObject CircleFade;
 
   /** Singleton instance of the Manager. */
   public static Manager Instance;
@@ -40,9 +42,6 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 1f);
-    //CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
-
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
   }
@@ -50,13 +49,33 @@ public class Manager: MonoBehaviour {
   void StartNewScene() {
     switch (CurrentGameState) {
       case GameState.Introduction:
+        FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        SetInstruction("Press X to continue.");
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
+        
         StartFirstGameplay();
         break;
     }
   }
+
+    void SetInstruction(string instructText)
+    {
+        CanvasGroup canvasGroup = InstructObj.GetComponent<CanvasGroup>();
+
+        canvasGroup.alpha = 0;
+        InstructObj.gameObject.SetActive(true);
+        LeanTween.alphaCanvas(canvasGroup, 0.5f, 1f).setEaseInOutQuad().setOnComplete(() => {
+            LeanTween.alphaCanvas(canvasGroup, 0.7f, 1.5f).setLoopPingPong();
+        });
+        InstructObj.text = instructText;
+    }
+
+    void HideInstruction()
+    {
+        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad();
+    }
 
   void StartIntroduction() {
     Player.Emotions = new EmotionState {
@@ -94,8 +113,6 @@ public class Manager: MonoBehaviour {
       target.transform.position,
       Quaternion.identity
     );
-
-    Util.Log(target.name);
 
     var dialog = dialogGO.GetComponent<Dialog>();
 
