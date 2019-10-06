@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81b29b3d373d4a289a23bf9523b5f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxDistanceToInteractable: 1
+  MaxDistanceToInteractable: 2
 --- !u!1001 &5903884509139922703
 PrefabInstance:
   m_ObjectHideFlags: 0
