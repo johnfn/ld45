@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parallax : MonoBehaviour
-{
+public class Parallax : MonoBehaviour {
   public GameObject player;
-  public static int numLayers = 1;
+  public static int numLayers = 2;
   public GameObject[] layers = new GameObject[numLayers];
   private Renderer[] layerRenderers = new Renderer[numLayers];
 
@@ -22,9 +21,13 @@ public class Parallax : MonoBehaviour
     for (int i = 0; i < numLayers; i++) {
       Vector2 textureOffset = new Vector2(player.transform.position.x / ((i + 1) * 100), 0);
       layerRenderers[i].material.mainTextureOffset = textureOffset;
-      /*Color c = layerRenderers[i].material.color;
+      Debug.Log(layerRenderers[i].material);
+
+      
+      Color c = layerRenderers[i].material.color;
       layerRenderers[i].material.color = new Color(c.r, c.b, c.g, c.a * Mathf.Max(0.1f, (numLayers - i) / numLayers));
-      */
+      
+      
     }
   }
 }
