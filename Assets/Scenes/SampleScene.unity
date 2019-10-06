@@ -251,7 +251,7 @@ MonoBehaviour:
   Camera: {fileID: 519420031}
   CurrentGameState: 0
   FullFade: {fileID: 4285615079742527641}
-  CircleFade: {fileID: 0}
+  CircleFade: {fileID: 4285615079742527641}
 --- !u!1 &514880180
 GameObject:
   m_ObjectHideFlags: 0

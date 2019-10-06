@@ -2,8 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public class FadeState {
+  public float FadeCurrent;
+
+  public float FadeGoal;
+}
+
 public enum DialogManagerState {
   Done,
+  Fading,
   ShouldShowNextDialog,
   ShowingDialog
 }
@@ -13,6 +20,8 @@ public class DialogManager: MonoBehaviour {
 
   private List<DialogItem> currentSequence;
 
+  private FadeState fadeState;
+
   private Dialog currentObject;
 
   private DialogManagerState state;
@@ -21,9 +30,23 @@ public class DialogManager: MonoBehaviour {
     Instance = this;
   }
 
+  void Fade() {
+    if (Mathf.Abs(fadeState.FadeCurrent - fadeState.FadeGoal) > 0.01f) {
+      fadeState.FadeCurrent = Mathf.Lerp(fadeState.FadeCurrent, fadeState.FadeGoal, 0.1f);
+
+      Debug.Log(fadeState.FadeCurrent);
+    } else {
+      state = DialogManagerState.ShouldShowNextDialog;
+    }
+  }
+
   void Update() {
     switch (state) {
       case DialogManagerState.Done:
+        break;
+      case DialogManagerState.Fading:
+        Fade();
+
         break;
       case DialogManagerState.ShouldShowNextDialog:
         ShowNextDialog();
@@ -58,6 +81,18 @@ public class DialogManager: MonoBehaviour {
     }
 
     var currentDialogItem = currentSequence.First();
+
+    if (currentDialogItem.SpecialEvent == SpecialDialogEvent.FadeToBlack) {
+      fadeState = new FadeState {
+        FadeCurrent = 0f,
+        FadeGoal = 1f
+      };
+
+      state = DialogManagerState.Fading;
+
+      return;
+    }
+
     var characterName = currentDialogItem.Name;
 
     currentSequence = currentSequence.Skip(1).ToList();
