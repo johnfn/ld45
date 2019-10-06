@@ -174,6 +174,7 @@ public class Player: MonoBehaviour {
 
         if (passableColliders.Count > 0) {
           hitFlagsResult.XTouchedObjects = passableColliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.XTouch = Mathf.Sign(x);
         }
       }
     }
@@ -202,6 +203,7 @@ public class Player: MonoBehaviour {
 
         if (passableColliders.Count > 0) {
           hitFlagsResult.YTouchedObjects = passableColliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.YTouch = Mathf.Sign(x);
         }
       }
     }
@@ -220,8 +222,7 @@ public class Player: MonoBehaviour {
     }
 
     if (lastHitFlags.TouchAnything()) {
-      Util.Log("Touching a ladder prob");
-
+      // TODO: Check that it's a ladder
       velocityY = 0f;
     }
 
@@ -236,16 +237,14 @@ public class Player: MonoBehaviour {
     return new Vector3(dx, dy, 0) * movementSpeed;
   }
 
-  bool isJumping()
-  {
+  bool isJumping() {
     RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, spriteRenderer.bounds.extents.y +0.3f);
-    if (hit.collider != null)
-    {
+
+    if (hit.collider != null) {
       return false;
     }
+
     return true;
-
-
   }
 
   HitFlags Move(Vector3 desiredMovement) {
