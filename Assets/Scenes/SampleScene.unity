@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: -5870250496344763067, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -5870250496344763067, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 514880182}
   - component: {fileID: 514880181}
   m_Layer: 0
-  m_Name: RageableHexagon
+  m_Name: CuriousHexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -438,7 +438,7 @@ Transform:
   - {fileID: 1976408399}
   - {fileID: 4285615079742527643}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -540,7 +540,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1022136877
 GameObject:
@@ -626,7 +626,7 @@ Transform:
   m_Children:
   - {fileID: 1879378722}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1022136880
 MonoBehaviour:
@@ -998,7 +998,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1956240166
 MonoBehaviour:
