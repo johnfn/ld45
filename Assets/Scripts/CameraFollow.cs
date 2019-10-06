@@ -21,7 +21,19 @@ public class CameraFollow: MonoBehaviour {
     );
   }
 
+  void PerfectCamBehavior() {
+    followCamera.transform.position = new Vector3(
+      player.transform.position.x,
+      player.transform.position.y,
+      -66f
+    );
+  }
+
   void FixedUpdate() {
+    PerfectCamBehavior();
+
+    return;
+
     effectiveLookingDirection = new Vector3(
       Mathf.Lerp(effectiveLookingDirection.x, player.GetLookingDirection().x, 0.80f),
       Mathf.Lerp(effectiveLookingDirection.y, player.GetLookingDirection().y, 0.80f),

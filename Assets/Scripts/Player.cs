@@ -246,6 +246,8 @@ public class Player: MonoBehaviour {
 
       accelerationY = 0f;
       velocityY     = 0f;
+
+      if (Input.GetKey("space") && Mathf.Abs(accelerationY - 0f) < 0.01f) { accelerationY = JumpStrength; }
     } else {
       velocityY += accelerationY;
       accelerationY /= gravityScaleFactor;
@@ -317,6 +319,8 @@ public class Player: MonoBehaviour {
       return hit;
     }
 
+    Debug.Log(desiredMovement);
+
     transform.position += desiredMovement;
 
     return hit;
@@ -339,6 +343,7 @@ public class Player: MonoBehaviour {
     if (prevClimb || nextClimb) {
       anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
     } else { anim.speed = 1; }
+
     shadow.SetActive(!nextJump && !nextClimb);
 
     anim.SetBool("walking", nextWalk);
@@ -355,8 +360,6 @@ public class Player: MonoBehaviour {
     }
     spriteRenderer.flipX = !isFacingRight;
     if (prevDir != isFacingRight) dustPuffs.transform.Rotate(Vector2.up, Mathf.Deg2Rad * 180);
-
-
 
     // This is pretty important. Hit() does not properly update your currently
     // touching objects if you try to raycast with a zero length vector, so

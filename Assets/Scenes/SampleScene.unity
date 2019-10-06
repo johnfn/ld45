@@ -1214,8 +1214,8 @@ MonoBehaviour:
     Forgiveness: 0
   MovementSpeed: 0.2
   FallingSpeed: -0.2
-  MaxFallSpeed: -1.5
-  JumpStrength: 0.5
+  MaxFallSpeed: -2
+  JumpStrength: 0.6
   gravityScaleFactor: 1.05
   dustPuffs: {fileID: 1915174878}
   shadow: {fileID: 1042630880}
