@@ -218,6 +218,8 @@ public class Player: MonoBehaviour {
     return !this.lastHitFlags.HitBottom();
   }
 
+
+
   private void OnTriggerEnter2D(Collider2D other) {
     if (IsColliderAVine(other)) {
       isTouchingLadder = true;
@@ -233,7 +235,7 @@ public class Player: MonoBehaviour {
   HitFlags Move(Vector3 desiredMovement) {
     var hit = CheckForHit(desiredMovement);
 
-    if (hit.HitAnything()) {
+    if (!isTouchingLadder && hit.HitAnything()) {
       var stepSize = 0.01f;
 
       for (var x = 0f; Mathf.Abs(x) < Mathf.Abs(desiredMovement.x); x += stepSize * Mathf.Sign(desiredMovement.x)) {
@@ -273,6 +275,15 @@ public class Player: MonoBehaviour {
 
     anim.SetBool("walking", Mathf.Abs(desiredMovement.x) > 0);
     anim.SetBool("jumping", isJumping());
+    anim.SetBool("climbing", isTouchingLadder);
+    if (isTouchingLadder)
+    {
+      anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
+    }
+    else {
+      anim.speed = 1;
+
+    }
 
     spriteRenderer.flipX = desiredMovement.x < 0;
 
