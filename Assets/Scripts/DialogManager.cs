@@ -103,6 +103,11 @@ public class DialogManager: MonoBehaviour {
       return;
     }
 
+    if (currentDialogItem.instruct != null)
+        {
+            Manager.Instance.SetInstruction(currentDialogItem.instruct);
+        }
+
     if(currentDialogItem.hideInstruct == true)
         {
             Manager.Instance.HideInstruction();
