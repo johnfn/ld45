@@ -19,6 +19,8 @@ public class HitFlags {
   public float XTouch = 0f;
   public float YTouch = 0f;
 
+  public bool TouchingWater = false;
+
   public List<GameObject> XTouchedObjects;
   public List<GameObject> YTouchedObjects;
 
@@ -147,6 +149,22 @@ public class Player: MonoBehaviour {
     return grandParent.gameObject.tag == "Vines";
   }
 
+  private bool IsColliderWater(Collider2D obj) {
+    var parent = obj.gameObject.transform.parent;
+
+    if (parent == null) {
+      return false;
+    }
+
+    var grandParent = parent.transform.parent;
+
+    if (grandParent == null) {
+      return false;
+    }
+
+    return grandParent.gameObject.tag == "Water";
+  }
+
   List<RaycastHit2D> GetSolidColliders(RaycastHit2D[] raycastResult) {
     var result = new List<RaycastHit2D>();
 
@@ -159,8 +177,7 @@ public class Player: MonoBehaviour {
         continue;
       }
 
-      if(x.collider.GetComponent<TutTrigger>() != null)
-      {
+      if(x.collider.GetComponent<TutTrigger>() != null) {
         continue;
       }
 
@@ -194,6 +211,7 @@ public class Player: MonoBehaviour {
 
           hitFlagsResult.XHit = Mathf.Sign(x);
           hitFlagsResult.XHitObjects = solidColliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.TouchingWater = hitFlagsResult.TouchingWater || result.Any(hit => IsColliderWater(hit.collider));
 
           break;
         }
@@ -216,6 +234,7 @@ public class Player: MonoBehaviour {
 
           hitFlagsResult.YHit = Mathf.Sign(y);
           hitFlagsResult.YHitObjects = solidColliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.TouchingWater = hitFlagsResult.TouchingWater || result.Any(hit => IsColliderWater(hit.collider));
 
           break;
         }
@@ -369,6 +388,10 @@ public class Player: MonoBehaviour {
     if (desiredMovement != Vector3.zero) {
       var hitFlags = Move(desiredMovement);
       this.lastHitFlags = hitFlags;
+    }
+
+    if (this.lastHitFlags.TouchingWater) {
+      Debug.Log("Die!");
     }
 
     if (Input.GetKeyDown("x")) {
