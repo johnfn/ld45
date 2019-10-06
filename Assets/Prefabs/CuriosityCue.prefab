@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6711652924858236924}
   - component: {fileID: 6711652924858236926}
   - component: {fileID: 6711652924858236925}
+  - component: {fileID: 2887893333262953086}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -219,6 +220,27 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!223 &2887893333262953086
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711652924858236915}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_SortingLayerID: 0
+  m_SortingOrder: 99
+  m_TargetDisplay: 0
 --- !u!1001 &8790556399951718812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -335,6 +357,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8980985041840700944, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655646855309312030, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655646855309312031, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1047985779
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655646855309312031, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2655646855309312031, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2067215148356598474, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4260e6880439c411892971425eea7fb3, type: 3}
