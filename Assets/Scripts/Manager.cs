@@ -19,6 +19,7 @@ public class Manager: MonoBehaviour {
 
   public GameObject OtherGuy;
   public TextMeshProUGUI InstructObj;
+    public Transform tutTriggersParent;
 
   public Camera Camera;
 
@@ -52,8 +53,6 @@ public class Manager: MonoBehaviour {
   void StartNewScene() {
     switch (CurrentGameState) {
       case GameState.Introduction:
-        FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        SetInstruction("Press X to continue.");
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
@@ -63,13 +62,18 @@ public class Manager: MonoBehaviour {
     }
   }
 
-    void SetInstruction(string instructText)
+    private void ActivateTutTriggers()
+    {
+        foreach(Transform child in tutTriggersParent) child.gameObject.SetActive(true);
+    }
+
+    public void SetInstruction(string instructText)
     {
         CanvasGroup canvasGroup = InstructObj.GetComponent<CanvasGroup>();
 
         canvasGroup.alpha = 0;
         InstructObj.gameObject.SetActive(true);
-        LeanTween.alphaCanvas(canvasGroup, 0.5f, 1f).setEaseInOutQuad().setOnComplete(() => {
+        LeanTween.alphaCanvas(canvasGroup, 0.5f, 0.6f).setEaseInOutQuad().setOnComplete(() => {
             LeanTween.alphaCanvas(canvasGroup, 0.7f, 1.5f).setLoopPingPong();
         });
         InstructObj.text = instructText;
@@ -77,7 +81,7 @@ public class Manager: MonoBehaviour {
 
     public void HideInstruction()
     {
-        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad().setOnComplete(() =>
+        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 0.6f).setEaseInOutQuad().setOnComplete(() =>
         {
             InstructObj.gameObject.SetActive(false);
         });
@@ -92,8 +96,10 @@ public class Manager: MonoBehaviour {
       Betrayal = false,
     };
 
-    Player.transform.position = IntroductionPlayerPosition.transform.position;
+    FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+    ActivateTutTriggers();
 
+    Player.transform.position = IntroductionPlayerPosition.transform.position;
     DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
   }
 

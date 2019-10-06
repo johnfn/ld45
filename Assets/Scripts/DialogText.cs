@@ -23,6 +23,7 @@ public class DialogEvent {
   public Dictionary<EmotionType, List<DialogEvent>> EmotionReactions = null;
   public Fade Fade = null;
   public EmotionType ReceiveEmotion = EmotionType.None; 
+  public string instruct = null;
   public bool hideInstruct = false;
 }
 
@@ -30,12 +31,12 @@ public class DialogText {
   public static List<DialogEvent> FirstDialog = new List<DialogEvent> {
     new DialogEvent { Fade = new Fade { Immediate = true, RectangleFadeOpacity = 1.0f } },
 
-    new DialogEvent { Name = CharacterName.Ash  , Contents = "Hey!" },
+    new DialogEvent { Name = CharacterName.Ash  , Contents = "Hey!", instruct = "Press X to continue." },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." , hideInstruct = true},
 
     new DialogEvent { ReceiveEmotion = EmotionType.Curiosity },
 
-    new DialogEvent { Name = CharacterName.Ash  , Contents = "What happened? Are you okay?" },
+    new DialogEvent { Name = CharacterName.Ash  , Contents = "<color=#6699ff>What happened?</color> Are you okay?" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "What’s your name?" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
@@ -47,10 +48,10 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Hey, we can’t figure out what’s going on until you talk to me. Aren't you curious, too?" },
     new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.9f, } }, //new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.9f, CircleFadeOpacity = 0.5f } },
-    new DialogEvent { Name = CharacterName.Blank, Contents = "...curious?..." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "<color=#6699ff>...curious?...</color>" },
     new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.7f } }, //new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.7f, CircleFadeOpacity = 0.5f } },
     new DialogEvent { Name = CharacterName.Blank, Contents = "W..." },
-    new DialogEvent { Name = CharacterName.Blank, Contents = "...where am I?" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "<color=#6699ff>...where am I?</color>" },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "You fell into Lake Rasa." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "There’s not much down here except a lot of water, though. And, uh, you. Apparently." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Do you have a name?" },
@@ -61,7 +62,6 @@ public class DialogText {
 
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Okay, tell you what, Blank—" },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "I really can’t stand the smell down here. It brings back some bad memories." },
-    //new DialogEvent { Name = CharacterName.Ash  , Contents = "Okay, tell you what, Blank—I really can’t stand the smell down here. It brings back some bad memories." },
 
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Mind if we talk as we head up to the city?" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "Where’s the city?" },
@@ -70,7 +70,7 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Actually, why don’t we make this into a little game?" },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "I’ll head up to a resting point, and every time you catch up, I’ll answer one of your questions." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Sound good?" },
-    new DialogEvent { Name = CharacterName.Blank, Contents = "Sure!" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Sure!", instruct = "Press A/D to move." },
   };
 
   public static List<DialogEvent> Trudialog = new List<DialogEvent> {

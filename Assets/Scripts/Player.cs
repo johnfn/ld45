@@ -19,6 +19,8 @@ public class HitFlags {
   public float XTouch = 0f;
   public float YTouch = 0f;
 
+  public bool TouchingWater = false;
+
   public List<GameObject> XTouchedObjects;
   public List<GameObject> YTouchedObjects;
 
@@ -88,6 +90,8 @@ public class Player: MonoBehaviour {
   [HideInInspector]
   private Vector3 LookingDirection = Vector3.zero;
 
+  private Vector3 lastSafeSpot;
+
   public float Width { get { return boxCollider.bounds.size.x; } }
 
   public float Height { get { return boxCollider.bounds.size.y; } }
@@ -107,12 +111,11 @@ public class Player: MonoBehaviour {
   private bool isTouchingLadder = false;
   private bool isFacingRight = true;
 
-  private float velocityX = 0f;
   private float velocityY = 0f;
 
   private float accelerationY = 0f;
 
-  private HitFlags lastHitFlags;
+  private HitFlags hitFlags;
 
   void Start() {
     boxCollider = GetComponent<BoxCollider2D>();
@@ -121,7 +124,7 @@ public class Player: MonoBehaviour {
     character = GetComponent<Character>();
     dustPuffs.Stop();
 
-    lastHitFlags = new HitFlags();
+    hitFlags = new HitFlags();
   }
 
   public Vector3 GetLookingDirection() {
@@ -148,6 +151,22 @@ public class Player: MonoBehaviour {
     return grandParent.gameObject.tag == "Vines";
   }
 
+  private bool IsColliderWater(Collider2D obj) {
+    var parent = obj.gameObject.transform.parent;
+
+    if (parent == null) {
+      return false;
+    }
+
+    var grandParent = parent.transform.parent;
+
+    if (grandParent == null) {
+      return false;
+    }
+
+    return grandParent.gameObject.tag == "Water";
+  }
+
   List<RaycastHit2D> GetSolidColliders(RaycastHit2D[] raycastResult) {
     var result = new List<RaycastHit2D>();
 
@@ -157,6 +176,10 @@ public class Player: MonoBehaviour {
       }
 
       if (IsColliderAVine(x.collider)) {
+        continue;
+      }
+
+      if(x.collider.GetComponent<TutTrigger>() != null) {
         continue;
       }
 
@@ -190,6 +213,7 @@ public class Player: MonoBehaviour {
 
           hitFlagsResult.XHit = Mathf.Sign(x);
           hitFlagsResult.XHitObjects = solidColliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.TouchingWater = hitFlagsResult.TouchingWater || result.Any(hit => IsColliderWater(hit.collider));
 
           break;
         }
@@ -212,6 +236,7 @@ public class Player: MonoBehaviour {
 
           hitFlagsResult.YHit = Mathf.Sign(y);
           hitFlagsResult.YHitObjects = solidColliders.Select(collider => collider.collider.gameObject).ToList();
+          hitFlagsResult.TouchingWater = hitFlagsResult.TouchingWater || result.Any(hit => IsColliderWater(hit.collider));
 
           break;
         }
@@ -246,13 +271,15 @@ public class Player: MonoBehaviour {
 
       accelerationY = 0f;
       velocityY     = 0f;
+
+      if (Input.GetKey("space") && Mathf.Abs(accelerationY - 0f) < 0.01f) { accelerationY = JumpStrength; }
     } else {
       velocityY += accelerationY;
       accelerationY /= gravityScaleFactor;
 
       // cap velocity at gravity so it doesn't become arbitrarily huge when you
       // stand on a platform
-      if (lastHitFlags.HitBottom() && velocityY < FallingSpeed) {
+      if (hitFlags.HitBottom() && velocityY < FallingSpeed) {
         velocityY = FallingSpeed;
       }
 
@@ -262,7 +289,7 @@ public class Player: MonoBehaviour {
 
       dy = velocityY;
 
-      if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = JumpStrength; }
+      if (Input.GetKey("space") && hitFlags.HitBottom()) { accelerationY = JumpStrength; }
     }
 
     var result = new Vector3(dx, dy, 0) * MovementSpeed;
@@ -271,7 +298,7 @@ public class Player: MonoBehaviour {
   }
 
   bool isJumping() {
-    return !this.lastHitFlags.HitBottom();
+    return !this.hitFlags.HitBottom();
   }
 
   private void OnTriggerEnter2D(Collider2D other) {
@@ -322,11 +349,14 @@ public class Player: MonoBehaviour {
     return hit;
   }
 
-  void Update() {
+  void RecoverFromDeath() {
+    transform.position = lastSafeSpot;
+  }
+
+  void FixedUpdate() {
     velocityY -= 0.3f;
 
     var desiredMovement = calculateVelocity();
-
 
     // Set Animator parameters based on new and previous states
 
@@ -339,12 +369,12 @@ public class Player: MonoBehaviour {
     if (prevClimb || nextClimb) {
       anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
     } else { anim.speed = 1; }
+
     shadow.SetActive(!nextJump && !nextClimb);
 
     anim.SetBool("walking", nextWalk);
     anim.SetBool("climbing", nextClimb);
     anim.SetBool("jumping", nextJump);
-
 
     //Make the sprite and particle system face the right way
     bool prevDir = isFacingRight;
@@ -356,15 +386,23 @@ public class Player: MonoBehaviour {
     spriteRenderer.flipX = !isFacingRight;
     if (prevDir != isFacingRight) dustPuffs.transform.Rotate(Vector2.up, Mathf.Deg2Rad * 180);
 
-
-
     // This is pretty important. Hit() does not properly update your currently
     // touching objects if you try to raycast with a zero length vector, so
     // you'll loose that information if you don't guard for that case here.
 
     if (desiredMovement != Vector3.zero) {
-      var hitFlags = Move(desiredMovement);
-      this.lastHitFlags = hitFlags;
+      var oldHitFlags = hitFlags;
+
+      var newHitFlags = Move(desiredMovement);
+      hitFlags = newHitFlags;
+
+      if (!hitFlags.TouchingWater && hitFlags.HitBottom() && !oldHitFlags.HitBottom()) {
+        lastSafeSpot = transform.position;
+      }
+    }
+
+    if (hitFlags.TouchingWater) {
+      RecoverFromDeath();
     }
 
     if (Input.GetKeyDown("x")) {
