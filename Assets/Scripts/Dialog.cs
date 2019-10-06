@@ -14,11 +14,11 @@ public class Dialog: MonoBehaviour {
   public Text text;
   public SpriteRenderer sprite;
 
-  public float textScaleFactor = 100;
-  public float maxDialogWidth = 400;
+  public float textScaleFactor;
+  public float maxDialogWidth;
 
   [Header("Smaller is faster")]
-  public int textSpeed = 10;
+  public int textSpeed;
 
   private TextState state;
   private string entireDialog;
@@ -31,8 +31,6 @@ public class Dialog: MonoBehaviour {
 
   void Start() {
     state = TextState.Empty;
-
-    ShowDialog("Hi there! My name is Ash! ASH stands for Always Stealing your Hemotions! This is a literary device known as F O R E S H A D O W I N G.");
   }
 
   void CalculateDialogSize(string dialog) {
