@@ -22,7 +22,7 @@ public class DialogManager: MonoBehaviour {
 
   private FadeState fadeState;
 
-  private Dialog currentObject;
+  private Dialog currentDialogObject;
 
   private DialogManagerState state;
 
@@ -34,7 +34,7 @@ public class DialogManager: MonoBehaviour {
     if (Mathf.Abs(fadeState.FadeCurrent - fadeState.FadeGoal) > 0.01f) {
       fadeState.FadeCurrent = Mathf.Lerp(fadeState.FadeCurrent, fadeState.FadeGoal, 0.1f);
 
-      Debug.Log(fadeState.FadeCurrent);
+      Manager.Instance.FullFade.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, fadeState.FadeCurrent);
     } else {
       state = DialogManagerState.ShouldShowNextDialog;
     }
@@ -53,7 +53,7 @@ public class DialogManager: MonoBehaviour {
 
         break;
       case DialogManagerState.ShowingDialog:
-        if (currentObject.GetDialogState() == DialogState.Done) {
+        if (currentDialogObject.GetDialogState() == DialogState.Done) {
           if (currentSequence.Count == 0) {
             FinishDialogSequence();
           } else {
@@ -66,8 +66,8 @@ public class DialogManager: MonoBehaviour {
   }
 
   void FinishDialogSequence() {
-    if (currentObject != null) {
-      GameObject.Destroy(currentObject.gameObject);
+    if (currentDialogObject != null) {
+      GameObject.Destroy(currentDialogObject.gameObject);
     }
 
     state = DialogManagerState.Done;
@@ -76,11 +76,13 @@ public class DialogManager: MonoBehaviour {
   }
 
   void ShowNextDialog() {
-    if (currentObject != null) {
-      GameObject.Destroy(currentObject.gameObject);
+    if (currentDialogObject != null) {
+      GameObject.Destroy(currentDialogObject.gameObject);
     }
 
     var currentDialogItem = currentSequence.First();
+
+    currentSequence = currentSequence.Skip(1).ToList();
 
     if (currentDialogItem.SpecialEvent == SpecialDialogEvent.FadeToBlack) {
       fadeState = new FadeState {
@@ -91,15 +93,26 @@ public class DialogManager: MonoBehaviour {
       state = DialogManagerState.Fading;
 
       return;
+    } else if (currentDialogItem.SpecialEvent == SpecialDialogEvent.FadeToFiftyPercent) {
+      fadeState = new FadeState {
+        FadeCurrent = 0f,
+        FadeGoal = 0.5f
+      };
+
+      state = DialogManagerState.Fading;
+
+      return;
+    } else if (currentDialogItem.SpecialEvent == SpecialDialogEvent.SnapToBlack) {
+      Manager.Instance.FullFade.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+
+      return;
     }
 
     var characterName = currentDialogItem.Name;
 
-    currentSequence = currentSequence.Skip(1).ToList();
-
     var speaker = Character.Speakers.First(guy => guy.CharacterName == characterName);
 
-    currentObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject);
+    currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject);
 
     state = DialogManagerState.ShowingDialog;
   }
