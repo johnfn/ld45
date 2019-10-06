@@ -4,6 +4,7 @@ using UnityEngine;
 public class EmotionInteractable: Interactable {
     public EmotionType myEmotionType = EmotionType.Curiosity;
 
+    /// Populated with the UI element when 
     private GameObject EmotionCue;
 
     /*
@@ -35,6 +36,7 @@ public class EmotionInteractable: Interactable {
 
     override public void Interact() {
         Util.Log("Interact() called");
+        // Call HudEmotionCue.SetActive somehow
     }
 
 }
