@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,8 +47,8 @@ public class Manager: MonoBehaviour {
 
   void StartIntroduction() {
     DialogManager.Instance.StartDialogSequence(new List<DialogItem> {
-      new DialogItem { Speaker = Player, Contents = "Hi there" },
-      new DialogItem { Speaker = OtherGuy, Contents = "What's up?" },
+      new DialogItem { Name = CharacterName.Blank, Contents = "Hi there" },
+      new DialogItem { Name = CharacterName.Ash, Contents = "What's up?" },
     });
   }
 
