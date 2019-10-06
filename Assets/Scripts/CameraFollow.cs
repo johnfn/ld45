@@ -8,6 +8,14 @@ public class CameraFollow: MonoBehaviour {
 
   void Start() {
     followCamera = GetComponent<Camera>();
+
+    // immediately snap cam to player at beginning of game 
+
+    followCamera.transform.position = new Vector3(
+      x: player.transform.position.x,
+      y: player.transform.position.y,
+      z: followCamera.transform.position.z
+    );
   }
 
   void FixedUpdate() {
