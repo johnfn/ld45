@@ -87,16 +87,20 @@ public class Manager: MonoBehaviour {
         break;
     }
     if (OriginalPrefab == null) {
-      Util.Log("No emotion cue for emotionType", emotionType);
+      Util.Log("No emotion cue for emotionType", emotionType, "or prefab is null");
       return EmotionCue;
     }
 
     // Create & return
+    Util.Log(OriginalPrefab);
+    Util.Log(Target.transform.position);
     EmotionCue = GameObject.Instantiate(
       OriginalPrefab,
       Target.transform.position + new Vector3(0, 2, 0),
       Quaternion.identity
     );
+    // Nest in parent
+    EmotionCue.transform.SetParent(Target.transform);
     return EmotionCue;
   }
 }
