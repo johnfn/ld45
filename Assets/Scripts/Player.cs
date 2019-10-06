@@ -69,10 +69,9 @@ public class Player: MonoBehaviour {
 
   private HitFlags lastHitFlags;
 
-  private GameObject dialog;
-
   void Start() {
     boxCollider  = GetComponent<BoxCollider2D>();
+
     lastHitFlags = new HitFlags();
   }
 
@@ -207,11 +206,7 @@ public class Player: MonoBehaviour {
     this.lastHitFlags = hitFlags;
 
     if (Input.GetKeyDown("e")) {
-      if (!dialog) {
-        this.dialog = Manager.CreateNewDialog("Hello world!", this.gameObject);
-      } else {
-        Object.Destroy(this.dialog);
-      }
+      Manager.CreateNewDialog("Hello world!", this.gameObject);
     }
   }
 }
