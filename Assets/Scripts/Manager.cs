@@ -129,7 +129,7 @@ public class Manager: MonoBehaviour {
 
   public static GameObject CreateNewEmotionCue(EmotionType emotionType, GameObject Target) {
     GameObject OriginalPrefab = null;
-    GameObject EmotionCue = null;
+    GameObject EmotionCueObject = null;
     Vector3 offset = new Vector3(-0.5f, -1.5f, 0);
 
     // Decide which emotion type to use
@@ -140,18 +140,19 @@ public class Manager: MonoBehaviour {
     }
     if (OriginalPrefab == null) {
       Util.Log("No emotion cue for emotionType", emotionType, "or prefab is null");
-      return EmotionCue;
+      return EmotionCueObject;
     }
 
-    // Create & return
-    EmotionCue = GameObject.Instantiate(
+    // Instantiate and nest in parent
+    EmotionCueObject = GameObject.Instantiate(
       OriginalPrefab,
       Target.transform.position + offset,
       Quaternion.identity
     );
-    // Nest in parent
-    EmotionCue.transform.SetParent(Target.transform);
-    return EmotionCue;
+    EmotionCueObject.transform.SetParent(Target.transform);
+
+    // Return 
+    return EmotionCueObject;
   }
 }
 
