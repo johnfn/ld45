@@ -346,7 +346,7 @@ public class Player: MonoBehaviour {
     anim.SetBool("jumping", nextJump);
 
 
-    //Make the sprite and particle system face the right way
+    // Make the sprite and particle system face the right way
     bool prevDir = isFacingRight;
     if (desiredMovement.x > 0) {
       isFacingRight = true;
