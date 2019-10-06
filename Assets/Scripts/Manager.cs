@@ -8,7 +8,12 @@ public enum GameState {
 }
 
 public class Manager: MonoBehaviour {
+  // Prefabs 
   public GameObject DialogPrefab;
+
+  public GameObject RageEmotionPrefab;
+
+  // Objects
 
   public GameObject Player;
 
@@ -18,6 +23,7 @@ public class Manager: MonoBehaviour {
 
   public GameState CurrentGameState;
 
+  /** Singleton instance of the Manager. */
   public static Manager Instance;
 
   void Awake() {
@@ -51,11 +57,12 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static void CreateNewDialog(string text, GameObject target) {
-    GameObject.Instantiate(
+  public static GameObject CreateNewDialog(string text, GameObject Target) {
+    var NewDialog = GameObject.Instantiate(
         Instance.DialogPrefab,
-        target.transform.position,
+        Target.transform.position,
         Quaternion.identity
     );
+    return NewDialog;
   }
 }
