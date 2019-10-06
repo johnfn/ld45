@@ -36,8 +36,8 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 1f);
-    CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 0f);
+    CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
@@ -64,9 +64,9 @@ public class Manager: MonoBehaviour {
 
   public static Dialog CreateNewDialog(string text, GameObject Target) {
     var dialogGO = GameObject.Instantiate(
-        Instance.DialogPrefab,
-        Target.transform.position,
-        Quaternion.identity
+      Instance.DialogPrefab,
+      Target.transform.position,
+      Quaternion.identity
     );
 
     var dialog = dialogGO.GetComponent<Dialog>();

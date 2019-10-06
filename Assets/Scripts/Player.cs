@@ -90,6 +90,22 @@ public class Player: MonoBehaviour {
     lastHitFlags = new HitFlags();
   }
 
+  private bool IsColliderAVine(Collider2D obj) {
+    var parent = obj.gameObject.transform.parent;
+
+    if (parent == null) {
+      return false;
+    }
+
+    var grandParent = parent.transform.parent;
+
+    if (grandParent == null) {
+      return false;
+    }
+
+    return grandParent.gameObject.tag == "Vines";
+  }
+
   List<RaycastHit2D> GetSolidColliders(RaycastHit2D[] raycastResult) {
     var result = new List<RaycastHit2D>();
 
@@ -98,7 +114,7 @@ public class Player: MonoBehaviour {
         continue;
       }
 
-      if (x.collider.tag == "Vines") {
+      if (IsColliderAVine(x.collider)) {
         continue;
       }
 
@@ -116,7 +132,7 @@ public class Player: MonoBehaviour {
         continue;
       }
 
-      if (x.collider.tag != "Vines") {
+      if (!IsColliderAVine(x.collider)) {
         continue;
       }
 
@@ -204,6 +220,8 @@ public class Player: MonoBehaviour {
     }
 
     if (lastHitFlags.TouchAnything()) {
+      Util.Log("Touching a ladder prob");
+
       velocityY = 0f;
     }
 
