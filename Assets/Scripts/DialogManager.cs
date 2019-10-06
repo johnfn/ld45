@@ -29,7 +29,7 @@ public class DialogManager: MonoBehaviour {
   private DialogManagerState state;
 
   private SpriteRenderer rectangleFade;
-  private SpriteRenderer circleFade;
+  //private SpriteRenderer circleFade;
 
   void Awake() {
     Instance = this;
@@ -37,19 +37,19 @@ public class DialogManager: MonoBehaviour {
 
   void Start() {
     rectangleFade = Manager.Instance.FullFade.GetComponent<SpriteRenderer>();
-    circleFade = Manager.Instance.CircleFade.GetComponent<SpriteRenderer>();
+    //circleFade = Manager.Instance.CircleFade.GetComponent<SpriteRenderer>();
   }
 
   void Fade() {
     if (
-      Mathf.Abs(rectangleFade.color.a - fadeState.RectangleFadeOpacity) > 0.01f ||
-      Mathf.Abs(circleFade.color.a    - fadeState.CircleFadeOpacity) > 0.01f
+      Mathf.Abs(rectangleFade.color.a - fadeState.RectangleFadeOpacity) > 0.01f
+      //Mathf.Abs(circleFade.color.a    - fadeState.CircleFadeOpacity) > 0.01f
     ) {
       rectangleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(rectangleFade.color.a, fadeState.RectangleFadeOpacity, FadeSpeed));
-      circleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(circleFade.color.a, fadeState.CircleFadeOpacity, FadeSpeed));
+      //circleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(circleFade.color.a, fadeState.CircleFadeOpacity, FadeSpeed));
     } else {
       rectangleFade.color = new Color(1f, 1f, 1f, fadeState.RectangleFadeOpacity);
-      circleFade.color = new Color(1f, 1f, 1f, fadeState.CircleFadeOpacity);
+      //circleFade.color = new Color(1f, 1f, 1f, fadeState.CircleFadeOpacity);
 
       state = DialogManagerState.ShouldShowNextDialog;
     }
