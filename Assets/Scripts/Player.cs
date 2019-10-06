@@ -81,6 +81,8 @@ public class Player: MonoBehaviour {
   public float gravityScaleFactor = 1.3f;
 
   public ParticleSystem dustPuffs;
+  public ParticleSystem leaves;
+
 
   public GameObject shadow;
 
@@ -123,6 +125,7 @@ public class Player: MonoBehaviour {
     spriteRenderer = GetComponent<SpriteRenderer>();
     character = GetComponent<Character>();
     dustPuffs.Stop();
+    leaves.Stop();
 
     hitFlags = new HitFlags();
   }
@@ -363,11 +366,24 @@ public class Player: MonoBehaviour {
     bool prevWalk = anim.GetBool("walking"), prevJump = anim.GetBool("jumping"), prevClimb = anim.GetBool("climbing");
     bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, nextJump = !isTouchingLadder && isJumping(), nextClimb = isTouchingLadder;
 
+    if (!prevClimb && nextClimb) leaves.Play();
+    if (prevClimb && !nextClimb) leaves.Stop();
     if (!prevWalk && nextWalk) dustPuffs.Play();
     if (prevWalk && !nextWalk) dustPuffs.Stop();
     if (!prevClimb && nextClimb) anim.Play("Climb");
     if (prevClimb || nextClimb) {
       anim.speed = Mathf.Abs(desiredMovement.y) > 0 ? 1 : 0;
+      if (Mathf.Abs(desiredMovement.y) > 0)
+      {
+        anim.speed = 1;
+        //leaves.Play();
+
+      }
+      else {
+        anim.speed = 0;
+        //leaves.Stop();
+
+      }
     } else { anim.speed = 1; }
 
     shadow.SetActive(!nextJump && !nextClimb);
