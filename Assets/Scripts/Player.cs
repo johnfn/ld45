@@ -48,6 +48,9 @@ public class Player: MonoBehaviour {
   [Header("1 = infinite floaty. 1.5 = normal floaty. 2 = kind of floaty")]
   public float gravityScaleFactor = 1.3f;
 
+  [HideInInspector]
+  public Character character;
+
   public float Width { get { return boxCollider.bounds.size.x; } }
 
   public float Height { get { return boxCollider.bounds.size.y; } }
@@ -63,7 +66,6 @@ public class Player: MonoBehaviour {
   private BoxCollider2D boxCollider;
   private Animator anim;
   private SpriteRenderer spriteRenderer;
-  private Character character;
 
   private float velocityX = 0f;
   private float velocityY = 0f;
@@ -223,5 +225,14 @@ public class Player: MonoBehaviour {
     } else if (Input.GetKeyDown("1")) {
       // Show emotion
     }
+  }
+
+  /* Outward-facing functions */
+
+  /**
+   * 
+   */
+  public showEmotionCue(EmotionType emotionType) {
+    
   }
 }
