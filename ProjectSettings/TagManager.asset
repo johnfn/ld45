@@ -51,3 +51,6 @@ TagManager:
   - name: Main Character
     uniqueID: 1741758415
     locked: 0
+  - name: Closest
+    uniqueID: 2323985321
+    locked: 0
