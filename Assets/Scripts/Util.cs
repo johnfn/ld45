@@ -210,4 +210,11 @@ public static class Util {
       )
     );
   }
+
+  /** If value would exceed zero, set to zero. */
+  public static float NonPositive(float val) => Mathf.Min(0, val);
+
+  /** If value would dip below zero, set to zero. */
+  public static float NonNegative(float val) => Mathf.Max(0, val);
+
 }

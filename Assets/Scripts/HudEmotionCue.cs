@@ -10,22 +10,31 @@ public class HudEmotionCue: MonoBehaviour {
     private float velocityY = 0.3f;
 
     private float accelY = -0.1f;
-    
-    // It's a UI element, so it doesn't collide with anything.
+
+    /* Main */
+
+    /** 
+     * Change position by velocity.
+     * It's a UI element, so it doesn't collide with anything.
+     */
     void Move(Vector3 deltaPositon) {
         transform.position += deltaPositon;
         Util.Log(velocityX, velocityY);
     }
 
-    void Accelerate(Vector3 deltaVelocity) {
-        
+    /** Change velocity by acceleration. */
+    void Accelerate() {
+        velocityY = Util.NonNegative(velocityY + accelY);
+    }
+
+    /** Change acceleration by jerk. */
+    void Jerk() {
+        accelY = Util.NonPositive(accelY + 0.02f);
     }
 
     void Update() {
-        Util.Log("Update");
         Move(new Vector3(velocityX, velocityY, 0));
-        if (velocityY > 0) {
-            velocityY -= Mathf.Min(velocityY, 0.1f);
-        }
+        Accelerate();
+        Jerk();
     }
 }
