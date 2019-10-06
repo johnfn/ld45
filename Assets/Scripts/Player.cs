@@ -71,6 +71,8 @@ public class Player: MonoBehaviour {
 
   public float FallingSpeed;
 
+  public float MaxFallSpeed;
+
   public float JumpStrength;
 
   [Header("1 = infinite floaty. 1.5 = normal floaty. 2 = kind of floaty")]
@@ -229,6 +231,10 @@ public class Player: MonoBehaviour {
       // stand on a platform
       if (lastHitFlags.HitBottom() && velocityY < FallingSpeed) {
         velocityY = FallingSpeed;
+      }
+
+      if (velocityY < MaxFallSpeed) {
+        velocityY = MaxFallSpeed;
       }
 
       dy = velocityY;
