@@ -2,10 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FadeState {
-  public float FadeCurrent;
+public enum FadeType {
+  RectangleFade,
+  Both
+}
 
-  public float FadeGoal;
+public class FadeState {
+  public float RectOpacityGoal;
+  public float CircleOpacityGoal;
+
+  public FadeType FadeType;
 }
 
 public enum DialogManagerState {
@@ -18,24 +24,40 @@ public enum DialogManagerState {
 public class DialogManager: MonoBehaviour {
   public static DialogManager Instance;
 
+  [Header("Smaller is slower, 0 is infinitly long")]
+  public float FadeSpeed = 0.01f;
+
   private List<DialogItem> currentSequence;
 
-  private FadeState fadeState;
+  private Fade fadeState;
 
   private Dialog currentDialogObject;
 
   private DialogManagerState state;
 
+  private SpriteRenderer rectangleFade;
+  private SpriteRenderer circleFade;
+
   void Awake() {
     Instance = this;
   }
 
-  void Fade() {
-    if (Mathf.Abs(fadeState.FadeCurrent - fadeState.FadeGoal) > 0.01f) {
-      fadeState.FadeCurrent = Mathf.Lerp(fadeState.FadeCurrent, fadeState.FadeGoal, 0.1f);
+  void Start() {
+    rectangleFade = Manager.Instance.FullFade.GetComponent<SpriteRenderer>();
+    circleFade = Manager.Instance.CircleFade.GetComponent<SpriteRenderer>();
+  }
 
-      Manager.Instance.FullFade.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, fadeState.FadeCurrent);
+  void Fade() {
+    if (
+      Mathf.Abs(rectangleFade.color.a - fadeState.RectangleFadeOpacity) > 0.01f ||
+      Mathf.Abs(circleFade.color.a    - fadeState.CircleFadeOpacity) > 0.01f
+    ) {
+      rectangleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(rectangleFade.color.a, fadeState.RectangleFadeOpacity, FadeSpeed));
+      circleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(circleFade.color.a, fadeState.CircleFadeOpacity, FadeSpeed));
     } else {
+      rectangleFade.color = new Color(1f, 1f, 1f, fadeState.RectangleFadeOpacity);
+      circleFade.color = new Color(1f, 1f, 1f, fadeState.CircleFadeOpacity);
+
       state = DialogManagerState.ShouldShowNextDialog;
     }
   }
@@ -84,26 +106,9 @@ public class DialogManager: MonoBehaviour {
 
     currentSequence = currentSequence.Skip(1).ToList();
 
-    if (currentDialogItem.SpecialEvent == SpecialDialogEvent.FadeToBlack) {
-      fadeState = new FadeState {
-        FadeCurrent = 0f,
-        FadeGoal = 1f
-      };
-
+    if (currentDialogItem.Fade != null) {
+      fadeState = currentDialogItem.Fade;
       state = DialogManagerState.Fading;
-
-      return;
-    } else if (currentDialogItem.SpecialEvent == SpecialDialogEvent.FadeToFiftyPercent) {
-      fadeState = new FadeState {
-        FadeCurrent = 0f,
-        FadeGoal = 0.5f
-      };
-
-      state = DialogManagerState.Fading;
-
-      return;
-    } else if (currentDialogItem.SpecialEvent == SpecialDialogEvent.SnapToBlack) {
-      Manager.Instance.FullFade.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
 
       return;
     }
