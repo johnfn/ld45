@@ -201,4 +201,13 @@ public static class Util {
       0.1f
     );
   }
+
+  public static float Distance(GameObject go1, GameObject go2) {
+    return (
+      Mathf.Sqrt(
+        Mathf.Pow(go1.transform.position.x - go2.transform.position.x, 2) +
+        Mathf.Pow(go1.transform.position.y - go2.transform.position.y, 2)
+      )
+    );
+  }
 }
