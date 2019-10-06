@@ -8,11 +8,6 @@ public enum DialogManagerState {
   ShowingDialog
 }
 
-public struct DialogItem {
-  public GameObject Speaker;
-  public string Contents;
-}
-
 public class DialogManager: MonoBehaviour {
   public static DialogManager Instance;
 
@@ -61,11 +56,13 @@ public class DialogManager: MonoBehaviour {
     }
 
     var currentDialogItem = currentSequence.First();
-    var speaker = currentDialogItem.Speaker;
+    var characterName = currentDialogItem.Name;
 
     currentSequence = currentSequence.Skip(1).ToList();
 
-    currentObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker);
+    var speaker = Character.Speakers.First(guy => guy.CharacterName == characterName);
+
+    currentObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject);
 
     state = DialogManagerState.ShowingDialog;
   }
