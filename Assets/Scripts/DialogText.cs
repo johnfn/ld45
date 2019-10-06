@@ -62,7 +62,6 @@ public class DialogText {
 
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Okay, tell you what, Blank—" },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "I really can’t stand the smell down here. It brings back some bad memories." },
-    //new DialogEvent { Name = CharacterName.Ash  , Contents = "Okay, tell you what, Blank—I really can’t stand the smell down here. It brings back some bad memories." },
 
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Mind if we talk as we head up to the city?" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "Where’s the city?" },
