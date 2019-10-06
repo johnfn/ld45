@@ -17,6 +17,8 @@ public class Manager: MonoBehaviour {
 
   public Player Player;
 
+    public GameObject bar1, bar2;
+
   public GameObject OtherGuy;
   public TextMeshProUGUI InstructObj;
     public Transform tutTriggersParent;
