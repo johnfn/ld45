@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EmotionInteractable: Interactable {
 
-    public EmotionType MyEmotionType;
+    public EmotionType myEmotionType;
 
     void Start() {
         InteractableManager.Interactables.Add(this);
@@ -13,13 +13,12 @@ public class EmotionInteractable: Interactable {
         InteractableManager.Interactables.Remove(this);
     }
 
-    new public void ShowAsInteractable() {
+    override public void ShowAsInteractable() {
         transform.localScale = new Vector3(2, 2, 2);
-        Canvas CharacterCanvas = Manager.Instance.Player.character.CharacterCanvas;
-
+        Manager.Instance.Player.ShowEmotionCue(myEmotionType);
     }
 
-    new public void ShowAsNormal() {
+    override public void ShowAsNormal() {
         transform.localScale = new Vector3(1, 1, 1);
     }
 
