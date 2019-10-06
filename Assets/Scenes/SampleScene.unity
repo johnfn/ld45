@@ -532,7 +532,7 @@ MonoBehaviour:
   InstructObj: {fileID: 1988361345}
   tutTriggersParent: {fileID: 339955222}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 1
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 324968617}
   FullFade: {fileID: 4285615079742527641}
