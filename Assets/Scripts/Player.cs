@@ -160,6 +160,11 @@ public class Player: MonoBehaviour {
         continue;
       }
 
+      if(x.collider.GetComponent<TutTrigger>() != null)
+      {
+        continue;
+      }
+
       result.Add(x);
     }
 

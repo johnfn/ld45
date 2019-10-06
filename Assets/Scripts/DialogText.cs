@@ -10,7 +10,7 @@ public enum CharacterName {
 
 public class Fade {
   public float RectangleFadeOpacity = 1.0f;
-  public float CircleFadeOpacity = 1.0f;
+    public float CircleFadeOpacity = 1.0f;
   public bool Immediate = false;
 }
 
@@ -18,19 +18,17 @@ public class DialogEvent {
   public CharacterName Name;
   public string Contents;
 
-  // other events that can happen during dialog
-
-  public Dictionary<EmotionType, List<DialogEvent>> EmotionReactions = null;
-  public Fade Fade = null;
-  public EmotionType ReceiveEmotion = EmotionType.None; 
-  public bool hideInstruct = false;
+    // other events that can happen during dialog
+    
+  public Fade Fade = null;  public EmotionType ReceiveEmotion = EmotionType.None; public bool hideInstruct = false; public string instruct = null;
 }
+
 
 public class DialogText {
   public static List<DialogEvent> FirstDialog = new List<DialogEvent> {
     new DialogEvent { Fade = new Fade { Immediate = true, RectangleFadeOpacity = 1.0f } },
 
-    new DialogEvent { Name = CharacterName.Ash  , Contents = "Hey!" },
+    new DialogEvent { Name = CharacterName.Ash  , Contents = "Hey!" , instruct = "Press X to continue."},
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." , hideInstruct = true},
 
     new DialogEvent { ReceiveEmotion = EmotionType.Curiosity },
@@ -70,22 +68,12 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Actually, why don’t we make this into a little game?" },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "I’ll head up to a resting point, and every time you catch up, I’ll answer one of your questions." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Sound good?" },
-    new DialogEvent { Name = CharacterName.Blank, Contents = "Sure!" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Sure!",  instruct = "Press A/D to move." },
   };
 
   public static List<DialogEvent> Trudialog = new List<DialogEvent> {
     new DialogEvent { Name = CharacterName.Blank, Contents = "<color=red>Um... hi.</color>" },
-    new DialogEvent { 
-      Name = CharacterName.Trudy, 
-      Contents = "Hewwwwoooo",
-      EmotionReactions = new Dictionary<EmotionType, List<DialogEvent>> {
-        { 
-          EmotionType.Curiosity, 
-          new List<DialogEvent> {
-            new DialogEvent { Name = CharacterName.Blank, Contents = "I'm really curious about your lack of non w consonant sounds" },
-          }
-        }
-      }
-    }
+    new DialogEvent { Name = CharacterName.Trudy, Contents = "Hewwwwoooo" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "I am quite alarmed right now." },
   };
 }
