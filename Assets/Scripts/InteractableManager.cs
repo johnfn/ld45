@@ -2,9 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Figure out which interactable is currently targetted
 
 public class InteractableManager: MonoBehaviour {
+
+  /** All Interactables currently alive add themselves to this. */
   public static List<Interactable> Interactables = new List<Interactable>();
 
   public int MaxDistanceToInteractable;
@@ -20,6 +21,7 @@ public class InteractableManager: MonoBehaviour {
     var sortedByDistance = Interactables.OrderBy(x => Util.Distance(x.gameObject, player.gameObject));
     var newTarget = sortedByDistance.First().gameObject;
 
+  // Figure out which interactable is currently targetted
     if (Util.Distance(player.gameObject, newTarget) > MaxDistanceToInteractable) {
       newTarget = null;
     }
