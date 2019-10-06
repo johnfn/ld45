@@ -90,6 +90,8 @@ public class Player: MonoBehaviour {
   [HideInInspector]
   private Vector3 LookingDirection = Vector3.zero;
 
+  private Vector3 lastSafeSpot;
+
   public float Width { get { return boxCollider.bounds.size.x; } }
 
   public float Height { get { return boxCollider.bounds.size.y; } }
@@ -113,7 +115,7 @@ public class Player: MonoBehaviour {
 
   private float accelerationY = 0f;
 
-  private HitFlags lastHitFlags;
+  private HitFlags hitFlags;
 
   void Start() {
     boxCollider = GetComponent<BoxCollider2D>();
@@ -122,7 +124,7 @@ public class Player: MonoBehaviour {
     character = GetComponent<Character>();
     dustPuffs.Stop();
 
-    lastHitFlags = new HitFlags();
+    hitFlags = new HitFlags();
   }
 
   public Vector3 GetLookingDirection() {
@@ -277,7 +279,7 @@ public class Player: MonoBehaviour {
 
       // cap velocity at gravity so it doesn't become arbitrarily huge when you
       // stand on a platform
-      if (lastHitFlags.HitBottom() && velocityY < FallingSpeed) {
+      if (hitFlags.HitBottom() && velocityY < FallingSpeed) {
         velocityY = FallingSpeed;
       }
 
@@ -287,7 +289,7 @@ public class Player: MonoBehaviour {
 
       dy = velocityY;
 
-      if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = JumpStrength; }
+      if (Input.GetKey("space") && hitFlags.HitBottom()) { accelerationY = JumpStrength; }
     }
 
     var result = new Vector3(dx, dy, 0) * MovementSpeed;
@@ -296,7 +298,7 @@ public class Player: MonoBehaviour {
   }
 
   bool isJumping() {
-    return !this.lastHitFlags.HitBottom();
+    return !this.hitFlags.HitBottom();
   }
 
   private void OnTriggerEnter2D(Collider2D other) {
@@ -347,6 +349,10 @@ public class Player: MonoBehaviour {
     return hit;
   }
 
+  void RecoverFromDeath() {
+    transform.position = lastSafeSpot;
+  }
+
   void FixedUpdate() {
     velocityY -= 0.3f;
 
@@ -370,7 +376,6 @@ public class Player: MonoBehaviour {
     anim.SetBool("climbing", nextClimb);
     anim.SetBool("jumping", nextJump);
 
-
     //Make the sprite and particle system face the right way
     bool prevDir = isFacingRight;
     if (desiredMovement.x > 0) {
@@ -386,12 +391,18 @@ public class Player: MonoBehaviour {
     // you'll loose that information if you don't guard for that case here.
 
     if (desiredMovement != Vector3.zero) {
-      var hitFlags = Move(desiredMovement);
-      this.lastHitFlags = hitFlags;
+      var oldHitFlags = hitFlags;
+
+      var newHitFlags = Move(desiredMovement);
+      hitFlags = newHitFlags;
+
+      if (!hitFlags.TouchingWater && hitFlags.HitBottom() && !oldHitFlags.HitBottom()) {
+        lastSafeSpot = transform.position;
+      }
     }
 
-    if (this.lastHitFlags.TouchingWater) {
-      Debug.Log("Die!");
+    if (hitFlags.TouchingWater) {
+      RecoverFromDeath();
     }
 
     if (Input.GetKeyDown("x")) {
