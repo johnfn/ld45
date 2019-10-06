@@ -324,8 +324,6 @@ public class Player: MonoBehaviour {
       return hit;
     }
 
-    Debug.Log(desiredMovement);
-
     transform.position += desiredMovement;
 
     return hit;
