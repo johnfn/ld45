@@ -49,13 +49,31 @@ public class Manager: MonoBehaviour {
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
-
+        StartFirstGameplay();
         break;
     }
   }
 
   void StartIntroduction() {
+    Player.Emotions = new EmotionState {
+      Curiosity = false,
+      Compassion = false,
+      Affection = false,
+      Remorse = false,
+      Betrayal = false,
+    };
+
     DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
+  }
+
+  void StartFirstGameplay() {
+    Player.Emotions = new EmotionState {
+      Curiosity = true,
+      Compassion = false,
+      Affection = false,
+      Remorse = false,
+      Betrayal = false,
+    };
   }
 
   void Update() {

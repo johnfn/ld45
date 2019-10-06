@@ -693,8 +693,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf0317d24009482ea8729fdb9bb64df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.1
-  fallingSpeed: -0.225
+  Curiosity: 0
+  Compassion: 0
+  Affection: 0
+  Remorse: 0
+  Betrayal: 0
+  MovementSpeed: 0.2
+  FallingSpeed: -0.3
   gravityScaleFactor: 1.3
   character: {fileID: 0}
 --- !u!61 &1022136881
