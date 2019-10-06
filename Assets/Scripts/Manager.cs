@@ -93,7 +93,7 @@ public class Manager: MonoBehaviour {
 
     Player.transform.position = IntroductionPlayerPosition.transform.position;
 
-    //DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
+    DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
   }
 
   void StartFirstGameplay() {
