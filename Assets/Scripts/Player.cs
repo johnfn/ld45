@@ -218,6 +218,18 @@ public class Player: MonoBehaviour {
     return new Vector3(dx, dy, 0) * movementSpeed;
   }
 
+  bool isJumping()
+  {
+    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, spriteRenderer.bounds.extents.y +0.3f);
+    if (hit.collider != null)
+    {
+      return false;
+    }
+    return true;
+
+
+  }
+
   HitFlags Move(Vector3 desiredMovement) {
     var hit = CheckForHit(desiredMovement);
 
@@ -259,6 +271,7 @@ public class Player: MonoBehaviour {
 
     var desiredMovement = calculateVelocity();
     anim.SetBool("walking", Mathf.Abs(desiredMovement.x) > 0);
+    anim.SetBool("jumping", isJumping());
     spriteRenderer.flipX = desiredMovement.x < 0;
     var hitFlags = Move(desiredMovement);
 
