@@ -7,20 +7,26 @@ public enum CharacterName {
 }
 
 public enum SpecialDialogEvent {
-  FadeToBlack
+  None,
+  FadeToBlack,
+  SnapToBlack,
+  FadeToFiftyPercent
 }
 
 public class DialogItem {
   public CharacterName Name;
   public string Contents;
-  public SpecialDialogEvent SpecialEvent;
+  public SpecialDialogEvent SpecialEvent = SpecialDialogEvent.None;
 }
 
 public class DialogText {
   public static List<DialogItem> FirstDialog = new List<DialogItem> {
-    new DialogItem { SpecialEvent = SpecialDialogEvent.FadeToBlack },
+    new DialogItem { SpecialEvent = SpecialDialogEvent.SnapToBlack },
 
     new DialogItem { Name = CharacterName.Ash  , Contents = "Hey!" },
+
+    new DialogItem { SpecialEvent = SpecialDialogEvent.FadeToFiftyPercent },
+
     new DialogItem { Name = CharacterName.Blank, Contents = "..." },
     new DialogItem { Name = CharacterName.Ash  , Contents = "What happened? Are you okay?" },
     new DialogItem { Name = CharacterName.Blank, Contents = "..." },

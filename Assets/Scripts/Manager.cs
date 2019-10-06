@@ -36,8 +36,8 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-    FullFade.gameObject.SetActive(false);
-    CircleFade.gameObject.SetActive(false);
+    FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 1f);
+    CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
 
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
