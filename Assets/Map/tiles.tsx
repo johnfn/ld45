@@ -111,6 +111,26 @@
    <object id="1" x="32" y="5" width="186.667" height="250.667"/>
   </objectgroup>
  </tile>
+ <tile id="52">
+  <objectgroup draworder="index">
+   <object id="2" x="0" y="200" width="256" height="50"/>
+  </objectgroup>
+ </tile>
+ <tile id="53">
+  <objectgroup draworder="index">
+   <object id="2" x="0" y="200" width="256" height="50"/>
+  </objectgroup>
+ </tile>
+ <tile id="54">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="200" width="256" height="50"/>
+  </objectgroup>
+ </tile>
+ <tile id="55">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="200" width="256" height="50"/>
+  </objectgroup>
+ </tile>
  <tile id="56">
   <objectgroup draworder="index">
    <object id="5" x="32" y="5" width="186.667" height="250.667"/>
