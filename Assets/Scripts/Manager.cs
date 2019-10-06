@@ -45,7 +45,7 @@ public class Manager: MonoBehaviour {
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
 
-    FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+    //FullFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
     CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
   }
 
@@ -75,9 +75,12 @@ public class Manager: MonoBehaviour {
         InstructObj.text = instructText;
     }
 
-    void HideInstruction()
+    public void HideInstruction()
     {
-        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad();
+        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad().setOnComplete(() =>
+        {
+            InstructObj.gameObject.SetActive(false);
+        });
     }
 
   void StartIntroduction() {

@@ -103,6 +103,11 @@ public class DialogManager: MonoBehaviour {
       return;
     }
 
+    if(currentDialogItem.hideInstruct == true)
+        {
+            Manager.Instance.HideInstruction();
+        }
+
     if (currentDialogItem.ReceiveEmotion != EmotionType.None) {
       var emo = currentDialogItem.ReceiveEmotion;
 
