@@ -63,6 +63,7 @@ public class Player: MonoBehaviour {
   private BoxCollider2D boxCollider;
   private Animator anim;
   private SpriteRenderer spriteRenderer;
+  private Character character;
 
   private float velocityX = 0f;
   private float velocityY = 0f;
@@ -75,6 +76,7 @@ public class Player: MonoBehaviour {
     boxCollider  = GetComponent<BoxCollider2D>();
     anim = GetComponent<Animator>();
     spriteRenderer = GetComponent<SpriteRenderer>();
+    character = GetComponent<Character>();
 
     lastHitFlags = new HitFlags();
   }
