@@ -10,7 +10,7 @@ public class Manager: MonoBehaviour {
   // Prefabs 
   public GameObject DialogPrefab;
 
-  public GameObject RageEmotionPrefab;
+  public GameObject CuriosityCuePrefab;
 
   // Objects
 
@@ -74,6 +74,30 @@ public class Manager: MonoBehaviour {
     dialog.StartDialog(text);
 
     return dialog;
+  }
+
+  public static GameObject CreateNewEmotionCue(EmotionType emotionType, GameObject Target) {
+    GameObject OriginalPrefab = null;
+    GameObject EmotionCue = null;
+
+    // Decide which emotion type to use
+    switch (emotionType) {
+      case EmotionType.Curiosity:
+        OriginalPrefab = Instance.CuriosityCuePrefab;
+        break;
+    }
+    if (OriginalPrefab == null) {
+      Util.Log("No emotion cue for emotionType", emotionType);
+      return EmotionCue;
+    }
+
+    // Create & return
+    EmotionCue = GameObject.Instantiate(
+      OriginalPrefab,
+      Target.transform.position + new Vector3(0, 2, 0),
+      Quaternion.identity
+    );
+    return EmotionCue;
   }
 }
 

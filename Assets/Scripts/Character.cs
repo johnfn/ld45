@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character: MonoBehaviour {
 
-  public Canvas CharacterCanvas;
+  public GameObject CharacterCanvas;
   
   public CharacterName CharacterName;
 

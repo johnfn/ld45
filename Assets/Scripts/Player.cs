@@ -274,7 +274,8 @@ public class Player: MonoBehaviour {
   /**
    * 
    */
-  public void showEmotionCue(EmotionType emotionType) {
-    
+  public void ShowEmotionCue(EmotionType emotionType) {
+    GameObject MyCanvas = this.character.CharacterCanvas;
+    GameObject EmotionCue = Manager.CreateNewEmotionCue(emotionType, MyCanvas);
   }
 }
