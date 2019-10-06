@@ -250,7 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPrefab: {fileID: 5903884507917441638, guid: 14537079c180b4c66895b7e47f1a3b8a,
     type: 3}
-  RageEmotionPrefab: {fileID: 0}
+  CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
+    type: 3}
   Player: {fileID: 1022136880}
   OtherGuy: {fileID: 1529586512}
   Camera: {fileID: 519420031}
@@ -267,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 514880182}
   - component: {fileID: 514880181}
+  - component: {fileID: 514880183}
   m_Layer: 0
   m_Name: CuriousHexagon
   m_TagString: Untagged
@@ -337,6 +339,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514880183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514880180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67cab16bbc704bc19e3886847d86c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEmotionType: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +721,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5446677b62eac42519cf182304df373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterCanvas: {fileID: 0}
   CharacterName: 0
 --- !u!114 &1022136884
 MonoBehaviour:
@@ -861,7 +875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5446677b62eac42519cf182304df373e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterCanvas: {fileID: 0}
   CharacterName: 1
 --- !u!114 &1529586518
 MonoBehaviour:
@@ -1266,6 +1279,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CuriosityCue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6711652922937176222, guid: 8beaa63ddaa2444939d8eabfad19728f,
         type: 3}

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public enum EmotionType {
   Curiosity,
-  Affection,
-  Remorse,
-  Betrayal,
-  Forgiveness,
+  AffectionCurrentlyUnused,
+  RemorseCurrentlyUnused,
+  BetrayalCurrentlyUnused,
+  ForgivenessCurrentlyUnused,
 }
 
 public class Emotion: MonoBehaviour {
