@@ -74,6 +74,8 @@ public class Player: MonoBehaviour {
   private Animator anim;
   private SpriteRenderer spriteRenderer;
 
+  private bool isTouchingLadder = false;
+
   private float velocityX = 0f;
   private float velocityY = 0f;
 
@@ -124,24 +126,6 @@ public class Player: MonoBehaviour {
     return result;
   }
 
-  List<RaycastHit2D> GetPassableColliders(RaycastHit2D[] raycastResult) {
-    var result = new List<RaycastHit2D>();
-
-    foreach (var x in raycastResult) {
-      if (x.collider.GetComponent<Player>() != null) {
-        continue;
-      }
-
-      if (!IsColliderAVine(x.collider)) {
-        continue;
-      }
-
-      result.Add(x);
-    }
-
-    return result;
-  }
-
   HitFlags CheckForHit(Vector3 desiredMovement) {
     var hitFlagsResult = new HitFlags();
 
@@ -169,19 +153,12 @@ public class Player: MonoBehaviour {
 
           break;
         }
-
-        var passableColliders = GetPassableColliders(result);
-
-        if (passableColliders.Count > 0) {
-          hitFlagsResult.XTouchedObjects = passableColliders.Select(collider => collider.collider.gameObject).ToList();
-          hitFlagsResult.XTouch = Mathf.Sign(x);
-        }
       }
     }
 
     if (y != 0) {
-      var start  = transform.position + new Vector3(Width / 2, Mathf.Sign(y) *  Height / 2, 0);
-      var end    = transform.position + new Vector3(Width / 2, Mathf.Sign(y) * -Height / 2, 0);
+      var start  = transform.position + new Vector3( Width / 2f, Mathf.Sign(y) * Height / 2, 0);
+      var end    = transform.position + new Vector3(-Width / 2f, Mathf.Sign(y) * Height / 2, 0);
       var middle = (start + end) / 2f;
 
       var pointsToCheck = new List<Vector3> { start, middle, end };
@@ -198,13 +175,6 @@ public class Player: MonoBehaviour {
 
           break;
         }
-
-        var passableColliders = GetPassableColliders(result);
-
-        if (passableColliders.Count > 0) {
-          hitFlagsResult.YTouchedObjects = passableColliders.Select(collider => collider.collider.gameObject).ToList();
-          hitFlagsResult.YTouch = Mathf.Sign(x);
-        }
       }
     }
 
@@ -212,39 +182,52 @@ public class Player: MonoBehaviour {
   }
 
   Vector3 calculateVelocity() {
-    velocityY += accelerationY;
-    accelerationY /= gravityScaleFactor;
-
-    // cap velocity at gravity so it doesn't become arbitrarily huge when you
-    // stand on a platform
-    if (lastHitFlags.HitBottom() && velocityY < fallingSpeed) {
-      velocityY = fallingSpeed;
-    }
-
-    if (lastHitFlags.TouchAnything()) {
-      // TODO: Check that it's a ladder
-      velocityY = 0f;
-    }
-
-    var dx = 0;
-    var dy = velocityY;
+    var dx = 0f;
+    var dy = 0f;
 
     if (Input.GetKey("a")) { dx -= 1; }
     if (Input.GetKey("d")) { dx += 1; }
 
-    if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = 1; }
+    if (isTouchingLadder) {
+      if (Input.GetKey("w")) { dy += 1; }
+      if (Input.GetKey("s")) { dy -= 1; }
 
-    return new Vector3(dx, dy, 0) * movementSpeed;
+      accelerationY = 0f;
+      velocityY     = 0f;
+    } else {
+      velocityY += accelerationY;
+      accelerationY /= gravityScaleFactor;
+
+      // cap velocity at gravity so it doesn't become arbitrarily huge when you
+      // stand on a platform
+      if (lastHitFlags.HitBottom() && velocityY < fallingSpeed) {
+        velocityY = fallingSpeed;
+      }
+
+      dy = velocityY;
+
+      if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = 1; }
+    }
+
+    var result = new Vector3(dx, dy, 0) * movementSpeed;
+
+    return result;
   }
 
   bool isJumping() {
-    RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, spriteRenderer.bounds.extents.y +0.3f);
+    return !this.lastHitFlags.HitBottom();
+  }
 
-    if (hit.collider != null) {
-      return false;
+  private void OnTriggerEnter2D(Collider2D other) {
+    if (IsColliderAVine(other)) {
+      isTouchingLadder = true;
     }
+  }
 
-    return true;
+  private void OnTriggerExit2D(Collider2D other) {
+    if (IsColliderAVine(other)) {
+      isTouchingLadder = false;
+    }
   }
 
   HitFlags Move(Vector3 desiredMovement) {
@@ -287,12 +270,20 @@ public class Player: MonoBehaviour {
     velocityY -= 0.3f;
 
     var desiredMovement = calculateVelocity();
+
     anim.SetBool("walking", Mathf.Abs(desiredMovement.x) > 0);
     anim.SetBool("jumping", isJumping());
-    spriteRenderer.flipX = desiredMovement.x < 0;
-    var hitFlags = Move(desiredMovement);
 
-    this.lastHitFlags = hitFlags;
+    spriteRenderer.flipX = desiredMovement.x < 0;
+
+    // This is pretty important. Hit() does not properly update your currently
+    // touching objects if you try to raycast with a zero length vector, so
+    // you'll loose that information if you don't guard for that case here.
+
+    if (desiredMovement != Vector3.zero) {
+      var hitFlags = Move(desiredMovement);
+      this.lastHitFlags = hitFlags;
+    }
 
     if (Input.GetKeyDown("1")) {
       // Show emotion
@@ -307,6 +298,7 @@ public class Player: MonoBehaviour {
   public GameObject ShowEmotionCue(EmotionType emotionType) {
     GameObject MyCanvas = this.character.CharacterCanvas.gameObject;
     GameObject EmotionCue = Manager.CreateNewEmotionCue(emotionType, MyCanvas);
+
     return EmotionCue;
   }
 }
