@@ -61,6 +61,8 @@ public class Player: MonoBehaviour {
   public Vector3 BottomRight { get { return transform.position + new Vector3(Width / 2, -Height / 2); } }
 
   private BoxCollider2D boxCollider;
+  private Animator anim;
+  private SpriteRenderer spriteRenderer;
 
   private float velocityX = 0f;
   private float velocityY = 0f;
@@ -71,6 +73,8 @@ public class Player: MonoBehaviour {
 
   void Start() {
     boxCollider  = GetComponent<BoxCollider2D>();
+    anim = GetComponent<Animator>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
 
     lastHitFlags = new HitFlags();
   }
@@ -201,6 +205,8 @@ public class Player: MonoBehaviour {
     velocityY -= 0.3f;
 
     var desiredMovement = calculateVelocity();
+    anim.SetBool("walking", Mathf.Abs(desiredMovement.x) > 0);
+    spriteRenderer.flipX = desiredMovement.x < 0;
     var hitFlags = Move(desiredMovement);
 
     this.lastHitFlags = hitFlags;
