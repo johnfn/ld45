@@ -350,7 +350,7 @@ public class Player: MonoBehaviour {
       isFacingRight = false;
     }
     spriteRenderer.flipX = !isFacingRight;
-    if (prevDir != isFacingRight) dustPuffs.transform.RotateAround(Vector2.up, Mathf.Deg2Rad * 180);
+    if (prevDir != isFacingRight) dustPuffs.transform.Rotate(Vector2.up, Mathf.Deg2Rad * 180);
 
 
 
