@@ -95,8 +95,6 @@ public class Manager: MonoBehaviour {
       Quaternion.identity
     );
 
-    Util.Log(target.name);
-
     var dialog = dialogGO.GetComponent<Dialog>();
 
     dialog.StartDialog(text);
