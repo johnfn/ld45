@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public enum DialogManagerState {
-  NoDialog,
+  Done,
   ShouldShowNextDialog,
   ShowingDialog
 }
@@ -16,7 +16,9 @@ public struct DialogItem {
 public class DialogManager: MonoBehaviour {
   public static DialogManager Instance;
 
-  private List<DialogItem> currentDialogSequence;
+  private List<DialogItem> currentSequence;
+
+  private Dialog currentObject;
 
   private DialogManagerState state;
 
@@ -26,28 +28,50 @@ public class DialogManager: MonoBehaviour {
 
   void Update() {
     switch (state) {
-      case DialogManagerState.NoDialog:
+      case DialogManagerState.Done:
         break;
       case DialogManagerState.ShouldShowNextDialog:
         ShowNextDialog();
+
         break;
       case DialogManagerState.ShowingDialog:
-        // TODO: Check to see if we should show the next one
+        if (currentObject.GetDialogState() == DialogState.Done) {
+          if (currentSequence.Count == 0) {
+            FinishDialogSequence();
+          } else {
+            state = DialogManagerState.ShouldShowNextDialog;
+          }
+        }
+
         break;
     }
   }
 
+  void FinishDialogSequence() {
+    if (currentObject != null) {
+      GameObject.Destroy(currentObject.gameObject);
+    }
+
+    state = DialogManagerState.Done;
+  }
+
   void ShowNextDialog() {
-    var currentDialogItem = currentDialogSequence[0];
+    if (currentObject != null) {
+      GameObject.Destroy(currentObject.gameObject);
+    }
+
+    var currentDialogItem = currentSequence.First();
     var speaker = currentDialogItem.Speaker;
 
-    Manager.CreateNewDialog(currentDialogItem.Contents, speaker);
+    currentSequence = currentSequence.Skip(1).ToList();
+
+    currentObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker);
 
     state = DialogManagerState.ShowingDialog;
   }
 
   public void StartDialogSequence(List<DialogItem> items) {
-    currentDialogSequence = items;
+    currentSequence = items;
     state = DialogManagerState.ShouldShowNextDialog;
   }
 }

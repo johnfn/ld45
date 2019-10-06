@@ -3,8 +3,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum TextState {
-  Empty,
+public enum DialogState {
+  Done,
   WritingText,
   WaitingForInput
 }
@@ -20,7 +20,7 @@ public class Dialog: MonoBehaviour {
   [Header("Smaller is faster")]
   public int textSpeed;
 
-  private TextState state;
+  private DialogState state;
   private string entireDialog;
   private int tick = 0;
 
@@ -50,20 +50,24 @@ public class Dialog: MonoBehaviour {
     );
   }
 
+  public DialogState GetDialogState() {
+    return state;
+  }
+
   public void StartDialog(string dialog) {
     text.text = "";
     entireDialog = dialog;
 
     CalculateDialogSize(dialog);
 
-    state = TextState.WritingText;
+    state = DialogState.WritingText;
   }
 
   void WriteLetter() {
     var currentDialog = text.text;
 
     if (currentDialog == this.entireDialog) {
-      this.state = TextState.WaitingForInput;
+      this.state = DialogState.WaitingForInput;
 
       return;
     }
@@ -76,15 +80,19 @@ public class Dialog: MonoBehaviour {
     ++tick;
 
     switch (state) {
-      case TextState.Empty:
+      case DialogState.Done:
         break;
-      case TextState.WritingText:
+      case DialogState.WritingText:
         if (tick % textSpeed == 0) {
           WriteLetter();
         }
 
         break;
-      case TextState.WaitingForInput:
+      case DialogState.WaitingForInput:
+        if (Input.GetKeyDown("x")) {
+          state = DialogState.Done;
+        }
+
         break;
     }
   }

@@ -71,3 +71,7 @@ public class Manager: MonoBehaviour {
     return dialog;
   }
 }
+
+// TODO;
+// * read button press
+// * when dialog, all other motion is frozen probably
