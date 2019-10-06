@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +13,7 @@ public class Dialog: MonoBehaviour {
   public Text text;
   public SpriteRenderer sprite;
   public Text ReactionText;
+  public GameObject ReactionIcon;
 
   public float textScaleFactor;
   public float maxDialogWidth;
@@ -50,6 +50,7 @@ public class Dialog: MonoBehaviour {
 
   void Start() {
     ReactionText.gameObject.SetActive(false);
+    ReactionIcon.gameObject.SetActive(false);
   }
 
   void CalculateDialogSize(string dialog) {
@@ -154,7 +155,9 @@ public class Dialog: MonoBehaviour {
     if (this.emotionReactions != null) {
       foreach (var reaction in emotionReactions) {
         ReactionText.gameObject.SetActive(true);
-        ReactionText.text = reaction.Key.ToString();
+        ReactionIcon.gameObject.SetActive(true);
+
+        ReactionText.text = $"z: { reaction.Key.ToString() }";
       }
     }
   }
