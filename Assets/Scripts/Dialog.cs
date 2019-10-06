@@ -3,8 +3,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum TextState {
-  Empty,
+public enum DialogState {
+  Done,
   WritingText,
   WaitingForInput
 }
@@ -14,26 +14,19 @@ public class Dialog: MonoBehaviour {
   public Text text;
   public SpriteRenderer sprite;
 
-  public float textScaleFactor = 100;
-  public float maxDialogWidth = 400;
+  public float textScaleFactor;
+  public float maxDialogWidth;
 
   [Header("Smaller is faster")]
-  public int textSpeed = 10;
+  public int textSpeed;
 
-  private TextState state;
+  private DialogState state;
   private string entireDialog;
   private int tick = 0;
 
   public float Width { get { return this.sprite.bounds.size.x; } }
 
   public float Height { get { return this.sprite.bounds.size.y; } }
-
-
-  void Start() {
-    state = TextState.Empty;
-
-    ShowDialog("Hi there! My name is Ash! ASH stands for Always Stealing your Hemotions! This is a literary device known as F O R E S H A D O W I N G.");
-  }
 
   void CalculateDialogSize(string dialog) {
     // Figure out how tall and wide this dialog should be
@@ -57,20 +50,24 @@ public class Dialog: MonoBehaviour {
     );
   }
 
-  void ShowDialog(string dialog) {
+  public DialogState GetDialogState() {
+    return state;
+  }
+
+  public void StartDialog(string dialog) {
     text.text = "";
     entireDialog = dialog;
 
     CalculateDialogSize(dialog);
 
-    state = TextState.WritingText;
+    state = DialogState.WritingText;
   }
 
   void WriteLetter() {
     var currentDialog = text.text;
 
     if (currentDialog == this.entireDialog) {
-      this.state = TextState.WaitingForInput;
+      this.state = DialogState.WaitingForInput;
 
       return;
     }
@@ -83,15 +80,19 @@ public class Dialog: MonoBehaviour {
     ++tick;
 
     switch (state) {
-      case TextState.Empty:
+      case DialogState.Done:
         break;
-      case TextState.WritingText:
+      case DialogState.WritingText:
         if (tick % textSpeed == 0) {
           WriteLetter();
         }
 
         break;
-      case TextState.WaitingForInput:
+      case DialogState.WaitingForInput:
+        if (Input.GetKeyDown("x")) {
+          state = DialogState.Done;
+        }
+
         break;
     }
   }

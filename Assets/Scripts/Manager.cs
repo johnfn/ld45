@@ -47,19 +47,31 @@ public class Manager: MonoBehaviour {
   }
 
   void StartIntroduction() {
-
+    DialogManager.Instance.StartDialogSequence(new List<DialogItem> {
+      new DialogItem { Speaker = Player, Contents = "Hi there" },
+      new DialogItem { Speaker = OtherGuy, Contents = "What's up?" },
+    });
   }
 
   void Update() {
 
   }
 
-  public static GameObject CreateNewDialog(string text, GameObject Target) {
-    var NewDialog = GameObject.Instantiate(
+  public static Dialog CreateNewDialog(string text, GameObject Target) {
+    var dialogGO = GameObject.Instantiate(
         Instance.DialogPrefab,
         Target.transform.position,
         Quaternion.identity
     );
-    return NewDialog;
+
+    var dialog = dialogGO.GetComponent<Dialog>();
+
+    dialog.StartDialog(text);
+
+    return dialog;
   }
 }
+
+// TODO;
+// * read button press
+// * when dialog, all other motion is frozen probably
