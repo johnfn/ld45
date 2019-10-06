@@ -101,4 +101,19 @@
    <object id="1" x="40.6667" y="-11.3334" width="181.333" height="226"/>
   </objectgroup>
  </tile>
+ <tile id="40">
+  <objectgroup draworder="index">
+   <object id="5" x="37.3333" y="42.6667" width="202.667" height="202.667"/>
+  </objectgroup>
+ </tile>
+ <tile id="48">
+  <objectgroup draworder="index">
+   <object id="1" x="32" y="5" width="186.667" height="250.667"/>
+  </objectgroup>
+ </tile>
+ <tile id="56">
+  <objectgroup draworder="index">
+   <object id="5" x="32" y="5" width="186.667" height="250.667"/>
+  </objectgroup>
+ </tile>
 </tileset>

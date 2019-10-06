@@ -31,7 +31,7 @@ public class CameraFollow: MonoBehaviour {
       x: player.transform.position.x,
       y: player.transform.position.y,
       z: followCamera.transform.position.z
-    ) + effectiveLookingDirection * 10f;
+    ) + effectiveLookingDirection * 7f;
 
     followCamera.transform.position = new Vector3(
       x: Mathf.Lerp(followCamera.transform.position.x, desiredPosition.x, smoothing),
