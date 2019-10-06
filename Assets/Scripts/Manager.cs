@@ -32,7 +32,7 @@ public class Manager: MonoBehaviour {
   [Header("Objects used to fade game in and out")]
 
   public GameObject FullFade;
-  //public GameObject CircleFade;
+  public GameObject CircleFade;
 
   /** Singleton instance of the Manager. */
   public static Manager Instance;
@@ -42,12 +42,8 @@ public class Manager: MonoBehaviour {
   }
 
   void Start() {
-<<<<<<< HEAD
-    
-=======
     FullFade.gameObject.GetComponent<SpriteRenderer>().color   = new Color(1f, 1f, 1f, 0f);
     CircleFade.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
->>>>>>> 127f73c684f89f36a21f1b997e0607554a848d42
 
     // Stuff that happens at the very beginning of the game.
     StartNewScene();
@@ -60,10 +56,28 @@ public class Manager: MonoBehaviour {
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
+        SetInstruction("Press X to continue.");
         StartFirstGameplay();
         break;
     }
   }
+
+    void SetInstruction(string instructText)
+    {
+        CanvasGroup canvasGroup = InstructObj.GetComponent<CanvasGroup>();
+
+        canvasGroup.alpha = 0;
+        InstructObj.gameObject.SetActive(true);
+        LeanTween.alphaCanvas(canvasGroup, 0.5f, 1f).setEaseInOutQuad().setOnComplete(() => {
+            LeanTween.alphaCanvas(canvasGroup, 0.7f, 0.5f).setLoopPingPong();
+        });
+        InstructObj.text = instructText;
+    }
+
+    void HideInstruction()
+    {
+        LeanTween.alphaCanvas(InstructObj.GetComponent<CanvasGroup>(), 0f, 1f).setEaseInOutQuad();
+    }
 
   void StartIntroduction() {
     Player.Emotions = new EmotionState {
@@ -101,8 +115,6 @@ public class Manager: MonoBehaviour {
       target.transform.position,
       Quaternion.identity
     );
-
-    Util.Log(target.name);
 
     var dialog = dialogGO.GetComponent<Dialog>();
 
