@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +23,11 @@ public class Dialog: MonoBehaviour {
   private TextState state;
   private string entireDialog;
   private int tick = 0;
+
+  public float Width { get { return this.sprite.bounds.size.x; } }
+
+  public float Height { get { return this.sprite.bounds.size.y; } }
+
 
   void Start() {
     state = TextState.Empty;
