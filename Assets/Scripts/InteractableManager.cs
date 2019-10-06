@@ -36,6 +36,7 @@ public class InteractableManager: MonoBehaviour {
 
     bool existsSomeTarget = (newTarget != null || currentTarget != null);
     bool hasChangedTarget = newTarget != currentTarget;
+
     if (existsSomeTarget && hasChangedTarget) {
       if (newTarget) {
         newTarget.GetComponent<Interactable>().ShowAsInteractable();

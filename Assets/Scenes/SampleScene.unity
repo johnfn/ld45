@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPrefab: {fileID: 5903884507917441638, guid: 14537079c180b4c66895b7e47f1a3b8a,
     type: 3}
-  RageEmotionPrefab: {fileID: 0}
+  CuriosityCuePrefab: {fileID: 0}
   Player: {fileID: 1022136880}
   OtherGuy: {fileID: 1529586512}
   Camera: {fileID: 519420031}
