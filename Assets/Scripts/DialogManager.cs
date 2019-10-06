@@ -41,10 +41,7 @@ public class DialogManager: MonoBehaviour {
   }
 
   void Fade() {
-    if (
-      Mathf.Abs(rectangleFade.color.a - fadeState.RectangleFadeOpacity) > 0.01f
-      //Mathf.Abs(circleFade.color.a    - fadeState.CircleFadeOpacity) > 0.01f
-    ) {
+    if (Mathf.Abs(rectangleFade.color.a - fadeState.RectangleFadeOpacity) > 0.01f) {
       rectangleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(rectangleFade.color.a, fadeState.RectangleFadeOpacity, FadeSpeed));
       //circleFade.color = new Color(1f, 1f, 1f, Mathf.Lerp(circleFade.color.a, fadeState.CircleFadeOpacity, FadeSpeed));
     } else {

@@ -10,7 +10,6 @@ public enum CharacterName {
 
 public class Fade {
   public float RectangleFadeOpacity = 1.0f;
-  //public float CircleFadeOpacity = 1.0f;
   public bool Immediate = false;
 }
 
@@ -20,9 +19,9 @@ public class DialogEvent {
 
   // other events that can happen during dialog
 
-  public Fade Fade = null;
-  public EmotionType ReceiveEmotion = EmotionType.None;
+  public Fade Fade = null;  public EmotionType ReceiveEmotion = EmotionType.None;
 }
+
 
 public class DialogText {
   public static List<DialogEvent> FirstDialog = new List<DialogEvent> {
