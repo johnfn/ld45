@@ -45,12 +45,29 @@ public class HitFlags {
   }
 }
 
+[System.Serializable]
+public class EmotionState {
+  public bool Curiosity = false;
+
+  public bool Compassion = false;
+
+  public bool Affection = false;
+
+  public bool Remorse = false;
+
+  public bool Betrayal = false;
+}
+
 [RequireComponent(typeof(BoxCollider2D))]
 // extends MonoBehaviour = is component
 public class Player: MonoBehaviour {
-  public float movementSpeed = 0.2f;
+  public EmotionState Emotions;
 
-  public float fallingSpeed = -0.3f;
+  [Header("Controls")]
+
+  public float MovementSpeed = 0.2f;
+
+  public float FallingSpeed = -0.3f;
 
   [Header("1 = infinite floaty. 1.5 = normal floaty. 2 = kind of floaty")]
   public float gravityScaleFactor = 1.3f;
@@ -200,8 +217,8 @@ public class Player: MonoBehaviour {
 
       // cap velocity at gravity so it doesn't become arbitrarily huge when you
       // stand on a platform
-      if (lastHitFlags.HitBottom() && velocityY < fallingSpeed) {
-        velocityY = fallingSpeed;
+      if (lastHitFlags.HitBottom() && velocityY < FallingSpeed) {
+        velocityY = FallingSpeed;
       }
 
       dy = velocityY;
@@ -209,7 +226,7 @@ public class Player: MonoBehaviour {
       if (Input.GetKey("space") && lastHitFlags.HitBottom()) { accelerationY = 1; }
     }
 
-    var result = new Vector3(dx, dy, 0) * movementSpeed;
+    var result = new Vector3(dx, dy, 0) * MovementSpeed;
 
     return result;
   }
