@@ -42,3 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Blocks
+    uniqueID: 709597551
+    locked: 0
+  - name: NPCs
+    uniqueID: 1433888549
+    locked: 0
+  - name: Main Character
+    uniqueID: 1741758415
+    locked: 0

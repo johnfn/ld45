@@ -202,6 +202,31 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Vines
       objectReference: {fileID: 0}
+    - target: {fileID: 6117806821080371399, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117806821080371399, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 709597551
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117806821080371399, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6927414215922303816, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 709597551
+      objectReference: {fileID: 0}
+    - target: {fileID: -6927414215922303816, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -6040129489445503402, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
       propertyPath: m_IsTrigger
@@ -416,7 +441,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.9433962, g: 0.6185475, b: 0.6807375, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -627,8 +652,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1741758415
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f26c4362096f00943868a6076acc19b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -859,8 +884,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1433888549
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aa60c8091f6024d0a9cb33cb1d13d120, type: 3}
   m_Color: {r: 1, g: 0.3726415, b: 0.3726415, a: 1}
