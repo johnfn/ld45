@@ -3,7 +3,11 @@ using System.Linq;
 using UnityEngine;
 
 public class Interactable: MonoBehaviour {
+
+    Vector3 origScale;
+
   void Start() {
+        origScale = transform.localScale;
     InteractableManager.Interactables.Add(this);
   }
 
@@ -12,11 +16,11 @@ public class Interactable: MonoBehaviour {
   }
 
   virtual public void ShowAsInteractable() {
-    transform.localScale = new Vector3(2, 2, 2);
+        transform.localScale = origScale * 1.2f;
   }
 
   virtual public void ShowAsNormal() {
-    transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = origScale;
   }
 
   virtual public void Interact() {
