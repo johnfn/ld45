@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public enum DialogState {
   Done,
   WritingText,
-  WaitingForInput
+  FinishedAndWaitingForInput
 }
 
 public class Dialog: MonoBehaviour {
@@ -67,13 +67,19 @@ public class Dialog: MonoBehaviour {
     var currentDialog = text.text;
 
     if (currentDialog == this.entireDialog) {
-      this.state = DialogState.WaitingForInput;
+      this.state = DialogState.FinishedAndWaitingForInput;
 
       return;
     }
 
     var nextCharacter = entireDialog[currentDialog.Length];
     text.text += nextCharacter;
+  }
+
+  void SkipToEnd() {
+    this.state = DialogState.FinishedAndWaitingForInput;
+
+    text.text = entireDialog;
   }
 
   void Update() {
@@ -83,12 +89,16 @@ public class Dialog: MonoBehaviour {
       case DialogState.Done:
         break;
       case DialogState.WritingText:
+        if (Input.GetKeyDown("x")) {
+          SkipToEnd();
+        }
+
         if (tick % textSpeed == 0) {
           WriteLetter();
         }
 
         break;
-      case DialogState.WaitingForInput:
+      case DialogState.FinishedAndWaitingForInput:
         if (Input.GetKeyDown("x")) {
           state = DialogState.Done;
         }

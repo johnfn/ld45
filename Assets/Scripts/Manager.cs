@@ -22,6 +22,12 @@ public class Manager: MonoBehaviour {
 
   public GameState CurrentGameState;
 
+  [Header("Objects used to fade game in and out")]
+
+  public GameObject FullFade;
+
+  public GameObject CircleFade;
+
   /** Singleton instance of the Manager. */
   public static Manager Instance;
 
@@ -46,10 +52,7 @@ public class Manager: MonoBehaviour {
   }
 
   void StartIntroduction() {
-    DialogManager.Instance.StartDialogSequence(new List<DialogItem> {
-      new DialogItem { Name = CharacterName.Blank, Contents = "Hi there" },
-      new DialogItem { Name = CharacterName.Ash, Contents = "What's up?" },
-    });
+    DialogManager.Instance.StartDialogSequence(DialogText.FirstDialog);
   }
 
   void Update() {
