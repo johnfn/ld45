@@ -92,10 +92,10 @@ public class Player: MonoBehaviour {
   HitFlags CheckForHit(Vector3 desiredMovement) {
     var hitFlagsResult = new HitFlags();
 
-    var xComponent = new Vector3(desiredMovement.x,                 0, 0);
-    var yComponent = new Vector3(                0, desiredMovement.y, 0);
     var x = desiredMovement.x;
     var y = desiredMovement.y;
+    var xComponent = new Vector3(x, 0, 0);
+    var yComponent = new Vector3(0, y, 0);
 
     if (x != 0) {
       var start  = transform.position + new Vector3(Mathf.Sign(x) * Width / 2,  Height / 2, 0);
@@ -205,8 +205,12 @@ public class Player: MonoBehaviour {
 
     this.lastHitFlags = hitFlags;
 
+    // Keys
     if (Input.GetKeyDown("e")) {
+      // Show dialog
       Manager.CreateNewDialog("Hello world!", this.gameObject);
+    } else if (Input.GetKeyDown("1")) {
+      // Show emotion
     }
   }
 }

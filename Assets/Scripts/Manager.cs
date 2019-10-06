@@ -8,7 +8,12 @@ public enum GameState {
 }
 
 public class Manager: MonoBehaviour {
+  // Prefabs 
   public GameObject DialogPrefab;
+
+  public GameObject RageEmotionPrefab;
+
+  // Objects
 
   public GameObject Player;
 
@@ -18,6 +23,7 @@ public class Manager: MonoBehaviour {
 
   public GameState CurrentGameState;
 
+  /** Singleton instance of the Manager. */
   public static Manager Instance;
 
   void Awake() {
