@@ -21,7 +21,6 @@ public class DialogEvent {
   // other events that can happen during dialog
 
   public Dictionary<EmotionType, List<DialogEvent>> EmotionReactions = null;
-
   public Fade Fade = null;
   public EmotionType ReceiveEmotion = EmotionType.None; 
   public bool hideInstruct = false;

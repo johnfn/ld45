@@ -669,7 +669,7 @@ MonoBehaviour:
   OtherGuy: {fileID: 1529586512}
   InstructObj: {fileID: 101003462}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 1
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 324968617}
   FullFade: {fileID: 4285615079742527641}
@@ -698,7 +698,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324968617}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.66, y: -62.21, z: 0}
+  m_LocalPosition: {x: 66.45, y: -64.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 138226760}
