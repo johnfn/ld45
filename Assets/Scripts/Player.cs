@@ -368,7 +368,7 @@ public class Player: MonoBehaviour {
 
     if (!prevClimb && nextClimb) leaves.Play();
     if (prevClimb && !nextClimb) leaves.Stop();
-    if (!prevWalk && nextWalk) dustPuffs.Play();
+   if (!prevWalk && nextWalk) dustPuffs.Play();
     if (prevWalk && !nextWalk) dustPuffs.Stop();
     if (!prevClimb && nextClimb) anim.Play("Climb");
     if (prevClimb || nextClimb) {
