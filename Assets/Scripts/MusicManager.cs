@@ -39,6 +39,8 @@ public class MusicManager: MonoBehaviour {
   public AudioSource NHCompassion;
   public AudioSource NHRemorse;
 
+  public AudioSource Betrayal;
+
   public static MusicManager Instance;
 
   void Awake() {
@@ -57,6 +59,7 @@ public class MusicManager: MonoBehaviour {
     NHAffection.loop = true;
     NHCompassion.loop = true;
     NHRemorse.loop = true;
+    Betrayal.loop = true;
 
     NHWelcomeLol.Play();
     NHBase.Play();
@@ -71,20 +74,36 @@ public class MusicManager: MonoBehaviour {
     NHAffection.volume = 0f;
     NHCompassion.volume = 0f;
     NHRemorse.volume = 0f;
+    Betrayal.volume = 0f;
 
-    LR0.Play();
     LR0.volume = 0f;
-
-    LR1.Play();
     LR1.volume = 0f;
-
-    LR2.Play();
     LR2.volume = 0f;
-
-    LR3.Play();
     LR3.volume = 0f;
 
+    LR0.Play();
+    LR1.Play();
+    LR2.Play();
+    LR3.Play();
+
     TriggerMusicSegment(MusicSegment.LakeRasa0);
+  }
+
+  public void Betray() {
+    NHWelcomeLol.volume = 0f;
+    NHBase.volume = 0f;
+    NHAsh.volume = 0f;
+    NHAffection.volume = 0f;
+    NHCompassion.volume = 0f;
+    NHRemorse.volume = 0f;
+
+    LR0.volume = 0f;
+    LR1.volume = 0f;
+    LR2.volume = 0f;
+    LR3.volume = 0f;
+
+    Betrayal.volume = 1f;
+    Betrayal.Play();
   }
 
   public void SetStem(Stem stem, bool on) {

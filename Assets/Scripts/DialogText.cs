@@ -331,4 +331,31 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("This gate may just open for you. Try and see!") },
   };
 
+  public static List<DialogEvent> GateNoGood = new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Blank, Contents = "You brace yourself with anticipation, and walk through the gate..." },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "...only to come out the other side." },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Huh." },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Guess it's not working." },
+  };
+
+  public static List<DialogEvent> GateGood = new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Oh no!" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Ash!" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Can you write this script?" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "I wanna go to bed!" },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("No.") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "This is definitely the worst thing you'll ever do to me." },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Ash!" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "I can't believe it!" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "You were the bad guy the whole time!" },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Yep.") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "You made trudy horribly nervous!" },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Uhh... no") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "You stole Gracie's science fair project!" },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Err?") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "You were the one who made Ludum Dare end 3 hours early! It was ALL YOU!" },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("What?") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "[CREDITS]" }, // special value to show credits scene!
+  };
 }
