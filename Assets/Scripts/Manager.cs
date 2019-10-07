@@ -130,61 +130,55 @@ public class Manager: MonoBehaviour {
   }
 
   void StartFirstGameplay() {
-    Player.Emotions = new EmotionState {
-      Curiosity = true,
-      Compassion = false,
-      Affection = false,
-      Remorse = false,
-      Betrayal = false,
-    };
+    EmotionManager.TeachEmotion(EmotionType.Curiosity);
 
     Player.transform.position = FirstGameplayPlayerPosition.transform.position;
   }
 
   void StartFirstGameplayWithCompassion() {
-    Player.Emotions = new EmotionState {
-      Curiosity = true,
-      Compassion = true,
-      Affection = false,
-      Remorse = false,
-      Betrayal = false,
+    var StartEmotions = new List<EmotionType>() { 
+      EmotionType.Curiosity, 
+      EmotionType.Compassion,
     };
+    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
 
     Player.transform.position = WithCompassionPosition.transform.position;
   }
 
   void StartInTown() {
-    Player.Emotions = new EmotionState {
-      Curiosity = true,
-      Compassion = true,
-      Affection = false,
-      Remorse = false,
-      Betrayal = false,
+    var StartEmotions = new List<EmotionType>() { 
+      EmotionType.Curiosity, 
+      EmotionType.Compassion,
     };
+    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
 
     Player.transform.position = InTownPosition.transform.position;
   }
 
   void StartInTownWithAffection() {
-    Player.Emotions = new EmotionState {
-      Curiosity = true,
-      Compassion = true,
-      Affection = true,
-      Remorse = false,
-      Betrayal = false,
+    var StartEmotions = new List<EmotionType>() { 
+      EmotionType.Curiosity, 
+      EmotionType.Compassion,
+      EmotionType.Affection,
     };
+    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
 
     Player.transform.position = InTownPosition.transform.position;
   }
 
   void StartInTownWithAll() {
-    Player.Emotions = new EmotionState {
-      Curiosity = true,
-      Compassion = true,
-      Affection = true,
-      Remorse = true,
-      Betrayal = false,
+    var StartEmotions = new List<EmotionType>() { 
+      EmotionType.Curiosity, 
+      EmotionType.Compassion,
+      EmotionType.Affection,
+      EmotionType.Remorse, 
     };
+    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
+    // Util.Log(StartEmotions);
+    // EmotionManager.TeachEmotion(EmotionType.Curiosity);
+    // EmotionManager.TeachEmotion(EmotionType.Compassion);
+    // EmotionManager.TeachEmotion(EmotionType.Affection);
+    // EmotionManager.TeachEmotion(EmotionType.Remorse);
 
     Player.transform.position = InTownPosition.transform.position;
   }

@@ -69,7 +69,45 @@ public class EmotionManager: MonoBehaviour {
     return EmotionCueObject;
   }
 
-  public static void ActivateLearnedEmotion(EmotionType emotionType) {
+  /// Teach emotion to player.
+  /// Returns boolean: whether or not anything changed.
+  public static bool TeachEmotion(EmotionType emotion) {
+    if (emotion == EmotionType.None) {
+      return false;
+    }
+    bool didTeachEmotion = false;
+    switch (emotion) {
+      case EmotionType.Curiosity:
+        Manager.Instance.Player.Emotions.Curiosity = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Compassion:
+        Manager.Instance.Player.Emotions.Compassion = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Affection:
+        Manager.Instance.Player.Emotions.Affection = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Remorse:
+        Manager.Instance.Player.Emotions.Remorse = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Betrayal:
+        Manager.Instance.Player.Emotions.Betrayal = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Forgiveness:
+        Manager.Instance.Player.Emotions.Forgiveness = true;
+        didTeachEmotion = true;
+        break;
+    }
+
+    EmotionManager.SetEmotionIconActive(emotion);
+    return didTeachEmotion;
+  }
+
+  public static void SetEmotionIconActive(EmotionType emotionType) {
     switch (emotionType) {
       case EmotionType.Affection:
         Instance.LearnedAffectionIcon.SetActive(true);
