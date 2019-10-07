@@ -257,15 +257,15 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -1708297917924644082, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
-        type: 3}
-      propertyPath: m_TagString
-      value: Water
-      objectReference: {fileID: 0}
     - target: {fileID: -1254825436866182735, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -70.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1708297917924644082, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 2064984880330952892, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
@@ -557,14 +557,11 @@ MonoBehaviour:
   AffectionCuePrefab: {fileID: 6711652922937176221, guid: 368e549f1c7a547cc969dea2cc65c823,
     type: 3}
   BetrayalCuePrefab: {fileID: 0}
-  CompassionCuePrefab: {fileID: 6711652922937176221, guid: 5c60dfda4519746ceaf2e7e46fdce98b,
-    type: 3}
+  CompassionCuePrefab: {fileID: 0}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
-  ForgivenessCuePrefab: {fileID: 6711652922937176221, guid: faa90bfb6714346c3aeca4b53bfd74a4,
-    type: 3}
-  RemorseCuePrefab: {fileID: 6711652922937176221, guid: d329f80d0e55943b6aa2c16a3f7ad20c,
-    type: 3}
+  ForgivenessCuePrefab: {fileID: 0}
+  RemorseCuePrefab: {fileID: 0}
   Player: {fileID: 1022136880}
   interactIndicatorParent: {fileID: 627771852}
   bar1: {fileID: 873884953}
@@ -718,7 +715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514880180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 48.7, y: -65.15, z: 0}
+  m_LocalPosition: {x: 12.2, y: -67.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -736,10 +733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67cab16bbc704bc19e3886847d86c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIndicator: {fileID: 144725954080593182, guid: 799f2a7f89ff4d641a6da12adb6ef433,
-    type: 3}
+  interactIndicator: {fileID: 0}
   xPos: 0
-  myEmotionType: 4
+  myEmotionType: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +750,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -883,6 +880,19 @@ MonoBehaviour:
   - {fileID: 577089054}
   - {fileID: 1049081667}
   - {fileID: 1218131847}
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: d592c11d58a7ff545b0ef29f1b0c7d0d, type: 2}
 --- !u!61 &526319623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1720,7 +1730,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022136877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.6, y: -65.2, z: 0}
+  m_LocalPosition: {x: 6.37, y: -67.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1879378722}
@@ -1771,7 +1781,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030887365, y: -0.0070343018}
+  m_Offset: {x: -0.030887365, y: 0.35327148}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1782,7 +1792,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.803906, y: 3.2989044}
+  m_Size: {x: 1.803906, y: 2.5782928}
   m_EdgeRadius: 0
 --- !u!95 &1022136882
 Animator:
@@ -2635,7 +2645,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 1047985779
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1431604870
 RectTransform:
@@ -8168,7 +8178,11 @@ RectTransform:
   - {fileID: 4285615079742527643}
   - {fileID: 1542407819}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 15
+=======
+  m_RootOrder: 11
+>>>>>>> a735b4613c67b14a4274fe16d0482757eee1edf8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13470,7 +13484,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 21
+=======
+  m_RootOrder: 17
+>>>>>>> a735b4613c67b14a4274fe16d0482757eee1edf8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4285615079742527641
 GameObject:
