@@ -2,7 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AshFourInteractable: FpcInteractable {
-  override public void Interact() {
-    DialogManager.Instance.StartDialogSequence(DialogText.AshFour);
-  }
+
+    private bool interacted = false;
+
+
+    override public void Interact() {
+        if (!interacted)
+        {
+            interacted = true;
+            DialogManager.Instance.StartDialogSequence(DialogText.AshFour);
+        }
+     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AshFiveInteractable: FpcInteractable {
+
   override public void Interact() {
     var player = Manager.Instance.Player;
 
