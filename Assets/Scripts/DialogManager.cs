@@ -20,7 +20,7 @@ public class DialogManager: MonoBehaviour {
   [Header("Smaller is slower, 0 is infinitly long")]
   public float FadeSpeed = 0.01f;
 
-  private List<DialogEvent> currentSequence;
+  private List<DialogEvent> currentDialogTree;
 
   private Fade fadeState;
 
@@ -71,16 +71,18 @@ public class DialogManager: MonoBehaviour {
           var emotionResponse = currentDialogObject.getEmotionResponse();
 
           if (emotionResponse == EmotionType.None) {
-            if (currentSequence.Count == 0) {
+            if (currentDialogTree.Count == 0) {
               FinishDialogSequence();
             } else {
               state = DialogManagerState.ShouldShowNextDialog;
             }
           } else {
-            var nextSequence = currentDialogItem.EmotionReactions[emotionResponse];
-
-            currentSequence = nextSequence;
-            state = DialogManagerState.ShouldShowNextDialog;
+            foreach (var (emotionType, name, nextDialogTree) in currentDialogItem.Responses) {
+              if (emotionType == emotionResponse) {
+                currentDialogTree = nextDialogTree;
+                state = DialogManagerState.ShouldShowNextDialog;
+              }
+            }
           }
         }
 
@@ -103,9 +105,9 @@ public class DialogManager: MonoBehaviour {
       GameObject.Destroy(currentDialogObject.gameObject);
     }
 
-    currentDialogItem = currentSequence.First();
+    currentDialogItem = currentDialogTree.First();
 
-    currentSequence = currentSequence.Skip(1).ToList();
+    currentDialogTree = currentDialogTree.Skip(1).ToList();
 
     if (currentDialogItem.Fade != null) {
       fadeState = currentDialogItem.Fade;
@@ -149,7 +151,7 @@ public class DialogManager: MonoBehaviour {
     var characterName = currentDialogItem.Name;
     var speaker = Character.Speakers.First(guy => guy.CharacterName == characterName);
 
-    currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject, currentDialogItem.EmotionReactions);
+    currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject, currentDialogItem.Responses);
 
     state = DialogManagerState.ShowingDialog;
   }
@@ -157,7 +159,7 @@ public class DialogManager: MonoBehaviour {
   public void StartDialogSequence(List<DialogEvent> items) {
     ModeManager.SetGameMode(GameMode.Dialog);
 
-    currentSequence = items;
+    currentDialogTree = items;
     state = DialogManagerState.ShouldShowNextDialog;
   }
 }
