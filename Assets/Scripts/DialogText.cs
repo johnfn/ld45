@@ -193,10 +193,10 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Well, that's enough of that.") },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("...") },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Hey, by the way!") },
-      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("I noticed when we talked before you seemed a bit curious") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("I noticed when we talked before you seemed a bit...") + " " + Curious("thoughtful") },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Curious("Didn't you wonder why that was?") },
       new DialogEvent { Name = CharacterName.Blank, Contents = "Actually, yeah, I did." },
-      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("That means you've learned how to be curious!") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Well, I'd bet you've learned how to be curious!") },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Press 1 to look at things with a more curious eye") },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("You might notice things you didn't before!"), instruct = "Press 1 to toggle curiosity!" },
     }
