@@ -1148,7 +1148,7 @@ MonoBehaviour:
   tutTriggersParent: {fileID: 339955222}
   LearnedEmotions: {fileID: 0}
   Camera: {fileID: 519420031}
-  CurrentGameState: 5
+  CurrentGameState: 0
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 324968617}
   WithCompassionPosition: {fileID: 775783052}

@@ -120,6 +120,133 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &379763148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 379763150}
+  - component: {fileID: 379763149}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &379763149
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379763148}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 48becaa9a05e84fe7b804484f8021f3a, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.257
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &379763150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379763148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 63.612206, y: -15.735339, z: -4.4296875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &450664278
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,12 +402,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "johnfn - organization\r\n\r\nmiyolophone - music\r\n\r\nfawnblue - background
-    art\r\ncnnmon - character art\r\n\r\nmiyolophone - writing\r\n\r\njohnfn - code\r\nfawnblue
-    - code\r\noasiris - code\r\ncnnmon - code\r\n\r\njohnfn - google docs\r\n\ncnnmon
-    - this screen\r\n\nmiyolophone - japanese homework\r\n\nundertale - this entire
-    game\r\n\nfawnblue - not sleeping\r\n\ncabbage - only person who actually knew
-    how to use unity\r\n\nfrog people - freeple\r\n\nmarv - shut up\r\n\nkansas -
-    fried chicken\r\n\noasiris - team name\n\ncabbage - literally being [very different
+    art\r\ncnnmon - character art\r\n\r\nmiyolophone - writing\r\njohnfn - writing\n\r\njohnfn
+    - code\r\nfawnblue - code\r\noasiris - code\r\ncnnmon - code\r\n\r\njohnfn - google
+    docs\r\n\ncnnmon - this screen\r\n\nmiyolophone - japanese homework\r\n\nundertale
+    - this entire game\r\n\nfawnblue - not sleeping\r\n\ncabbage - only person who
+    actually knew how to use unity\r\n\nfrog people - freeple\r\n\nmarv - shut up\r\n\nkansas
+    - fried chicken\r\n\noasiris - team name\n\ncabbage - literally being [very different
     from the great and amazing] Laura Shigihara\r\n\noasiris - snacks\r\n\ncatgirl
     m - my livelihood\r\n\nlo-fi remixes of chrono trigger - existing\n\noasiris -
     team dubstep names\n\n\nDUBSTEP NAMES:\r\n\noasiris - s e a  s a l t  c h a i\njohnfn
@@ -330,7 +457,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 387
+  m_firstOverflowCharacterIndex: 403
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -354,12 +481,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 799098278}
-    characterCount: 862
+    characterCount: 879
     spriteCount: 0
-    spaceCount: 198
-    wordCount: 170
+    spaceCount: 201
+    wordCount: 173
     linkCount: 0
-    lineCount: 52
+    lineCount: 53
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
