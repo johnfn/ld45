@@ -9,7 +9,7 @@ public class CreditManager : MonoBehaviour
 
     void Start()
     {
-        LeanTween.moveLocalY(creditContent, 1640, 20f).setOnComplete(() => {
+        LeanTween.moveLocalY(creditContent, 1640, 20f).setDelay(5f).setOnComplete(() => {
             PlayerPrefs.SetInt("FinishedGame", 1);
             SceneManager.LoadScene("Title");
         });

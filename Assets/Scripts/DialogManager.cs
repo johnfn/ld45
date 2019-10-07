@@ -129,6 +129,12 @@ public class DialogManager: MonoBehaviour {
       Manager.Instance.HideInstruction();
     }
 
+    if(currentDialogItem.leanFade == true)
+    {
+            LeanTween.alpha(Manager.Instance.fullBlack, 1, 1f).setEaseInOutQuad();
+
+    }
+
     if (currentDialogItem.ReceiveEmotion != EmotionType.None) {
       var emo = currentDialogItem.ReceiveEmotion;
 

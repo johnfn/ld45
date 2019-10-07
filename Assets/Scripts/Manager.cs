@@ -47,6 +47,7 @@ public class Manager: MonoBehaviour {
 
   public GameObject FullFade;
   public GameObject CircleFade;
+    public GameObject fullBlack;
 
   /** Singleton instance of the Manager. */
   public static Manager Instance;

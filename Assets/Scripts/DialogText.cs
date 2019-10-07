@@ -7,7 +7,8 @@ public enum CharacterName {
   Blank,
   Ash,
   Trudy,
-  Gracie
+  Gracie,
+  Diego
 }
 
 public class Fade {
@@ -27,6 +28,7 @@ public class DialogEvent {
   public EmotionType ReceiveEmotion = EmotionType.None; 
   public string instruct = null;
   public bool hideInstruct = false;
+    public bool leanFade = false;
 }
 
 public class DialogText {
@@ -209,7 +211,19 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Blank, Contents = "To see things with a remorseful lense, press 4.", instruct = "Press 3" },
   };
 
-  private static List<DialogEvent> MakeAshQuestionList(
+  public static List<DialogEvent> DiegoDialog = new List<DialogEvent> {
+    new DialogEvent { Name = CharacterName.Diego, Contents = "what’s up, nerd." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Um." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "What’s up…?" },
+    new DialogEvent { Name = CharacterName.Diego, Contents = "i’m diego. the best skateboarder this side of the lake. you can also call me ‘skate jesus,’ if you want." },
+    new DialogEvent { Name = CharacterName.Diego, Contents = "wanna check out my board? i made it myself." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "No thanks. I don’t know how to skateboard." },
+    new DialogEvent { Name = CharacterName.Diego, Contents = "bummer. well, if you see me around some other time and wanna learn, just let me know." },
+    new DialogEvent { Name = CharacterName.Diego, Contents = "i know i may seem unapproachably cool and talented, but i’m always happy to teach people to skate." },
+    new DialogEvent { Name = CharacterName.Diego, Contents = "those 540 varial kickflips aren’t gonna learn themselves." }
+  };
+
+    private static List<DialogEvent> MakeAshQuestionList(
     List<DialogEvent> beforeDialog,
     string questionText, 
     List<DialogEvent> afterDialog
@@ -326,10 +340,9 @@ public class DialogText {
   };
 
   public static List<DialogEvent> AshSix = new List<DialogEvent> {
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Your ability to feel emotion!") },
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("It surpasses even my own!") },
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("...") },
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("This gate may just open for you. Try and see!") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Hey, you look... different.") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Like, good! But different.") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I think you should give the gate a shot.") },
   };
 
   public static List<DialogEvent> GateNoGood = new List<DialogEvent> {
@@ -340,8 +353,8 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Blank, Contents = "Guess it's not working." },
   };
 
-  public static List<DialogEvent> GateGood = new List<DialogEvent> {
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Wow. I’m proud of you, Blank.") },
+    public static List<DialogEvent> GateGood = new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Wow. I’m proud of you, Blank."), leanFade = true},
       new DialogEvent { Name = CharacterName.Blank, Contents = "Ash? Where did you go?" },
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I want you to know that I really do feel bad about this.") },
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("When Slate took my feelings from me, I was just as confused as you.") },
