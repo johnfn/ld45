@@ -541,6 +541,7 @@ MonoBehaviour:
     type: 3}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
+  RemorseCuePrefab: {fileID: 0}
   Player: {fileID: 1022136880}
   interactIndicatorParent: {fileID: 627771852}
   bar1: {fileID: 873884953}
@@ -729,7 +730,6 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -859,19 +859,6 @@ MonoBehaviour:
   - {fileID: 577089054}
   - {fileID: 1049081667}
   - {fileID: 1218131847}
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: d592c11d58a7ff545b0ef29f1b0c7d0d, type: 2}
 --- !u!61 &526319623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1612,7 +1599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022136877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.37, y: -67.1, z: 0}
+  m_LocalPosition: {x: 5.6, y: -65.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1879378722}
@@ -2333,7 +2320,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 1047985779
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1431604870
 RectTransform:

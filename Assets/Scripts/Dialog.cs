@@ -18,7 +18,7 @@ public class Dialog: MonoBehaviour {
   public float textScaleFactor;
   public float maxDialogWidth;
 
-  private EmotionType selectedEmotionResponse = EmotionType.None;
+  private int selectedResponseIndex = -1;
 
   [Header("Smaller is faster")]
   public int textSpeed;
@@ -34,8 +34,8 @@ public class Dialog: MonoBehaviour {
 
   private int index = 0;
 
-  public EmotionType getEmotionResponse() {
-    return selectedEmotionResponse;
+  public int getEmotionResponse() {
+    return selectedResponseIndex;
   }
 
   char? getNextChar() {
@@ -213,7 +213,8 @@ public class Dialog: MonoBehaviour {
     foreach (var (emotionType, interactionName, nextDialogTree) in emotionReactions) {
       if (Input.GetKeyDown(number.ToString())) {
         state = DialogState.Done;
-        selectedEmotionResponse = emotionType;
+        selectedResponseIndex = number - 1;
+
         break;
       }
 
