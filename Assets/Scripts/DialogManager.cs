@@ -143,7 +143,7 @@ public class DialogManager: MonoBehaviour {
         Manager.Instance.Player.Emotions.Curiosity = true;
       } else if (emo == EmotionType.ForgivenessCurrentlyUnused) {
         Manager.Instance.Player.Emotions.Forgiveness = true;
-      } else if (emo == EmotionType.RemorseCurrentlyUnused) {
+      } else if (emo == EmotionType.Remorse) {
         Manager.Instance.Player.Emotions.Remorse = true;
       } else {
         Debug.LogError("Uhhhhhhhhhhhh");

@@ -7,7 +7,7 @@ public enum EmotionType {
 
   Curiosity,
   AffectionCurrentlyUnused,
-  RemorseCurrentlyUnused,
+  Remorse,
   BetrayalCurrentlyUnused,
   ForgivenessCurrentlyUnused,
 }
