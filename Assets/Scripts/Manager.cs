@@ -14,8 +14,31 @@ public class Manager: MonoBehaviour {
 
   public GameObject DialogReactionPrefab;
 
+  public GameObject AffectionCuePrefab;
+  public GameObject BetrayalCuePrefab;
+  public GameObject CompassionCuePrefab;
   public GameObject CuriosityCuePrefab;
+  public GameObject ForgivenessCuePrefab;
   public GameObject RemorseCuePrefab;
+
+  private GameObject GetEmotionPrefab(EmotionType emotionType) {
+    switch (emotionType) {
+      case EmotionType.Affection:
+        return Instance.AffectionCuePrefab;
+      case EmotionType.Betrayal:
+        return Instance.BetrayalCuePrefab;
+      case EmotionType.Compassion:
+        return Instance.CompassionCuePrefab;
+      case EmotionType.Curiosity:
+        return Instance.CuriosityCuePrefab;
+      case EmotionType.Forgiveness:
+        return Instance.ForgivenessCuePrefab;
+      case EmotionType.Remorse:
+        return Instance.RemorseCuePrefab;
+      default:
+        return null;
+    }
+  }
 
   // Objects
 
@@ -149,14 +172,7 @@ public class Manager: MonoBehaviour {
     Vector3 offset = new Vector3(-0.5f, -1.5f, 0);
 
     // Decide which emotion type to use
-    switch (emotionType) {
-      case EmotionType.Curiosity:
-        OriginalPrefab = Instance.CuriosityCuePrefab;
-        break;
-      case EmotionType.Remorse:
-        OriginalPrefab = Instance.RemorseCuePrefab;
-        break;
-    }
+    OriginalPrefab = Instance.GetEmotionPrefab(emotionType);
     if (OriginalPrefab == null) {
       Util.Log("No emotion cue for emotionType", emotionType, "or prefab is null");
       return EmotionCueObject;

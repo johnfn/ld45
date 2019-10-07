@@ -70,21 +70,29 @@ public class DialogManager: MonoBehaviour {
         if (currentDialogObject.GetDialogState() == DialogState.Done) {
           var emotionResponse = currentDialogObject.getEmotionResponse();
 
+          foreach (var (emotionType, name, nextDialogTree) in currentDialogItem.Responses) {
+            if (emotionType == emotionResponse) {
+              currentDialogTree = nextDialogTree;
+              state = DialogManagerState.ShouldShowNextDialog;
+
+              goto Done;
+            }
+          }
+
           if (emotionResponse == EmotionType.None) {
             if (currentDialogTree.Count == 0) {
               FinishDialogSequence();
             } else {
               state = DialogManagerState.ShouldShowNextDialog;
             }
-          } else {
-            foreach (var (emotionType, name, nextDialogTree) in currentDialogItem.Responses) {
-              if (emotionType == emotionResponse) {
-                currentDialogTree = nextDialogTree;
-                state = DialogManagerState.ShouldShowNextDialog;
-              }
-            }
+
+            goto Done;
           }
+
+          Debug.LogError("UNhandled emotional reaction!");
         }
+
+        Done:
 
         break;
     }
@@ -127,13 +135,13 @@ public class DialogManager: MonoBehaviour {
     if (currentDialogItem.ReceiveEmotion != EmotionType.None) {
       var emo = currentDialogItem.ReceiveEmotion;
 
-      if (emo == EmotionType.AffectionCurrentlyUnused) {
+      if (emo == EmotionType.Affection) {
         Manager.Instance.Player.Emotions.Affection = true;
-      } else if (emo == EmotionType.BetrayalCurrentlyUnused) {
+      } else if (emo == EmotionType.Betrayal) {
         Manager.Instance.Player.Emotions.Betrayal = true;
       } else if (emo == EmotionType.Curiosity) {
         Manager.Instance.Player.Emotions.Curiosity = true;
-      } else if (emo == EmotionType.ForgivenessCurrentlyUnused) {
+      } else if (emo == EmotionType.Forgiveness) {
         Manager.Instance.Player.Emotions.Forgiveness = true;
       } else if (emo == EmotionType.Remorse) {
         Manager.Instance.Player.Emotions.Remorse = true;
