@@ -10,6 +10,7 @@ public enum GameState {
 public class Manager: MonoBehaviour {
   // Prefabs 
   public GameObject DialogPrefab;
+    public GameObject interactIndicatorPrefab;
 
   public GameObject DialogReactionPrefab;
 
@@ -18,6 +19,8 @@ public class Manager: MonoBehaviour {
   // Objects
 
   public Player Player;
+    public Transform interactIndicatorParent;
+    public GameObject bar1, bar2;
 
   public GameObject OtherGuy;
   public TextMeshProUGUI InstructObj;

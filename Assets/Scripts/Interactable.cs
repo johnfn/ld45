@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class Interactable: MonoBehaviour {
 
-    Vector3 origScale;
+   public GameObject interactIndicator;
+   public float xPos;
 
-  void Start() {
-        origScale = transform.localScale;
-    InteractableManager.Interactables.Add(this);
-  }
+    void Start() {
+        xPos = transform.position.x;
+        InteractableManager.Interactables.Add(this);
+    }
 
   void OnDestroy() {
     InteractableManager.Interactables.Remove(this);
   }
 
   virtual public void ShowAsInteractable() {
-        transform.localScale = origScale * 1.2f;
+        interactIndicator = Instantiate(Manager.Instance.interactIndicatorPrefab, new Vector3(xPos, transform.position.y+3, 0), Quaternion.identity, Manager.Instance.interactIndicatorParent);
+        interactIndicator.SetActive(true);
   }
 
   virtual public void ShowAsNormal() {
-        transform.localScale = origScale;
-  }
+        Destroy(interactIndicator);
+        interactIndicator.SetActive(false);
+    }
 
   virtual public void Interact() {
 

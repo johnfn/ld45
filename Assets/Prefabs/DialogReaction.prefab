@@ -26,7 +26,7 @@ RectTransform:
   m_GameObject: {fileID: 897162924705014615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 1}
   m_Children:
   - {fileID: 2011353579654960242}
   - {fileID: 8063866217283759352}
@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4820469339327798659
 MonoBehaviour:
@@ -86,7 +86,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 47.54, y: -52.3}
+  m_AnchoredPosition: {x: 59, y: -5}
   m_SizeDelta: {x: 784.187, y: 186.403}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &898036936222969439
@@ -194,12 +194,12 @@ PrefabInstance:
     - target: {fileID: 2573160646408505421, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 2573160646408505421, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -48
       objectReference: {fileID: 0}
     - target: {fileID: 2573160646408505421, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}
@@ -244,17 +244,22 @@ PrefabInstance:
     - target: {fileID: 2573160646408505421, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2573160646408505421, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 977160162104347110, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}
       propertyPath: m_Name
       value: CuriosityIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 977160162104347110, guid: 4260e6880439c411892971425eea7fb3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2067215148356598474, guid: 4260e6880439c411892971425eea7fb3,
         type: 3}

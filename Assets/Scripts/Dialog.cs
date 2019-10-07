@@ -174,14 +174,14 @@ public class Dialog: MonoBehaviour {
           Manager.Instance.DialogReactionPrefab,
           text.transform.position + new Vector3(
             0f,
-            count * -1f,
+            TextHeight * 0.02f - 1f + count * -1f,
             0f
           ),
           Quaternion.identity,
           canvas.transform
         );
 
-        dialogOptionGO.GetComponent<DialogOption>().SetReactionText(interactionText);
+        dialogOptionGO.GetComponent<DialogOption>().SetReactionText($"{ count }: { interactionText }");
         dialogOptionGO.GetComponent<DialogOption>().SetReactionIconType(emotionType);
       }
     }
