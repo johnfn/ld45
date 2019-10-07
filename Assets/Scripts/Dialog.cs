@@ -11,12 +11,14 @@ public enum DialogState {
 public class Dialog: MonoBehaviour {
   public Canvas canvas;
   public Text text;
-  public SpriteRenderer sprite;
+  public SpriteRenderer BlackBackgroundSprite;
   public Text ReactionText;
   public GameObject ReactionIcon;
 
   public float textScaleFactor;
   public float maxDialogWidth;
+
+  public float PaddingBetweenTextAndOptions = 1.5f;
 
   private int selectedResponseIndex = -1;
 
@@ -50,9 +52,9 @@ public class Dialog: MonoBehaviour {
     }
   }
 
-  public float Width { get { return this.sprite.bounds.size.x; } }
+  public float Width { get { return this.BlackBackgroundSprite.bounds.size.x; } }
 
-  public float Height { get { return this.sprite.bounds.size.y; } }
+  public float Height { get { return this.BlackBackgroundSprite.bounds.size.y; } }
 
   private float TextWidth;
   private float TextHeight;
@@ -73,14 +75,17 @@ public class Dialog: MonoBehaviour {
     TextWidth  = textGen.GetPreferredWidth(dialog, generationSettings);
     TextHeight = textGen.GetPreferredHeight(dialog, generationSettings);
 
+    var reactionCount = emotionReactions == null ? 0 : emotionReactions.Count;
+    var optionsHeight = reactionCount == 0 ? 0 : (PaddingBetweenTextAndOptions + 1f * reactionCount) * 50f; // add space for options if there are any
+
     canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(
       TextWidth / textScaleFactor,
       TextHeight / textScaleFactor
     );
 
-    sprite.size = new Vector2(
+    BlackBackgroundSprite.size = new Vector2(
       TextWidth / textScaleFactor,
-      TextHeight / textScaleFactor
+      (TextHeight + optionsHeight) / textScaleFactor
     );
   }
 
@@ -95,12 +100,13 @@ public class Dialog: MonoBehaviour {
     visibleDialog = "";
     entireDialog = dialog;
 
+    this.emotionReactions = emotionReactions;
+
     CalculateDialogSize(dialog);
 
     state = DialogState.WritingText;
 
     text.text = "";
-    this.emotionReactions = emotionReactions;
   }
 
   string GetCloseTagName(string tagName) {
@@ -174,7 +180,7 @@ public class Dialog: MonoBehaviour {
           Manager.Instance.DialogReactionPrefab,
           text.transform.position + new Vector3(
             0f,
-            TextHeight * 0.02f - 1f + count * -1f,
+            TextHeight * 0.02f - PaddingBetweenTextAndOptions + count * -1f,
             0f
           ),
           Quaternion.identity,

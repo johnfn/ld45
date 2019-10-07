@@ -62,7 +62,6 @@ public class HudEmotionCue: MonoBehaviour {
     /* Idle */
 
     public void SetIdle() {
-        Util.Log("Setting idle");
         State = HudEmotionCueState.Idle;
     }
 
@@ -73,12 +72,12 @@ public class HudEmotionCue: MonoBehaviour {
         // Tweens
         float animTime = 0.16f;
 
-        // Fade out element
+        // Fade-out element
         LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0, animTime)
             .setEaseOutQuad()
             .setOnComplete(() => { State = HudEmotionCueState.Unmounted; });
 
-        // Fade out element's sprites
+        // Fade-out element's sprites
         gameObject
             .GetComponentsInChildren<SpriteRenderer>()
             .ToList()
@@ -89,13 +88,10 @@ public class HudEmotionCue: MonoBehaviour {
                     .setOnComplete(() => { State = HudEmotionCueState.Unmounted; });
             });
 
-        // Scale up
+        // Scale-up
         float targetScale = 1.66f;
         LeanTween.scale(gameObject, new Vector3(targetScale, targetScale, targetScale), animTime)
             .setEaseOutExpo();
-    }
-
-    private void UpdateActive() {
     }
 
     void Update() {
@@ -104,9 +100,7 @@ public class HudEmotionCue: MonoBehaviour {
                 UpdateMounting();
                 break;
             case HudEmotionCueState.Idle:
-                break;
             case HudEmotionCueState.Active:
-                UpdateActive();
                 break;
             case HudEmotionCueState.Unmounted:
                 Object.Destroy(gameObject);

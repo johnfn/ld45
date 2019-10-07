@@ -65,7 +65,12 @@ public class EmotionState {
 [RequireComponent(typeof(BoxCollider2D))]
 // extends MonoBehaviour = is component
 public class Player: MonoBehaviour {
+
+  /// All emotions the player has unlocked.
   public EmotionState Emotions;
+
+  /// The emotion lens through which the player is currently viewing the world.
+  public EmotionType EmotionLens;
 
   [Header("Controls")]
 
@@ -249,6 +254,12 @@ public class Player: MonoBehaviour {
     return hitFlagsResult;
   }
 
+  /// Call to trigger jump.
+  void startJump() {
+    accelerationY = JumpStrength / 2;
+    velocityY = JumpStrength * 5;
+  }
+
   Vector3 calculateVelocity() {
     var dx = 0f;
     var dy = 0f;
@@ -257,7 +268,7 @@ public class Player: MonoBehaviour {
       dx -= 1;
       SetLookingDirection(new Vector3(-1f, 0, 0));
     }
-    if (Input.GetKey("d")) { 
+    if (Input.GetKey("d")) {
       dx += 1; 
       SetLookingDirection(new Vector3(1f, 0, 0));
     }
@@ -275,7 +286,13 @@ public class Player: MonoBehaviour {
       accelerationY = 0f;
       velocityY     = 0f;
 
-      if (Input.GetKey("space") && Mathf.Abs(accelerationY - 0f) < 0.01f) { accelerationY = JumpStrength; }
+      if (Input.GetKey("space")) {
+      // Ensure not already jumping
+        bool hasNoAcceleration = Mathf.Abs(accelerationY - 0f) < 0.01f;
+        if (hasNoAcceleration) {
+          startJump();
+        }
+      }
     } else {
       velocityY += accelerationY;
       accelerationY /= gravityScaleFactor;
@@ -292,7 +309,9 @@ public class Player: MonoBehaviour {
 
       dy = velocityY;
 
-      if (Input.GetKey("space") && hitFlags.HitBottom()) { accelerationY = JumpStrength; }
+      if (Input.GetKey("space") && hitFlags.HitBottom()) { 
+        startJump();
+      }
     }
 
     var result = new Vector3(dx, dy, 0) * MovementSpeed;
@@ -440,11 +459,11 @@ public class Player: MonoBehaviour {
     }
   }
 
+
+
   /* Outward-facing functions */
 
-  /**
-   * 
-   */
+  // Creates emotion cue on player canvas.
   public GameObject ShowEmotionCue(EmotionType emotionType) {
     GameObject MyCanvas = this.character.CharacterCanvas.gameObject;
     GameObject EmotionCue = Manager.CreateNewEmotionCue(emotionType, MyCanvas);
