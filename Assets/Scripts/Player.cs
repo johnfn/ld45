@@ -259,18 +259,25 @@ public class Player: MonoBehaviour {
 
   /// Call to trigger jump.
   void startJump() {
+    isActivelyJumping = true;
     accelerationY = JumpStrength / 2;
     velocityY = JumpStrength * 5;
+  }
+
+  void cancelJump() {
+    isActivelyJumping = false;
+  }
+
+  // Grounded when not in mid-jump.
+  bool checkIsMidjump() {
+    return (isActivelyJumping || Mathf.Abs(accelerationY) >= 0.01f);
   }
 
   bool checkIsMidair() {
     return !this.hitFlags.HitBottom();
   }
 
-  // Check if able to jump (Y acceleration is near zero.)
-  bool checkIsGrounded() { 
-    return (!isActivelyJumping && Mathf.Abs(accelerationY) < 0.01f);
-  }
+  
 
   Vector3 calculateVelocity() {
     var dx = 0f;
@@ -298,12 +305,10 @@ public class Player: MonoBehaviour {
       accelerationY = 0f;
       velocityY     = 0f;
 
-      if (Input.GetKey("space")) {
-        // Ensure not already jumping
-        bool hasNoAcceleration = checkIsGrounded();
-        if (hasNoAcceleration) {
-          startJump();
-        }
+      if (Input.GetKeyDown("space") && !checkIsMidjump()) {
+        startJump();
+      } else if (Input.GetKeyUp("space") && checkIsMidjump()) {
+        cancelJump();
       }
     } else {
       velocityY += accelerationY;
@@ -321,8 +326,10 @@ public class Player: MonoBehaviour {
 
       dy = velocityY;
 
-      if (Input.GetKey("space") && hitFlags.HitBottom()) { 
+      if (Input.GetKey("space") && !checkIsMidair()) {
         startJump();
+      } else if (Input.GetKeyUp("space") && checkIsMidjump()) {
+        cancelJump();
       }
     }
 
@@ -396,6 +403,7 @@ public class Player: MonoBehaviour {
     bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, 
          nextJump = !isTouchingLadder && checkIsMidair(),
          nextClimb = isTouchingLadder;
+    
 
     if (!prevClimb && nextClimb) leaves.Play();
     if (prevClimb && !nextClimb) leaves.Stop();
@@ -472,10 +480,7 @@ public class Player: MonoBehaviour {
 
     // Logs
     // Log velocity
-    Util.Log(desiredMovement);
   }
-
-
 
   /* Outward-facing functions */
 
