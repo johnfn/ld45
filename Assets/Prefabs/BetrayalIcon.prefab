@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2573160646408505421}
   m_Layer: 0
-  m_Name: CompassionIcon
+  m_Name: ForgivenessIcon 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
