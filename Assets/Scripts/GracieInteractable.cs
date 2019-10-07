@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GracieInteractable: Interactable {
+  override public void ShowAsInteractable() {
+      interactIndicator = Instantiate(Manager.Instance.interactIndicatorPrefab, new Vector3(xPos, transform.position.y + 3, 0), Quaternion.identity, Manager.Instance.interactIndicatorParent);
+      interactIndicator.SetActive(true);
+
+      Manager.Instance.SetInstruction("Press X to interact.");
+    }
+
+  override public void Interact() {
+    if (!Manager.Instance.Player.Emotions.Remorse) {
+      Manager.Instance.Player.Emotions.Remorse = true;
+      DialogManager.Instance.StartDialogSequence(DialogText.GracieDialog);
+    } else {
+      DialogManager.Instance.StartDialogSequence(DialogText.Trudialog2);
+    }
+  }
+
+  void Update() {
+
+  }
+}

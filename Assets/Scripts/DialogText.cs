@@ -6,7 +6,8 @@ using System.Linq;
 public enum CharacterName {
   Blank,
   Ash,
-  Trudy
+  Trudy,
+  Gracie
 }
 
 public class Fade {
@@ -39,6 +40,10 @@ public class DialogText {
 
   private static string Affection(string s) {
     return $"<color=#ff0000>{ s }</color>";
+  }
+
+  private static string Remorse(string s) {
+    return $"<color=#ff88ff>{ s }</color>";
   }
 
   private static string Ash(string s) {
@@ -148,6 +153,59 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(i'm so embarrassed...)") },
     new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(maybe if i look away they wont notice me......)") },
     new DialogEvent { Name = CharacterName.Blank, Contents = "Despite Trudy not even talking to you, you can't help but notice that she is a master class in teaching " + Affection("affection") + ".", instruct = "Press 3" },
+  };
+
+  public static List<DialogEvent> GracieDialog = new List<DialogEvent> {
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Oh hello there, mister. I'm Gracie." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "What are you doing all the way out here away from town?" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Oh well mister I used to live in New Hylidae but well" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "But well some people didn't want me to live there" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "So I left" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "And now I'm here" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "All by myself" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "What happened?" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Well....." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "It all started with my science project." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "You see I had this science project for class right mister" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "... ok ..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "And on my science project I was doing a study of alllllll the different types of frogs!" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Big frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Small frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Skinny frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Fat frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Spotted frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Striped frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Jumping frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Still frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Normal frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Abnormal frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Frogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..?" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Dogs" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "???" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "(Just kidding, I didn't study dogs mister.)" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "(I was just making sure you were paying attention.)" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Uh huh..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "Anyway mister my report was so long and so detailed" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "That all my friends got jealous!" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "And then they didn't like me any more" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "And they made me live out here" },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "it's ok." },
+    new DialogEvent { Name = CharacterName.Gracie, Contents = "It's a little lonely though." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = Remorse("Trudy's long, absurd story has arose emotions in you you had previous forgotten.") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = Remorse("You feel remorseful for her ridiculous plight.") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "To see things with a remorseful lense, press 4.", instruct = "Press 3" },
   };
 
   private static List<DialogEvent> MakeAshQuestionList(

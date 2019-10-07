@@ -37,6 +37,10 @@ public class Lens: MonoBehaviour {
       newEmotion = EmotionType.Affection;
     }
 
+    if (Input.GetKeyDown("4") && player.Emotions.Remorse) {
+      newEmotion = EmotionType.Remorse;
+    }
+
     if (newEmotion != null) {
       Stem stem = Stem.None;
 
@@ -94,6 +98,11 @@ public class Lens: MonoBehaviour {
       case EmotionType.Affection:
         spriteRenderer.color = new Color(1f, .3f, .3f, 0.3f);
         go.text = "Affection Lens";
+
+        break;
+      case EmotionType.Remorse:
+        spriteRenderer.color = new Color(1f, .5f, 1f, 0.3f);
+        go.text = "Remorse Lens";
 
         break;
     }
