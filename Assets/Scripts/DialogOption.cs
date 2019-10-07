@@ -7,10 +7,6 @@ public class DialogOption: MonoBehaviour {
   public Text ReactionText;
   public GameObject CuriosityIcon;
 
-  void Start() {
-      
-  }
-
   void Update() {
 
   }
@@ -20,6 +16,10 @@ public class DialogOption: MonoBehaviour {
   }
 
   public void SetReactionIconType(EmotionType emotionType) {
-    // TODO
+    CuriosityIcon.SetActive(false);
+
+    if (emotionType == EmotionType.Curiosity) {
+      CuriosityIcon.SetActive(true);
+    }
   }
 }

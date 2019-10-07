@@ -20,7 +20,7 @@ public class DialogEvent {
 
   // other events that can happen during dialog
 
-  public List<(EmotionType, string, List<DialogEvent>)> Responses = null;
+  public List<(EmotionType, string, List<DialogEvent>)> Responses = new List<(EmotionType, string, List<DialogEvent>)>();
   public Fade Fade = null;
   public EmotionType ReceiveEmotion = EmotionType.None; 
   public string instruct = null;
@@ -28,6 +28,10 @@ public class DialogEvent {
 }
 
 public class DialogText {
+  public static string Curious(string s) {
+    return $"<color=#6699ff>{ s }</color>";
+  }
+
   public static List<DialogEvent> FirstDialog = new List<DialogEvent> {
     new DialogEvent { Fade = new Fade { Immediate = true, RectangleFadeOpacity = 1.0f } },
 
@@ -36,7 +40,7 @@ public class DialogText {
 
     new DialogEvent { ReceiveEmotion = EmotionType.Curiosity },
 
-    new DialogEvent { Name = CharacterName.Ash  , Contents = "<color=#6699ff>What happened?</color> Are you okay?" },
+    new DialogEvent { Name = CharacterName.Ash  , Contents = $"{ Curious("What happened?") } Are you okay?" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "What’s your name?" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
@@ -51,7 +55,7 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Blank, Contents = "<color=#6699ff>...curious?...</color>" },
     new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.7f } }, //new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.7f, CircleFadeOpacity = 0.5f } },
     new DialogEvent { Name = CharacterName.Blank, Contents = "W..." },
-    new DialogEvent { Name = CharacterName.Blank, Contents = "<color=#6699ff>...where am I?</color>" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = Curious("...where am I?") },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "You fell into Lake Rasa." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "There’s not much down here except a lot of water, though. And, uh, you. Apparently." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = "Do you have a name?" },
@@ -81,7 +85,7 @@ public class DialogText {
       Responses = new List<(EmotionType, string, List<DialogEvent>)> {
         ( 
           EmotionType.Curiosity, 
-          "Curiosity",
+          Curious("Curiosity"),
           new List<DialogEvent> {
             new DialogEvent { Name = CharacterName.Blank, Contents = "I'm really curious about your lack of non w consonant sounds" },
           }

@@ -70,21 +70,29 @@ public class DialogManager: MonoBehaviour {
         if (currentDialogObject.GetDialogState() == DialogState.Done) {
           var emotionResponse = currentDialogObject.getEmotionResponse();
 
+          foreach (var (emotionType, name, nextDialogTree) in currentDialogItem.Responses) {
+            if (emotionType == emotionResponse) {
+              currentDialogTree = nextDialogTree;
+              state = DialogManagerState.ShouldShowNextDialog;
+
+              goto Done;
+            }
+          }
+
           if (emotionResponse == EmotionType.None) {
             if (currentDialogTree.Count == 0) {
               FinishDialogSequence();
             } else {
               state = DialogManagerState.ShouldShowNextDialog;
             }
-          } else {
-            foreach (var (emotionType, name, nextDialogTree) in currentDialogItem.Responses) {
-              if (emotionType == emotionResponse) {
-                currentDialogTree = nextDialogTree;
-                state = DialogManagerState.ShouldShowNextDialog;
-              }
-            }
+
+            goto Done;
           }
+
+          Debug.LogError("UNhandled emotional reaction!");
         }
+
+        Done:
 
         break;
     }
