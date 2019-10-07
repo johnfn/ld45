@@ -8178,11 +8178,7 @@ RectTransform:
   - {fileID: 4285615079742527643}
   - {fileID: 1542407819}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 15
-=======
-  m_RootOrder: 11
->>>>>>> a735b4613c67b14a4274fe16d0482757eee1edf8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13484,11 +13480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 21
-=======
-  m_RootOrder: 17
->>>>>>> a735b4613c67b14a4274fe16d0482757eee1edf8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4285615079742527641
 GameObject:
