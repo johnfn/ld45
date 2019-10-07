@@ -70,14 +70,11 @@ public class Dialog: MonoBehaviour {
 
     generationSettings.generationExtents = new Vector2(maxDialogWidth, 10000);
 
-    var reactionCount = emotionReactions == null ? 0 : emotionReactions.Count;
-
-    Util.Log(reactionCount);
-
     TextWidth  = textGen.GetPreferredWidth(dialog, generationSettings);
     TextHeight = textGen.GetPreferredHeight(dialog, generationSettings);
 
-    var optionsHeight = (1f + 1f * reactionCount) * 50f; // add space for options if there are any
+    var reactionCount = emotionReactions == null ? 0 : emotionReactions.Count;
+    var optionsHeight = reactionCount == 0 ? 0 : (1f + 1f * reactionCount) * 50f; // add space for options if there are any
 
     canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(
       TextWidth / textScaleFactor,

@@ -28,11 +28,11 @@ public class DialogEvent {
 }
 
 public class DialogText {
-  public static string Curious(string s) {
+  private static string Curious(string s) {
     return $"<color=#6699ff>{ s }</color>";
   }
 
-  public static string Ash(string s) {
+  private static string Ash(string s) {
     return $"<color=#999999>{ s }</color>";
   }
 
@@ -126,5 +126,10 @@ public class DialogText {
         ),
       }
     }
+  };
+
+  public static List<DialogEvent> AshTwo = new List<DialogEvent> {
+    new DialogEvent { Name = CharacterName.Ash, Contents = Ash("This is ash two") },
+    new DialogEvent { Name = CharacterName.Ash, Contents = "Um..." },
   };
 }
