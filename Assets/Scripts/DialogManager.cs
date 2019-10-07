@@ -199,6 +199,8 @@ public class DialogManager: MonoBehaviour {
         didTeachEmotion = true;
         break;
     }
+
+    EmotionManager.ActivateLearnedEmotion(emotion);
     return didTeachEmotion;
   }
 

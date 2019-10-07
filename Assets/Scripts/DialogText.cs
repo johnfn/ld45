@@ -56,8 +56,6 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Hey!"), instruct = "Press X to continue." },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." , hideInstruct = true},
 
-    new DialogEvent { ReceiveEmotion = EmotionType.Curiosity },
-
     new DialogEvent { Name = CharacterName.Ash  , Contents = $"{ Curious("What happened?") } { Ash("Are you okay?") }" },
     new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
     new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("What’s your name?") },
@@ -71,6 +69,9 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Hey, we can’t figure out what’s going on until you talk to me. Aren't you ") + Curious("curious") + Ash(", too?") }, 
     new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.9f, } }, //new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.9f, CircleFadeOpacity = 0.5f } },
     new DialogEvent { Name = CharacterName.Blank, Contents = Curious("...curious?...") },
+
+    new DialogEvent { ReceiveEmotion = EmotionType.Curiosity },
+
     new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.7f } }, //new DialogEvent { Fade = new Fade { RectangleFadeOpacity = 0.7f, CircleFadeOpacity = 0.5f } },
     new DialogEvent { Name = CharacterName.Blank, Contents = Ash("W...") },
     new DialogEvent { Name = CharacterName.Blank, Contents = Curious("...where am I?") },

@@ -10,6 +10,15 @@ public class EmotionManager: MonoBehaviour {
   public GameObject ForgivenessCuePrefab;
   public GameObject RemorseCuePrefab;
 
+  [Header("Find these in OverlayCanvas > LearnedEmotions")]
+  public GameObject LearnedAffectionIcon;
+  public GameObject LearnedBetrayalIcon;
+  public GameObject LearnedCompassionIcon;
+  public GameObject LearnedCuriosityIcon;
+  public GameObject LearnedForgivenessIcon;
+  public GameObject LearnedRemorseIcon;
+  
+
   private GameObject GetEmotionPrefab(EmotionType emotionType) {
     switch (emotionType) {
       case EmotionType.Affection:
@@ -60,4 +69,29 @@ public class EmotionManager: MonoBehaviour {
     return EmotionCueObject;
   }
 
+  public static void ActivateLearnedEmotion(EmotionType emotionType) {
+    switch (emotionType) {
+      case EmotionType.Affection:
+        Instance.LearnedAffectionIcon.SetActive(true);
+        break;
+      case EmotionType.Betrayal:
+        Instance.LearnedBetrayalIcon.SetActive(true);
+        break;
+      case EmotionType.Compassion:
+        Instance.LearnedCompassionIcon.SetActive(true);
+        break;
+      case EmotionType.Curiosity:
+        Instance.LearnedCuriosityIcon.SetActive(true);
+        break;
+      case EmotionType.Forgiveness:
+        Instance.LearnedForgivenessIcon.SetActive(true);
+        break;
+      case EmotionType.Remorse:
+        Instance.LearnedRemorseIcon.SetActive(true);
+        break;
+      default:
+        break;
+    }
+    return;
+  }
 }
