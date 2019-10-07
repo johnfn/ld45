@@ -9,7 +9,9 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: cc34d0f3dc257a442819830b408c5322, type: 3}
   missingFiles: []
-  errors: []
+  errors:
+  - Texture was imported at a smaller size. Make sure 'Max Size' on '../Graphics/tileset1.png'
+    is at least '3072'
   warnings: []
   missingSortingLayers: []
   missingLayers: []
@@ -17,7 +19,7 @@ ScriptedImporter:
   importerVersion: 10
   pixelsPerUnit: 100
   edgesPerEllipse: 32
-  numberOfObjectsImported: 43
+  numberOfObjectsImported: 2
   useSpriteAtlas: 1
   atlasWidth: 2048
   atlasHeight: 2048

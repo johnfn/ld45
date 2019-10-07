@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.3" name="tiles" tilewidth="256" tileheight="256" tilecount="64" columns="8">
- <image source="../Graphics/tileset1.png" width="2048" height="2048"/>
+<tileset version="1.2" tiledversion="1.2.3" name="tiles" tilewidth="256" tileheight="256" tilecount="96" columns="8">
+ <image source="../Graphics/tileset1.png" width="2048" height="3072"/>
  <tile id="0">
   <objectgroup draworder="index">
    <object id="1" x="66.6667" y="31.3333" width="193.333" height="98.6667"/>
@@ -108,7 +108,7 @@
  </tile>
  <tile id="40">
   <objectgroup draworder="index">
-   <object id="5" x="37.3333" y="42.6667" width="202.667" height="202.667"/>
+   <object id="5" x="37.3333" y="-1.3333" width="202.667" height="246.667"/>
   </objectgroup>
  </tile>
  <tile id="48">

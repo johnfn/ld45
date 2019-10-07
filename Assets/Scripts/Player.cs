@@ -78,6 +78,8 @@ public class Player: MonoBehaviour {
 
   public float FallingSpeed;
 
+  public float LadderSpeed = 1f;
+
   public float MaxFallSpeed;
 
   public float JumpStrength;
@@ -287,6 +289,7 @@ public class Player: MonoBehaviour {
       dx -= 1;
       SetLookingDirection(new Vector3(-1f, 0, 0));
     }
+
     if (Input.GetKey("d")) {
       dx += 1; 
       SetLookingDirection(new Vector3(1f, 0, 0));
@@ -294,11 +297,12 @@ public class Player: MonoBehaviour {
 
     if (isTouchingLadder) {
       if (Input.GetKey("w")) { 
-        dy += 1; 
+        dy += LadderSpeed; 
         SetLookingDirection(new Vector3(0f, 1f, 0f));
       }
+
       if (Input.GetKey("s")) { 
-        dy -= 1; 
+        dy -= LadderSpeed; 
         SetLookingDirection(new Vector3(0f, -1f, 0f));
       }
 
@@ -402,7 +406,9 @@ public class Player: MonoBehaviour {
          prevClimb = anim.GetBool("climbing");
     bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, 
          nextJump = !isTouchingLadder && checkIsMidair(),
-         nextClimb = isTouchingLadder;
+         nextClimb = isTouchingLadder && (
+           prevClimb || (desiredMovement.y == LadderSpeed * MovementSpeed || desiredMovement.y == -LadderSpeed * MovementSpeed) // hack
+         );
     
 
     if (!prevClimb && nextClimb) leaves.Play();
