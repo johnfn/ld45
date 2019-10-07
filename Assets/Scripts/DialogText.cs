@@ -198,7 +198,7 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Blank, Contents = "Actually, yeah, I did." },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("That means you've learned how to be curious!") },
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Press 1 to look at things with a more curious eye") },
-      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("You might notice things you didn't before!") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("You might notice things you didn't before!"), instruct = "Press 1 to toggle curiosity!" },
     }
   );
 
