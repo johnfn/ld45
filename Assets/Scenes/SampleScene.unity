@@ -539,8 +539,13 @@ MonoBehaviour:
     type: 3}
   DialogReactionPrefab: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
     type: 3}
+  AffectionCuePrefab: {fileID: 0}
+  BetrayalCuePrefab: {fileID: 0}
+  CompassionCuePrefab: {fileID: 0}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
+  ForgivenessCuePrefab: {fileID: 0}
+  RemorseCuePrefab: {fileID: 0}
   Player: {fileID: 1022136880}
   interactIndicatorParent: {fileID: 627771852}
   bar1: {fileID: 873884953}
@@ -549,7 +554,7 @@ MonoBehaviour:
   InstructObj: {fileID: 1988361345}
   tutTriggersParent: {fileID: 339955222}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 1
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 324968617}
   FullFade: {fileID: 4285615079742527641}
@@ -694,7 +699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514880180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.2, y: -67.2, z: 0}
+  m_LocalPosition: {x: 48.7, y: -65.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -712,9 +717,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67cab16bbc704bc19e3886847d86c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIndicator: {fileID: 0}
+  interactIndicator: {fileID: 144725954080593182, guid: 799f2a7f89ff4d641a6da12adb6ef433,
+    type: 3}
   xPos: 0
-  myEmotionType: 1
+  myEmotionType: 4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,7 +735,6 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -859,19 +864,6 @@ MonoBehaviour:
   - {fileID: 577089054}
   - {fileID: 1049081667}
   - {fileID: 1218131847}
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: d592c11d58a7ff545b0ef29f1b0c7d0d, type: 2}
 --- !u!61 &526319623
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2333,7 +2325,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 1047985779
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1431604870
 RectTransform:
