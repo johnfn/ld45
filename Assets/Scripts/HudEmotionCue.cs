@@ -71,7 +71,7 @@ public class HudEmotionCue: MonoBehaviour {
     public void SetActive() {
         State = HudEmotionCueState.Active;
         // Tweens
-        float animTime = 0.13f;
+        float animTime = 0.16f;
 
         // Fade out element
         LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0, animTime)
@@ -90,7 +90,7 @@ public class HudEmotionCue: MonoBehaviour {
             });
 
         // Scale up
-        float targetScale = 1.4f;
+        float targetScale = 1.66f;
         LeanTween.scale(gameObject, new Vector3(targetScale, targetScale, targetScale), animTime)
             .setEaseOutExpo();
     }
