@@ -5,6 +5,19 @@ public class EmotionInteractableBooks: EmotionInteractable {
     override public void Interact() {
         base.Interact();
 
-        DialogManager.Instance.StartDialogSequence(DialogText.BookDialog);
+        if (Lens.Instance.ActiveEmotion == EmotionType.Curiosity) {
+            DialogManager.Instance.StartDialogSequence(
+                new List<DialogEvent> {
+                    new DialogEvent { Name = CharacterName.Blank, Contents = "WHOA! These books are AWESOME!" }
+                }
+            );
+        } else {
+            DialogManager.Instance.StartDialogSequence(
+                new List<DialogEvent> {
+                    new DialogEvent { Name = CharacterName.Blank, Contents = "It's some old books." },
+                    new DialogEvent { Name = CharacterName.Blank, Contents = "Nothing too interesting." }
+                }
+            );
+        }
     }
 }

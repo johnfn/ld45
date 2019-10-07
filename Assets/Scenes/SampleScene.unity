@@ -976,7 +976,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 514880180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b67cab16bbc704bc19e3886847d86c78, type: 3}
+  m_Script: {fileID: 11500000, guid: 9df2e49b8c9714892b8f86335dd694fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicator: {fileID: 0}
@@ -3337,7 +3337,7 @@ GameObject:
   - component: {fileID: 1200343860}
   - component: {fileID: 1200343859}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LensName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

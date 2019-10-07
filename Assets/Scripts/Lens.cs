@@ -4,11 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Lens: MonoBehaviour {
-  private EmotionType activeEmotion = EmotionType.None;
+  [HideInInspector]
+  public EmotionType ActiveEmotion = EmotionType.None;
+
   private Player player;
   private SpriteRenderer spriteRenderer;
 
+  public static Lens Instance;
+
   void Start() {
+    Instance = this;
+
     player = Manager.Instance.Player;
     spriteRenderer = GetComponent<SpriteRenderer>();
   }
@@ -21,10 +27,10 @@ public class Lens: MonoBehaviour {
     }
 
     if (newEmotion != null) {
-      if (activeEmotion == newEmotion) {
-        activeEmotion = EmotionType.None;
+      if (ActiveEmotion == newEmotion) {
+        ActiveEmotion = EmotionType.None;
       } else {
-        activeEmotion = (EmotionType) newEmotion;
+        ActiveEmotion = (EmotionType) newEmotion;
       }
     }
   }
@@ -36,7 +42,7 @@ public class Lens: MonoBehaviour {
 
     CheckForNewEmotion();
 
-    switch (activeEmotion) {
+    switch (ActiveEmotion) {
       case EmotionType.None:
         spriteRenderer.color = new Color(0f, 0f, 0f, 0f);
         break;
