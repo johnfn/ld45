@@ -356,6 +356,10 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Err?") },
       new DialogEvent { Name = CharacterName.Blank, Contents = "You were the one who made Ludum Dare end 3 hours early! It was ALL YOU!" },
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("What?") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Well... be that as it may!" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "I won't forget this, Ash!" },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "I'll be back to defeat you..." },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "In LUDUM DARE 46!!!" },
       new DialogEvent { Name = CharacterName.Blank, Contents = "[CREDITS]" }, // special value to show credits scene!
   };
 }

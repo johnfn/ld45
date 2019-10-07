@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum FadeType {
   RectangleFade,
@@ -104,6 +105,12 @@ public class DialogManager: MonoBehaviour {
     }
 
     currentDialogItem = currentDialogTree.First();
+
+    if (currentDialogItem.Contents == "[CREDITS]") {
+      SceneManager.LoadScene("Credits"); 
+
+      return;
+    }
 
     currentDialogTree = currentDialogTree.Skip(1).ToList();
 
