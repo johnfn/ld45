@@ -260,15 +260,15 @@ public class Player: MonoBehaviour {
   }
 
   /// Call to trigger jump.
-  void startJump() {
-    isActivelyJumping = true;
-    accelerationY = JumpStrength / 4;
-    velocityY = JumpStrength * 3;
-  }
+  // void startJump() {
+  //   didStartJump = true;
+  //   // accelerationY = JumpStrength / 4;
+  //   // velocityY = JumpStrength * 2;
+  // }
 
-  void endJump() {
-    isActivelyJumping = false;
-  }
+  // void endJump() {
+  //   isActivelyJumping = false;
+  // }
 
   bool checkIsMidair() {
     return !this.hitFlags.HitBottom();
@@ -291,11 +291,15 @@ public class Player: MonoBehaviour {
 
   void updateJump() {
     if (Input.GetKeyDown("space") && checkIsGrounded()) {
-      startJump();
+      // startJump();
+      isActivelyJumping = true;
+      didStartJump = true;
       Util.Log("JUMP!!!", isActivelyJumping);
     }
     if (Input.GetKeyUp("space")) {
-      endJump();
+      // endJump();
+      isActivelyJumping = false;
+      didCancelJump = true;
       Util.Log("End jump", isActivelyJumping);
     }
 
@@ -344,7 +348,9 @@ public class Player: MonoBehaviour {
         // Ensure not already jumping
         bool hasNoAcceleration = checkIsGrounded();
         if (hasNoAcceleration) {
-          startJump();
+          // startJump();
+          isActivelyJumping = true;
+          didStartJump = true;
         }
       }
     /// On ground
@@ -355,8 +361,14 @@ public class Player: MonoBehaviour {
       if (hitFlags.HitBottom()) {
         velocityY = -0.01f;
       }
-      dy = velocityY;
 
+      if (didStartJump) {
+        // velocityY = Mathf.Max(velocityY, JumpStrength);
+        velocityY += JumpStrength * 1.5f;
+        didStartJump = false;
+      }
+
+      dy = velocityY;
     /// In midair
     } else {
       velocityY += accelerationY;
@@ -372,7 +384,13 @@ public class Player: MonoBehaviour {
         velocityY = MaxFallSpeed;
       }
 
-      dy = velocityY;
+      if (isActivelyJumping) {
+        dy += JumpStrength * 2f;
+      } else {
+        dy += JumpStrength * 0.4f;
+      }
+
+      dy += velocityY;
 
       // if (Input.GetKey("space") && hitFlags.HitBottom()) {
       //   startJump();
@@ -413,11 +431,19 @@ public class Player: MonoBehaviour {
         transform.position += step;
       }
 
+      Util.Log("desired movement", desiredMovement.y, "y sign", Mathf.Sign(desiredMovement.y));
       for (var y = 0f; Mathf.Abs(y) < Mathf.Abs(desiredMovement.y); y += stepSize * Mathf.Sign(desiredMovement.y)) {
         var step = new Vector3(0, Mathf.Sign(desiredMovement.y) * stepSize, 0);
         var yHit = CheckForHit(step);
 
-        if (yHit.HitAnything()) {
+        // if (Mathf.Sign(desiredMovement.y) == -1f) {
+        // }
+        if (
+            (Mathf.Sign(desiredMovement.y) == -1f && yHit.HitBottom()) ||
+            (Mathf.Sign(desiredMovement.y) == 1f && yHit.HitTop())
+          ) {
+          // Util.Log(yHit.HitBottom());
+          Util.Log("Hit vertical");
           break;
         }
 
@@ -447,7 +473,7 @@ public class Player: MonoBehaviour {
 
     // Logs
     // Log velocity
-    // Util.Log(desiredMovement, "velocityY", velocityY, "accelY", accelerationY);
+    Util.Log("desiredMovement", desiredMovement, "velocityY", velocityY, "accelY", accelerationY);
 
 
     // Set Animator parameters based on new and previous states
@@ -455,10 +481,10 @@ public class Player: MonoBehaviour {
     bool prevWalk = anim.GetBool("walking"), 
          prevJump = anim.GetBool("jumping"), 
          prevClimb = anim.GetBool("climbing");
-    bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, 
-         nextJump = !isTouchingLadder && checkIsMidair(),
+    bool nextWalk = Mathf.Abs(desiredMovement.x) > 0,
+         nextJump = !isTouchingLadder && (checkIsMidair() || isActivelyJumping),
          nextClimb = isTouchingLadder;
-    // Util.Log(prevWalk, prevJump, prevClimb, nextWalk, nextJump, nextClimb);
+    Util.Log(prevWalk, prevJump, prevClimb, nextWalk, nextJump, nextClimb);
 
     if (!prevClimb && nextClimb) leaves.Play();
     if (prevClimb && !nextClimb) leaves.Stop();
@@ -498,7 +524,7 @@ public class Player: MonoBehaviour {
 
     // This is pretty important. Hit() does not properly update your currently
     // touching objects if you try to raycast with a zero length vector, so
-    // you'll loose that information if you don't guard for that case here.
+    // you'll lose that information if you don't guard for that case here.
 
     if (desiredMovement != Vector3.zero) {
       var oldHitFlags = hitFlags;
@@ -512,14 +538,13 @@ public class Player: MonoBehaviour {
     }
 
     if (hitFlags.TouchingWater) {
-            LeanTween.moveLocalY(Manager.Instance.bar2, -10f, 0.3f).setEaseInOutQuad();
-            LeanTween.moveLocalY(Manager.Instance.bar1, 10f, 0.4f).setEaseInOutQuad().setOnComplete(() => {
-                RecoverFromDeath();
-                LeanTween.moveLocalY(Manager.Instance.bar1, 622f, 0.8f).setEaseInOutQuad();
-                LeanTween.moveLocalY(Manager.Instance.bar2, -622f, 0.8f).setEaseInOutQuad();
-            });
-
-        }
+      LeanTween.moveLocalY(Manager.Instance.bar2, -10f, 0.3f).setEaseInOutQuad();
+      LeanTween.moveLocalY(Manager.Instance.bar1, 10f, 0.4f).setEaseInOutQuad().setOnComplete(() => {
+        RecoverFromDeath();
+        LeanTween.moveLocalY(Manager.Instance.bar1, 622f, 0.8f).setEaseInOutQuad();
+        LeanTween.moveLocalY(Manager.Instance.bar2, -622f, 0.8f).setEaseInOutQuad();
+      });
+    }
 
     if (Input.GetKeyDown("x")) {
       var interactable = InteractableManager.Instance.GetInteractableTarget();
