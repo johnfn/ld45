@@ -133,15 +133,15 @@ MonoBehaviour:
         blue: {x: 0, y: 0, z: 0.87}
         currentEditingChannel: 2
       colorWheels:
-        mode: 0
+        mode: 1
         log:
-          slope: {r: 1, g: 0.7522748, b: 0.59487915, a: 0}
-          power: {r: 1, g: 0.85690546, b: 0.6243148, a: 0}
+          slope: {r: 1, g: 0.8288785, b: 0.701017, a: 0}
+          power: {r: 1, g: 0.825552, b: 0.6261108, a: 0}
           offset: {r: 0.7053343, g: 0.914945, b: 1, a: 0}
         linear:
           lift: {r: 0.8985134, g: 0.8493054, b: 1, a: 0}
-          gamma: {r: 0.7942691, g: 0.85796416, b: 1, a: 0}
-          gain: {r: 1, g: 0.93116134, b: 0.8927149, a: 0}
+          gamma: {r: 0.8240041, g: 0.8948788, b: 1, a: 0}
+          gain: {r: 1, g: 0.9479316, b: 0.9352273, a: 0}
       curves:
         master:
           curve:
@@ -149,7 +149,7 @@ MonoBehaviour:
             m_Curve:
             - serializedVersion: 3
               time: 0
-              value: 0
+              value: 0.012605071
               inSlope: 1.1304574
               outSlope: 1.1304574
               tangentMode: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
   grain:
     m_Enabled: 0
     m_Settings:
-      colored: 1
+      colored: 0
       intensity: 0.5
       size: 1
       luminanceContribution: 0.8
