@@ -147,7 +147,9 @@ public class DialogManager: MonoBehaviour {
     }
 
     var characterName = currentDialogItem.Name;
-    var speaker = Character.Speakers.First(guy => guy.CharacterName == characterName);
+    var speaker = Character.Speakers
+      .OrderBy(x => Util.Distance(x.gameObject, Manager.Instance.Player.gameObject))
+      .First(guy => guy.CharacterName == characterName);
 
     currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject, currentDialogItem.Responses);
 

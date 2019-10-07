@@ -401,9 +401,10 @@ public class Player: MonoBehaviour {
 
     // Set Animator parameters based on new and previous states
 
-    bool prevWalk = anim.GetBool("walking"), 
-         prevJump = anim.GetBool("jumping"), 
+    bool prevWalk = anim.GetBool("walking"),
+         prevJump = anim.GetBool("jumping"),
          prevClimb = anim.GetBool("climbing");
+
     bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, 
          nextJump = !isTouchingLadder && checkIsMidair(),
          nextClimb = isTouchingLadder && (

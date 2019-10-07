@@ -101,6 +101,7 @@ MonoBehaviour:
   ReactionIcon: {fileID: 2947962070093866816}
   textScaleFactor: 50
   maxDialogWidth: 400
+  PaddingBetweenTextAndOptions: 1.5
   textSpeed: 3
 --- !u!1 &5903884508771495536
 GameObject:
@@ -286,6 +287,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5903884508771495567}
     m_Modifications:
+    - target: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogReaction
+      objectReference: {fileID: 0}
     - target: {fileID: 6839498857248273355, guid: a44147e9736a140c6b6c4ec1f8a625e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -355,11 +361,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogReaction
       objectReference: {fileID: 0}
     - target: {fileID: 2011353579654960242, guid: a44147e9736a140c6b6c4ec1f8a625e5,
         type: 3}
