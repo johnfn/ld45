@@ -101,7 +101,7 @@ MonoBehaviour:
   ReactionIcon: {fileID: 2947962070093866816}
   textScaleFactor: 50
   maxDialogWidth: 400
-  textSpeed: 4
+  textSpeed: 3
 --- !u!1 &5903884508771495536
 GameObject:
   m_ObjectHideFlags: 0

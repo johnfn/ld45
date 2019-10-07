@@ -10,7 +10,7 @@ public enum GameState {
 public class Manager: MonoBehaviour {
   // Prefabs 
   public GameObject DialogPrefab;
-    public GameObject interactIndicatorPrefab;
+  public GameObject interactIndicatorPrefab;
 
   public GameObject DialogReactionPrefab;
 
