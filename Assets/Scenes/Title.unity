@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 438005831}
   - component: {fileID: 438005835}
   - component: {fileID: 438005836}
+  - component: {fileID: 438005837}
   m_Layer: 5
   m_Name: TitleCanvas
   m_TagString: Untagged
@@ -508,6 +509,102 @@ MonoBehaviour:
   inputField: {fileID: 405974345}
   button: {fileID: 1373046483}
   allCanvas: {fileID: 438005835}
+--- !u!82 &438005837
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438005830}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6731654b544634b55b77ad78096be269, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &591461828
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +663,8 @@ MonoBehaviour:
   m_text: EMOTION
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d0a5763d931b46a28098923172738b6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 9e1e1fd6a132e9747a64d1c89f28aa52, type: 2}
+  m_sharedMaterial: {fileID: 4848233836643747239, guid: 0d0a5763d931b46a28098923172738b6,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1173,7 +1271,8 @@ MonoBehaviour:
   m_text: What's your name?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d0a5763d931b46a28098923172738b6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 9e1e1fd6a132e9747a64d1c89f28aa52, type: 2}
+  m_sharedMaterial: {fileID: 4848233836643747239, guid: 0d0a5763d931b46a28098923172738b6,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1342,7 +1441,8 @@ MonoBehaviour:
   m_text: You don't have enough                 to change your name right now.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d0a5763d931b46a28098923172738b6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 9e1e1fd6a132e9747a64d1c89f28aa52, type: 2}
+  m_sharedMaterial: {fileID: 4848233836643747239, guid: 0d0a5763d931b46a28098923172738b6,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1509,7 +1609,8 @@ MonoBehaviour:
   m_text: Continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d0a5763d931b46a28098923172738b6, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 9e1e1fd6a132e9747a64d1c89f28aa52, type: 2}
+  m_sharedMaterial: {fileID: 4848233836643747239, guid: 0d0a5763d931b46a28098923172738b6,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

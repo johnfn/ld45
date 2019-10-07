@@ -42,6 +42,8 @@ public class MusicManager: MonoBehaviour {
 
     LR3.Play();
     LR3.volume = 0f;
+
+    TriggerMusicSegment(MusicSegment.LakeRasa0);
   }
 
   public void TriggerMusicSegment(MusicSegment segment) {

@@ -16,8 +16,13 @@ public class TitleManager : MonoBehaviour
     public Button button;
     public CanvasGroup allCanvas;
 
-    void Start()
-    {
+    private AudioSource titleScreenMusic;
+
+    void Start() {
+        titleScreenMusic = GetComponent<AudioSource>();
+        titleScreenMusic.loop = true;
+        titleScreenMusic.Play();
+
         if (PlayerPrefs.GetInt("FinishedGame", 0) == 1) title.GetComponent<Image>().sprite = colorfulTitle;
         StartAnim();        
     }
@@ -42,6 +47,10 @@ public class TitleManager : MonoBehaviour
 
     public void GoTo()
     {
-        LeanTween.alphaCanvas(allCanvas, 0, 1f).setEaseInOutQuad().setOnComplete(() => { SceneManager.LoadScene("SampleScene"); });
+        LeanTween.alphaCanvas(allCanvas, 0, 1f).setEaseInOutQuad().setOnComplete(() => { 
+            LeanTween.value(titleScreenMusic.gameObject, v => titleScreenMusic.volume = v, titleScreenMusic.volume, 0f, 1f);
+
+            SceneManager.LoadScene("SampleScene"); 
+        });
     }
 }
