@@ -384,15 +384,15 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -1708297917924644082, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
-        type: 3}
-      propertyPath: m_TagString
-      value: Water
-      objectReference: {fileID: 0}
     - target: {fileID: -1254825436866182735, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -70.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -1708297917924644082, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Water
       objectReference: {fileID: 0}
     - target: {fileID: 2064984880330952892, guid: 6a67f7973c4e34f4fb7c9f324d3064c0,
         type: 3}
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   tutTriggersParent: {fileID: 339955222}
   LearnedEmotions: {fileID: 0}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 1
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 324968617}
   WithCompassionPosition: {fileID: 775783052}
