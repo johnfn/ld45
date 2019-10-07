@@ -18,6 +18,8 @@ public class Dialog: MonoBehaviour {
   public float textScaleFactor;
   public float maxDialogWidth;
 
+  public float PaddingBetweenTextAndOptions = 1.5f;
+
   private int selectedResponseIndex = -1;
 
   [Header("Smaller is faster")]
@@ -70,14 +72,11 @@ public class Dialog: MonoBehaviour {
 
     generationSettings.generationExtents = new Vector2(maxDialogWidth, 10000);
 
-    var reactionCount = emotionReactions == null ? 0 : emotionReactions.Count;
-
-    Util.Log(reactionCount);
-
     TextWidth  = textGen.GetPreferredWidth(dialog, generationSettings);
     TextHeight = textGen.GetPreferredHeight(dialog, generationSettings);
 
-    var optionsHeight = (1f + 1f * reactionCount) * 50f; // add space for options if there are any
+    var reactionCount = emotionReactions == null ? 0 : emotionReactions.Count;
+    var optionsHeight = reactionCount == 0 ? 0 : (PaddingBetweenTextAndOptions + 1f * reactionCount) * 50f; // add space for options if there are any
 
     canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(
       TextWidth / textScaleFactor,
@@ -181,7 +180,7 @@ public class Dialog: MonoBehaviour {
           Manager.Instance.DialogReactionPrefab,
           text.transform.position + new Vector3(
             0f,
-            TextHeight * 0.02f - 1f + count * -1f,
+            TextHeight * 0.02f - PaddingBetweenTextAndOptions + count * -1f,
             0f
           ),
           Quaternion.identity,
