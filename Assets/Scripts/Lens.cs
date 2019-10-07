@@ -33,6 +33,10 @@ public class Lens: MonoBehaviour {
       newEmotion = EmotionType.Compassion;
     }
 
+    if (Input.GetKeyDown("3") && player.Emotions.Affection) {
+      newEmotion = EmotionType.Affection;
+    }
+
     if (newEmotion != null) {
       if (ActiveEmotion == newEmotion) {
         ActiveEmotion = EmotionType.None;
@@ -65,6 +69,11 @@ public class Lens: MonoBehaviour {
       case EmotionType.Compassion:
         spriteRenderer.color = new Color(1f, .7f, .7f, 0.3f);
         go.text = "Compassion Lens";
+
+        break;
+      case EmotionType.Affection:
+        spriteRenderer.color = new Color(1f, .3f, .3f, 0.3f);
+        go.text = "Affection Lens";
 
         break;
     }

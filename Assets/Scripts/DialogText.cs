@@ -37,6 +37,10 @@ public class DialogText {
     return $"<color=#ff9999>{ s }</color>";
   }
 
+  private static string Affection(string s) {
+    return $"<color=#ff0000>{ s }</color>";
+  }
+
   private static string Ash(string s) {
     return $"<color=#999999>{ s }</color>";
   }
@@ -110,27 +114,40 @@ public class DialogText {
 
   public static List<DialogEvent> Trudialog = new List<DialogEvent> {
     new DialogEvent { Name = CharacterName.Blank, Contents = "Um..." },
-    new DialogEvent {
-      Name = CharacterName.Trudy, 
-      Contents = "Hewwwwoooo",
-      Responses = new List<(EmotionType, string, List<DialogEvent>)> {
-        ( 
-          EmotionType.Curiosity, 
-          Curious("Curiosity"),
-          new List<DialogEvent> {
-            new DialogEvent { Name = CharacterName.Blank, Contents = "I'm really curious about your lack of non w consonant sounds" },
-          }
-        ),
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Hello..." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..?" },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("Oh, hello there, dearie.") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("How's your day going?") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("My day is going just fine.") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("I got up early and frogclimbed with my friends...") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("...and once we were finished we came back to our frogomes and ate some frogfast.") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("But a cutie like you probably doesn't know anything about having to hit the frogym!") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = ".........." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "uh.............................................." },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("I mean, or maybe you do?") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("I don't mean to assume!") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "u h h u h . . . . . ." },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(oh no i hope they like me)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(oh no am i talking too much again)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(go and see a cute cat and ruin it by talking way too much!)") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "..." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "You know I can hear you, right?" },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(way to go trudy!)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(it's just like the last time......)") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Trudy is now talking so quietly you can't hear her any more." },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "But despite being very confused, you did learn how to feel ever so slight amounts of " + Affection("affection") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Press 3 to see the world in a more affectionate light!" },
+  };
 
-        ( 
-          EmotionType.None, 
-          "No Emotion",
-          new List<DialogEvent> {
-            new DialogEvent { Name = CharacterName.Blank, Contents = "Bored now, bye" },
-          }
-        ),
-      }
-    }
+  public static List<DialogEvent> Trudialog2 = new List<DialogEvent> {
+    new DialogEvent { Name = CharacterName.Blank, Contents = "... ? ? ? ?" },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(they're back again!)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(ah!)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(ah ah ah!)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(ahhhhhhhhhhhhh!)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(i'm so embarrassed...)") },
+    new DialogEvent { Name = CharacterName.Trudy, Contents = Affection("(maybe if i look away they wont notice me......)") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Despite Trudy not even talking to you, you can't help but notice that she is a master class in teaching " + Affection("affection") + ".", instruct = "Press 3" },
   };
 
   private static List<DialogEvent> MakeAshQuestionList(
