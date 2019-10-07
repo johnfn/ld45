@@ -8,7 +8,9 @@ public enum CharacterName {
   Ash,
   Trudy,
   Gracie,
-  Diego
+  Diego,
+  Marv,
+  Gordon
 }
 
 public class Fade {
@@ -222,6 +224,27 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Diego, Contents = "i know i may seem unapproachably cool and talented, but i’m always happy to teach people to skate." },
     new DialogEvent { Name = CharacterName.Diego, Contents = "those 540 varial kickflips aren’t gonna learn themselves." }
   };
+
+    public static List<DialogEvent> MarvDialog = new List<DialogEvent> {
+        new DialogEvent { Name = CharacterName.Marv, Contents = "Shut up." },
+        new DialogEvent { Name = CharacterName.Blank, Contents = "W-what?" },
+        new DialogEvent { Name = CharacterName.Marv, Contents = "I could tell you were about to start talking. I don’t care. Shut up." },
+        new DialogEvent { Name = CharacterName.Blank, Contents = "But I hadn’t even sa—" },
+        new DialogEvent { Name = CharacterName.Marv, Contents = "What did I JUST tell you? Kids these days and their god dang attitude." },
+        new DialogEvent { Name = CharacterName.Marv, Contents = "‘Fix the economy' this, 'stop climate change' that. It never ends." },
+        new DialogEvent { Name = CharacterName.Marv, Contents = "Just do us both a favor, kid, and go away." }
+    };
+
+    public static List<DialogEvent> GordonDialog = new List<DialogEvent> {
+        new DialogEvent { Name = CharacterName.Gordon, Contents = "Howdy! Are you new here?" },
+        new DialogEvent { Name = CharacterName.Blank, Contents = "Yeah, I am. My name's Blank." },
+        new DialogEvent { Name = CharacterName.Gordon, Contents = "Well, welcome to New Hylidae, Blank! It’s a pretty darn good town, if I do say so myself." },
+        new DialogEvent { Name = CharacterName.Gordon, Contents = "I'm Gordon. I have a restaurant on the other side of the lake, but most of my customers come from ‘round here." },
+        new DialogEvent { Name = CharacterName.Blank, Contents = "But if your restaurant is on the other side of the lake, why are you here?" },
+        new DialogEvent { Name = CharacterName.Gordon, Contents = "Um." },
+        new DialogEvent { Name = CharacterName.Gordon, Contents = "No reason." },
+        new DialogEvent { Name = CharacterName.Blank, Contents = "Gordon awkwardly glances off in Trudy’s direction." }
+    };
 
     private static List<DialogEvent> MakeAshQuestionList(
     List<DialogEvent> beforeDialog,
