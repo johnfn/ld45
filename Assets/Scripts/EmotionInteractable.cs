@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EmotionInteractable: Interactable {
+    public float ScaleFactor = 1.3f;
+
     public EmotionType myEmotionType = EmotionType.Curiosity;
 
     /// Populated with the UI element when 
@@ -11,7 +13,7 @@ public class EmotionInteractable: Interactable {
     }
 
     override public void ShowAsInteractable() {
-        transform.localScale = new Vector3(2, 2, 2);
+        transform.localScale = new Vector3(ScaleFactor, ScaleFactor, ScaleFactor);
         EmotionCue = Manager.Instance.Player.ShowEmotionCue(myEmotionType);
     }
 
