@@ -125,13 +125,13 @@ public class DialogManager: MonoBehaviour {
     if (currentDialogItem.ReceiveEmotion != EmotionType.None) {
       var emo = currentDialogItem.ReceiveEmotion;
 
-      if (emo == EmotionType.AffectionCurrentlyUnused) {
+      if (emo == EmotionType.Affection) {
         Manager.Instance.Player.Emotions.Affection = true;
-      } else if (emo == EmotionType.BetrayalCurrentlyUnused) {
+      } else if (emo == EmotionType.Betrayal) {
         Manager.Instance.Player.Emotions.Betrayal = true;
       } else if (emo == EmotionType.Curiosity) {
         Manager.Instance.Player.Emotions.Curiosity = true;
-      } else if (emo == EmotionType.ForgivenessCurrentlyUnused) {
+      } else if (emo == EmotionType.Forgiveness) {
         Manager.Instance.Player.Emotions.Forgiveness = true;
       } else if (emo == EmotionType.Remorse) {
         Manager.Instance.Player.Emotions.Remorse = true;
