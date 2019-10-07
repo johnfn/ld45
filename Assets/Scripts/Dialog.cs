@@ -203,6 +203,24 @@ public class Dialog: MonoBehaviour {
     text.text = newText;
   }
 
+  void CheckForEmotionReaction() {
+    if (emotionReactions == null) {
+      return;
+    }
+
+    var number = 1;
+
+    foreach (var (emotionType, interactionName, nextDialogTree) in emotionReactions) {
+      if (Input.GetKeyDown(number.ToString())) {
+        state = DialogState.Done;
+        selectedEmotionResponse = emotionType;
+        break;
+      }
+
+      number++;
+    }
+  }
+
   void Update() {
     ++tick;
 
@@ -224,11 +242,7 @@ public class Dialog: MonoBehaviour {
           state = DialogState.Done;
         }
 
-        // TODO: Make sure this is actually valid...
-        if (Input.GetKeyDown("z")) {
-          state = DialogState.Done;
-          selectedEmotionResponse = EmotionType.Curiosity;
-        }
+        CheckForEmotionReaction();
 
         break;
     }

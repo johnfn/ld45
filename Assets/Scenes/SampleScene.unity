@@ -535,9 +535,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPrefab: {fileID: 5903884507917441638, guid: 14537079c180b4c66895b7e47f1a3b8a,
     type: 3}
-  DialogReactionPrefab: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
-    type: 3}
   interactIndicatorPrefab: {fileID: 144725954080593182, guid: 799f2a7f89ff4d641a6da12adb6ef433,
+    type: 3}
+  DialogReactionPrefab: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
     type: 3}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
@@ -713,6 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicator: {fileID: 0}
+  xPos: 0
   myEmotionType: 1
 --- !u!1 &519420028
 GameObject:
@@ -2557,6 +2558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicator: {fileID: 0}
+  xPos: 0
 --- !u!114 &1529586517
 MonoBehaviour:
   m_ObjectHideFlags: 0
