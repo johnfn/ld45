@@ -13,6 +13,7 @@ public enum HudEmotionCueState {
     Unmounted,
 }
 
+[RequireComponent(typeof(CanvasGroup))]
 public class HudEmotionCue: MonoBehaviour {
 
     private readonly float velocityX = 0f;
@@ -69,15 +70,32 @@ public class HudEmotionCue: MonoBehaviour {
 
     public void SetActive() {
         State = HudEmotionCueState.Active;
-        Util.Log("hud emotion cue active. insert fadeout here.");
-        // Setup
+        // Tweens
+        float animTime = 0.13f;
 
+        // Fade out element
+        LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0, animTime)
+            .setEaseOutQuad()
+            .setOnComplete(() => { State = HudEmotionCueState.Unmounted; });
+
+        // Fade out element's sprites
+        gameObject
+            .GetComponentsInChildren<SpriteRenderer>()
+            .ToList()
+            .ForEach(sprite => {
+                sprite.color = new Color(1f, 1f, 1f, 1f);
+                LeanTween.alpha(sprite.gameObject, 0, animTime)
+                    .setEaseOutQuad()
+                    .setOnComplete(() => { State = HudEmotionCueState.Unmounted; });
+            });
+
+        // Scale up
+        float targetScale = 1.4f;
+        LeanTween.scale(gameObject, new Vector3(targetScale, targetScale, targetScale), animTime)
+            .setEaseOutExpo();
     }
 
     private void UpdateActive() {
-        
-        float scale = 1.4f;
-        transform.localScale = new Vector3(scale, scale, scale);
     }
 
     void Update() {
