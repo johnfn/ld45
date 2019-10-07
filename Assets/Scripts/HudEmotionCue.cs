@@ -13,6 +13,7 @@ public enum HudEmotionCueState {
     Unmounted,
 }
 
+/// Represents a HUD element that is born when the player is near an Emotion Interactable.
 [RequireComponent(typeof(CanvasGroup))]
 public class HudEmotionCue: MonoBehaviour {
 

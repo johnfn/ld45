@@ -132,24 +132,27 @@ public class DialogManager: MonoBehaviour {
     if (currentDialogItem.ReceiveEmotion != EmotionType.None) {
       var emo = currentDialogItem.ReceiveEmotion;
 
-      if (emo == EmotionType.Affection) {
-        Manager.Instance.Player.Emotions.Affection = true;
-      } else if (emo == EmotionType.Betrayal) {
-        Manager.Instance.Player.Emotions.Betrayal = true;
-      } else if (emo == EmotionType.Curiosity) {
-        Manager.Instance.Player.Emotions.Curiosity = true;
-      } else if (emo == EmotionType.Forgiveness) {
-        Manager.Instance.Player.Emotions.Forgiveness = true;
-      } else if (emo == EmotionType.Remorse) {
-        Manager.Instance.Player.Emotions.Remorse = true;
+      // if (emo == EmotionType.Affection) {
+      //   Manager.Instance.Player.Emotions.Affection = true;
+      // } else if (emo == EmotionType.Betrayal) {
+      //   Manager.Instance.Player.Emotions.Betrayal = true;
+      // } else if (emo == EmotionType.Curiosity) {
+      //   Manager.Instance.Player.Emotions.Curiosity = true;
+      // } else if (emo == EmotionType.Forgiveness) {
+      //   Manager.Instance.Player.Emotions.Forgiveness = true;
+      // } else if (emo == EmotionType.Remorse) {
+      //   Manager.Instance.Player.Emotions.Remorse = true;
+      // } else {
+      //   Debug.LogError("Uhhhhhhhhhhhh");
+      // }
+      bool didTeachEmotion = TeachEmotion(emo);
+      if (didTeachEmotion) {
+        Debug.Log("TODO: Some sort of receive animation??!");
       } else {
-        Debug.LogError("Uhhhhhhhhhhhh");
+        Debug.LogError("Uhhhhhhhh did not teach any emotion.");
       }
 
-      Debug.Log("TODO: Some sort of receive animation??!");
-
       state = DialogManagerState.ShouldShowNextDialog;
-
       return;
     }
 
@@ -161,6 +164,42 @@ public class DialogManager: MonoBehaviour {
     currentDialogObject = Manager.CreateNewDialog(currentDialogItem.Contents, speaker.gameObject, currentDialogItem.Responses);
 
     state = DialogManagerState.ShowingDialog;
+  }
+
+  /// Teach emotion to player.
+  /// Returns boolean: whether or not anything changed.
+  bool TeachEmotion(EmotionType emotion) {
+    if (emotion == EmotionType.None) {
+      return false;
+    }
+    bool didTeachEmotion = false;
+    switch (emotion) {
+      case EmotionType.Curiosity:
+        Manager.Instance.Player.Emotions.Curiosity = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Compassion:
+        Manager.Instance.Player.Emotions.Compassion = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Affection:
+        Manager.Instance.Player.Emotions.Affection = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Remorse:
+        Manager.Instance.Player.Emotions.Remorse = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Betrayal:
+        Manager.Instance.Player.Emotions.Betrayal = true;
+        didTeachEmotion = true;
+        break;
+      case EmotionType.Forgiveness:
+        Manager.Instance.Player.Emotions.Forgiveness = true;
+        didTeachEmotion = true;
+        break;
+    }
+    return didTeachEmotion;
   }
 
   public void StartDialogSequence(List<DialogEvent> items) {
