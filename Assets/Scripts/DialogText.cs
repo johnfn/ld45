@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public enum CharacterName {
   Blank,
@@ -128,12 +129,16 @@ public class DialogText {
     }
   };
 
-  private static List<DialogEvent> MakeAshQuestionList(string firstMessage) {
-    return (
+  private static List<DialogEvent> MakeAshQuestionList(
+    List<DialogEvent> beforeDialog,
+    string questionText, 
+    List<DialogEvent> afterDialog
+  ) {
+    return beforeDialog.Concat(
       new List<DialogEvent> {
         new DialogEvent {
           Name = CharacterName.Ash, 
-          Contents = "Congrats, you made it! You win a question.",
+          Contents = questionText,
           Responses = new List<(EmotionType, string, List<DialogEvent>)> {
             ( 
               EmotionType.Curiosity, 
@@ -143,7 +148,7 @@ public class DialogText {
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Why do you keep ASHING me that") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("LOL") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("okay sorry i’ll stop") },
-              }
+              }.Concat(afterDialog).ToList()
             ),
 
             ( 
@@ -153,7 +158,7 @@ public class DialogText {
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("It’s called ‘New Hylidae.’ More of a town than a city, really.") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("You’ll like the people there, I think. They’re all super nice!") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = "<size=12>(except Marv)</size>" },
-              }
+              }.Concat(afterDialog).ToList()
             ),
 
             ( 
@@ -164,7 +169,7 @@ public class DialogText {
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I heard a big splash and rushed down to make sure no one was hurt. It’s a pretty long fall.") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Honestly, it’s incredible that you didn’t shatter your spine. Or get flattened on impact with the water and turn into a pancake of blood and viscera.") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash(":D") },
-              }
+              }.Concat(afterDialog).ToList()
             ),
 
             ( 
@@ -173,13 +178,46 @@ public class DialogText {
               new List<DialogEvent> {
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Yeah. I’ve lived in town for quite a while.") },
                 new DialogEvent { Name = CharacterName.Ash, Contents = Ash("It seems small at first, but I think eventually you’ll love it as much as I do!") },
-              }
+              }.Concat(afterDialog).ToList()
             ),
           }
         }
       }
-    );
+    ).ToList();
   }
 
-  public static List<DialogEvent> AshTwo = MakeAshQuestionList("Congrats, you made it! You win a question.");
+  public static List<DialogEvent> AshTwo = MakeAshQuestionList(
+    beforeDialog: new List<DialogEvent>(),
+    questionText: "Congrats, you made it! You win a question.",
+    afterDialog: new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Well, that's enough of that.") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Let's keep moving!") }
+    }
+  );
+
+  public static List<DialogEvent> AshThree = MakeAshQuestionList(
+    beforeDialog: new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("We’re halfway there! Hit me.") },
+    },
+    questionText: "...with another question. Don't actually hit me.",
+    afterDialog: new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Well, I'll see you soon!") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Last one up is a rotten egg!") }
+    }
+  );
+
+  public static List<DialogEvent> AshFour = MakeAshQuestionList(
+    beforeDialog: new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I have some bad news.") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("You're a rotten egg.") },
+    },
+    questionText: "But the good news is, you get one more question!",
+    afterDialog: new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("And on that note...") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("The city is right up here. Come on!") }
+    }
+  );
 }
