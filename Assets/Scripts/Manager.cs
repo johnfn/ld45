@@ -52,7 +52,7 @@ public class Manager: MonoBehaviour {
 
   public GameObject OtherGuy;
   public TextMeshProUGUI InstructObj;
-    public Transform tutTriggersParent;
+  public Transform tutTriggersParent;
 
   public Camera Camera;
 

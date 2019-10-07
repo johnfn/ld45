@@ -125,7 +125,7 @@ public class Player: MonoBehaviour {
   private bool didCancelJump = false;
 
   private bool isTouchingLadder = false;
-  private bool isFacingRight = false;
+  private bool isFacingRight = true;
 
   private float velocityY = 0f;
 
