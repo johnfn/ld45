@@ -208,7 +208,7 @@ public class DialogText {
     new DialogEvent { Name = CharacterName.Gracie, Contents = "And they made me live out here" },
     new DialogEvent { Name = CharacterName.Gracie, Contents = "it's ok." },
     new DialogEvent { Name = CharacterName.Gracie, Contents = "It's a little lonely though." },
-    new DialogEvent { Name = CharacterName.Blank, Contents = Remorse("Trudy's long, absurd story has arose emotions in you you had previous forgotten.") },
+    new DialogEvent { Name = CharacterName.Blank, Contents = Remorse("Gracie's long, absurd story has arose emotions in you you had previous forgotten.") },
     new DialogEvent { Name = CharacterName.Blank, Contents = Remorse("You feel remorseful for her ridiculous plight.") },
     new DialogEvent { Name = CharacterName.Blank, Contents = "To see things with a remorseful lense, press 4.", instruct = "Press 3" },
   };

@@ -53,7 +53,6 @@ public class EmotionManager: MonoBehaviour {
     // Decide which emotion type to use
     OriginalPrefab = Instance.GetEmotionPrefab(emotionType);
     if (OriginalPrefab == null) {
-      Util.Log("No emotion cue for emotionType", emotionType, "or prefab is null");
       return EmotionCueObject;
     }
 
