@@ -238,7 +238,10 @@ public class Dialog: MonoBehaviour {
 
         break;
       case DialogState.FinishedAndWaitingForInput:
-        if (Input.GetKeyDown("x")) {
+        if (
+          Input.GetKeyDown("x") && 
+          (emotionReactions == null || emotionReactions.Count == 0)
+        ) {
           state = DialogState.Done;
         }
 
