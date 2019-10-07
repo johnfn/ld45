@@ -1763,11 +1763,12 @@ MonoBehaviour:
     Remorse: 0
     Betrayal: 0
     Forgiveness: 0
+  EmotionLens: 0
   MovementSpeed: 0.2
   FallingSpeed: -0.2
   MaxFallSpeed: -2
-  JumpStrength: 0.6
-  gravityScaleFactor: 1.05
+  JumpStrength: 0.77
+  gravityScaleFactor: 1.2
   dustPuffs: {fileID: 1915174878}
   leaves: {fileID: 1621172162}
   shadow: {fileID: 1042630880}

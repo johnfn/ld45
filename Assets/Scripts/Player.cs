@@ -115,6 +115,9 @@ public class Player: MonoBehaviour {
   private Animator anim;
   private SpriteRenderer spriteRenderer;
 
+  private bool isActivelyJumping = false;
+  private bool didCancelJump = false;
+
   private bool isTouchingLadder = false;
   private bool isFacingRight = true;
 
@@ -260,6 +263,15 @@ public class Player: MonoBehaviour {
     velocityY = JumpStrength * 5;
   }
 
+  bool checkIsMidair() {
+    return !this.hitFlags.HitBottom();
+  }
+
+  // Check if able to jump (Y acceleration is near zero.)
+  bool checkIsGrounded() { 
+    return (!isActivelyJumping && Mathf.Abs(accelerationY) < 0.01f);
+  }
+
   Vector3 calculateVelocity() {
     var dx = 0f;
     var dy = 0f;
@@ -287,8 +299,8 @@ public class Player: MonoBehaviour {
       velocityY     = 0f;
 
       if (Input.GetKey("space")) {
-      // Ensure not already jumping
-        bool hasNoAcceleration = Mathf.Abs(accelerationY - 0f) < 0.01f;
+        // Ensure not already jumping
+        bool hasNoAcceleration = checkIsGrounded();
         if (hasNoAcceleration) {
           startJump();
         }
@@ -317,10 +329,6 @@ public class Player: MonoBehaviour {
     var result = new Vector3(dx, dy, 0) * MovementSpeed;
 
     return result;
-  }
-
-  bool isJumping() {
-    return !this.hitFlags.HitBottom();
   }
 
   private void OnTriggerEnter2D(Collider2D other) {
@@ -382,12 +390,16 @@ public class Player: MonoBehaviour {
 
     // Set Animator parameters based on new and previous states
 
-    bool prevWalk = anim.GetBool("walking"), prevJump = anim.GetBool("jumping"), prevClimb = anim.GetBool("climbing");
-    bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, nextJump = !isTouchingLadder && isJumping(), nextClimb = isTouchingLadder;
+    bool prevWalk = anim.GetBool("walking"), 
+         prevJump = anim.GetBool("jumping"), 
+         prevClimb = anim.GetBool("climbing");
+    bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, 
+         nextJump = !isTouchingLadder && checkIsMidair(),
+         nextClimb = isTouchingLadder;
 
     if (!prevClimb && nextClimb) leaves.Play();
     if (prevClimb && !nextClimb) leaves.Stop();
-   if (!prevWalk && nextWalk) dustPuffs.Play();
+    if (!prevWalk && nextWalk) dustPuffs.Play();
     if (prevWalk && !nextWalk) dustPuffs.Stop();
     if (!prevClimb && nextClimb) anim.Play("Climb");
     if (prevClimb || nextClimb) {
@@ -457,6 +469,10 @@ public class Player: MonoBehaviour {
     if (Input.GetKeyDown("1")) {
       // Show emotion
     }
+
+    // Logs
+    // Log velocity
+    Util.Log(desiredMovement);
   }
 
 
