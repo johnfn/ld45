@@ -359,6 +359,8 @@ public class Player: MonoBehaviour {
       MusicManager.Instance.TriggerMusicSegment(MusicSegment.LakeRasa2);
     } else if (other.gameObject == MusicManager.Instance.LR3Trigger) {
       MusicManager.Instance.TriggerMusicSegment(MusicSegment.LakeRasa3);
+    } else if (other.gameObject == MusicManager.Instance.NHTrigger) {
+      MusicManager.Instance.TriggerMusicSegment(MusicSegment.NewHylidea);
     }
   }
 

@@ -38,10 +38,30 @@ public class Lens: MonoBehaviour {
     }
 
     if (newEmotion != null) {
+      Stem stem = Stem.None;
+
+      if (newEmotion == EmotionType.Affection) {
+        stem = Stem.Affection;
+      } else if (newEmotion == EmotionType.Compassion) {
+        stem = Stem.Compassion;
+      } else if (newEmotion == EmotionType.Remorse) {
+        stem = Stem.Remorse;
+      }
+
       if (ActiveEmotion == newEmotion) {
         ActiveEmotion = EmotionType.None;
+
+        if (stem != Stem.None) {
+          MusicManager.Instance.SetStem(stem, false);
+        }
       } else {
-        ActiveEmotion = (EmotionType) newEmotion;
+        if (ActiveEmotion == EmotionType.None) {
+          ActiveEmotion = (EmotionType) newEmotion;
+
+          if (stem != Stem.None) {
+            MusicManager.Instance.SetStem(stem, true);
+          }
+        }
       }
     }
   }
