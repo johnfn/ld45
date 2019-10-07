@@ -62,7 +62,6 @@ public class HudEmotionCue: MonoBehaviour {
     /* Idle */
 
     public void SetIdle() {
-        Util.Log("Setting idle");
         State = HudEmotionCueState.Idle;
     }
 
@@ -95,18 +94,13 @@ public class HudEmotionCue: MonoBehaviour {
             .setEaseOutExpo();
     }
 
-    private void UpdateActive() {
-    }
-
     void Update() {
         switch (State) {
             case HudEmotionCueState.Mounting:
                 UpdateMounting();
                 break;
             case HudEmotionCueState.Idle:
-                break;
             case HudEmotionCueState.Active:
-                UpdateActive();
                 break;
             case HudEmotionCueState.Unmounted:
                 Object.Destroy(gameObject);

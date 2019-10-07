@@ -7,18 +7,6 @@ public class EmotionInteractable: Interactable {
     /// Populated with the UI element when 
     private GameObject EmotionCue;
 
-    /*
-    (the base class handles these for you)
-
-    void Start() {
-        InteractableManager.Interactables.Add(this);
-    }
-
-    void OnDestroy() {
-        InteractableManager.Interactables.Remove(this);
-    } 
-    */
-
     void Awake() {
     }
 

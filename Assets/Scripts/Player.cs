@@ -65,7 +65,12 @@ public class EmotionState {
 [RequireComponent(typeof(BoxCollider2D))]
 // extends MonoBehaviour = is component
 public class Player: MonoBehaviour {
+
+  /// All emotions the player has unlocked.
   public EmotionState Emotions;
+
+  /// The emotion lens through which the player is currently viewing the world.
+  public EmotionType EmotionLens;
 
   [Header("Controls")]
 
