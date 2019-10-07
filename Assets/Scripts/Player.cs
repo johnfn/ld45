@@ -418,8 +418,14 @@ public class Player: MonoBehaviour {
     }
 
     if (hitFlags.TouchingWater) {
-      RecoverFromDeath();
-    }
+            LeanTween.moveLocalY(Manager.Instance.bar2, -10f, 0.3f).setEaseInOutQuad();
+            LeanTween.moveLocalY(Manager.Instance.bar1, 10f, 0.4f).setEaseInOutQuad().setOnComplete(() => {
+                RecoverFromDeath();
+                LeanTween.moveLocalY(Manager.Instance.bar1, 622f, 0.8f).setEaseInOutQuad();
+                LeanTween.moveLocalY(Manager.Instance.bar2, -622f, 0.8f).setEaseInOutQuad();
+            });
+
+        }
 
     if (Input.GetKeyDown("x")) {
       var interactable = InteractableManager.Instance.GetInteractableTarget();
