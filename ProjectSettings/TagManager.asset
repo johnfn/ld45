@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Vines
   - Water
+  - DontCollide
   layers:
   - Default
   - TransparentFX

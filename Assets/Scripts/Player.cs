@@ -192,7 +192,11 @@ public class Player: MonoBehaviour {
         continue;
       }
 
-      if(x.collider.GetComponent<TutTrigger>() != null || x.collider.GetComponent<Character>() != null) {
+      if (x.collider.GetComponent<TutTrigger>() != null || x.collider.GetComponent<Character>() != null) {
+        continue;
+      }
+
+      if (x.collider.tag == "DontCollide") {
         continue;
       }
 
@@ -345,6 +349,16 @@ public class Player: MonoBehaviour {
   private void OnTriggerEnter2D(Collider2D other) {
     if (IsColliderAVine(other)) {
       isTouchingLadder = true;
+    }
+
+    if (other.gameObject == MusicManager.Instance.LR0Trigger) {
+      MusicManager.Instance.TriggerMusicSegment(MusicSegment.LakeRasa0);
+    } else if (other.gameObject == MusicManager.Instance.LR1Trigger) {
+      MusicManager.Instance.TriggerMusicSegment(MusicSegment.LakeRasa1);
+    } else if (other.gameObject == MusicManager.Instance.LR2Trigger) {
+      MusicManager.Instance.TriggerMusicSegment(MusicSegment.LakeRasa2);
+    } else if (other.gameObject == MusicManager.Instance.LR3Trigger) {
+      MusicManager.Instance.TriggerMusicSegment(MusicSegment.LakeRasa3);
     }
   }
 
