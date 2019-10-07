@@ -11,14 +11,14 @@ public enum DialogState {
 public class Dialog: MonoBehaviour {
   public Canvas canvas;
   public Text text;
-  public SpriteRenderer sprite;
+  public SpriteRenderer BlackBackgroundSprite;
   public Text ReactionText;
   public GameObject ReactionIcon;
 
   public float textScaleFactor;
   public float maxDialogWidth;
 
-  private EmotionType selectedEmotionResponse = EmotionType.None;
+  private int selectedResponseIndex = -1;
 
   [Header("Smaller is faster")]
   public int textSpeed;
@@ -34,8 +34,8 @@ public class Dialog: MonoBehaviour {
 
   private int index = 0;
 
-  public EmotionType getEmotionResponse() {
-    return selectedEmotionResponse;
+  public int getEmotionResponse() {
+    return selectedResponseIndex;
   }
 
   char? getNextChar() {
@@ -50,9 +50,9 @@ public class Dialog: MonoBehaviour {
     }
   }
 
-  public float Width { get { return this.sprite.bounds.size.x; } }
+  public float Width { get { return this.BlackBackgroundSprite.bounds.size.x; } }
 
-  public float Height { get { return this.sprite.bounds.size.y; } }
+  public float Height { get { return this.BlackBackgroundSprite.bounds.size.y; } }
 
   private float TextWidth;
   private float TextHeight;
@@ -70,17 +70,23 @@ public class Dialog: MonoBehaviour {
 
     generationSettings.generationExtents = new Vector2(maxDialogWidth, 10000);
 
+    var reactionCount = emotionReactions == null ? 0 : emotionReactions.Count;
+
+    Util.Log(reactionCount);
+
     TextWidth  = textGen.GetPreferredWidth(dialog, generationSettings);
     TextHeight = textGen.GetPreferredHeight(dialog, generationSettings);
+
+    var optionsHeight = (1f + 1f * reactionCount) * 50f; // add space for options if there are any
 
     canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(
       TextWidth / textScaleFactor,
       TextHeight / textScaleFactor
     );
 
-    sprite.size = new Vector2(
+    BlackBackgroundSprite.size = new Vector2(
       TextWidth / textScaleFactor,
-      TextHeight / textScaleFactor
+      (TextHeight + optionsHeight) / textScaleFactor
     );
   }
 
@@ -95,12 +101,13 @@ public class Dialog: MonoBehaviour {
     visibleDialog = "";
     entireDialog = dialog;
 
+    this.emotionReactions = emotionReactions;
+
     CalculateDialogSize(dialog);
 
     state = DialogState.WritingText;
 
     text.text = "";
-    this.emotionReactions = emotionReactions;
   }
 
   string GetCloseTagName(string tagName) {
@@ -213,7 +220,8 @@ public class Dialog: MonoBehaviour {
     foreach (var (emotionType, interactionName, nextDialogTree) in emotionReactions) {
       if (Input.GetKeyDown(number.ToString())) {
         state = DialogState.Done;
-        selectedEmotionResponse = emotionType;
+        selectedResponseIndex = number - 1;
+
         break;
       }
 
@@ -238,7 +246,10 @@ public class Dialog: MonoBehaviour {
 
         break;
       case DialogState.FinishedAndWaitingForInput:
-        if (Input.GetKeyDown("x")) {
+        if (
+          Input.GetKeyDown("x") && 
+          (emotionReactions == null || emotionReactions.Count == 0)
+        ) {
           state = DialogState.Done;
         }
 

@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 5903884509521710264}
   text: {fileID: 5903884509657996145}
-  sprite: {fileID: 5903884507917441635}
+  BlackBackgroundSprite: {fileID: 5903884507917441635}
   ReactionText: {fileID: 8237415612305765670}
   ReactionIcon: {fileID: 2947962070093866816}
   textScaleFactor: 50
@@ -286,11 +286,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5903884508771495567}
     m_Modifications:
-    - target: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
-        type: 3}
-      propertyPath: m_Name
-      value: DialogReaction
-      objectReference: {fileID: 0}
     - target: {fileID: 6839498857248273355, guid: a44147e9736a140c6b6c4ec1f8a625e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -361,6 +356,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 897162924705014615, guid: a44147e9736a140c6b6c4ec1f8a625e5,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogReaction
+      objectReference: {fileID: 0}
     - target: {fileID: 2011353579654960242, guid: a44147e9736a140c6b6c4ec1f8a625e5,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -375,6 +375,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063866217283759352, guid: a44147e9736a140c6b6c4ec1f8a625e5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8063866217283759352, guid: a44147e9736a140c6b6c4ec1f8a625e5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a44147e9736a140c6b6c4ec1f8a625e5, type: 3}
