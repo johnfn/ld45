@@ -19,7 +19,7 @@ public class TitleManager : MonoBehaviour
     void Start()
     {
         if (PlayerPrefs.GetInt("FinishedGame", 0) == 1) title.GetComponent<Image>().sprite = colorfulTitle;
-        StartAnim();
+        StartAnim();        
     }
 
     private void StartAnim()
@@ -42,7 +42,6 @@ public class TitleManager : MonoBehaviour
 
     public void GoTo()
     {
-
         LeanTween.alphaCanvas(allCanvas, 0, 1f).setEaseInOutQuad().setOnComplete(() => { SceneManager.LoadScene("SampleScene"); });
     }
 }

@@ -542,7 +542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 179, y: 0.000020980835}
+  m_AnchoredPosition: {x: 135, y: 0.000020980835}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591461830
@@ -1318,7 +1318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 34, y: -35}
+  m_AnchoredPosition: {x: 55, y: -35}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697209498
@@ -1339,8 +1339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ERROR: you don''t have enough                 to change your name right
-    now.'
+  m_text: You don't have enough                 to change your name right now.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d0a5763d931b46a28098923172738b6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9e1e1fd6a132e9747a64d1c89f28aa52, type: 2}
@@ -1409,10 +1408,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -292.1189, w: 0}
   m_textInfo:
     textComponent: {fileID: 1697209498}
-    characterCount: 75
+    characterCount: 68
     spriteCount: 0
-    spaceCount: 26
-    wordCount: 11
+    spaceCount: 25
+    wordCount: 10
     linkCount: 0
     lineCount: 1
     pageCount: 1
