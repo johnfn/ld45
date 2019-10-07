@@ -283,9 +283,9 @@ MonoBehaviour:
     fried chicken\r\n\noasiris - team name\n\ncabbage - literally being [very different
     from the great and amazing] Laura Shigihara\r\n\noasiris - snacks\r\n\ncatgirl
     m - my livelihood\r\n\nlo-fi remixes of chrono trigger - existing\n\noasiris -
-    team dubstep names\n\n\nDUBSTEP NAMES:\r\n\njohnfn - l i g h t n i n g  s u n
-    d a e\r\ncnnmon - prism delta aka m e d i u m  d a k o t a \r\nmiyolophone - l
-    y c h e e  s e a\r\n"
+    team dubstep names\n\n\nDUBSTEP NAMES:\r\n\noasiris - s e a  s a l t  c h a i\njohnfn
+    - l i g h t n i n g  s u n d a e\r\ncnnmon - prism delta aka m e d i u m  d a
+    k o t a \r\nmiyolophone - l y c h e e  s e a\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d0a5763d931b46a28098923172738b6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9e1e1fd6a132e9747a64d1c89f28aa52, type: 2}
@@ -354,12 +354,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 799098278}
-    characterCount: 828
+    characterCount: 862
     spriteCount: 0
-    spaceCount: 183
-    wordCount: 157
+    spaceCount: 198
+    wordCount: 170
     linkCount: 0
-    lineCount: 52
+    lineCount: 53
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
