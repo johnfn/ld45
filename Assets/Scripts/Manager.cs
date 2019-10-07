@@ -140,7 +140,7 @@ public class Manager: MonoBehaviour {
       EmotionType.Curiosity, 
       EmotionType.Compassion,
     };
-    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
+    EmotionManager.TeachEmotions(StartEmotions);
 
     Player.transform.position = WithCompassionPosition.transform.position;
   }
@@ -150,7 +150,7 @@ public class Manager: MonoBehaviour {
       EmotionType.Curiosity, 
       EmotionType.Compassion,
     };
-    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
+    EmotionManager.TeachEmotions(StartEmotions);
 
     Player.transform.position = InTownPosition.transform.position;
   }
@@ -161,7 +161,7 @@ public class Manager: MonoBehaviour {
       EmotionType.Compassion,
       EmotionType.Affection,
     };
-    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
+    EmotionManager.TeachEmotions(StartEmotions);
 
     Player.transform.position = InTownPosition.transform.position;
   }
@@ -173,12 +173,7 @@ public class Manager: MonoBehaviour {
       EmotionType.Affection,
       EmotionType.Remorse, 
     };
-    StartEmotions.ForEach((emotion) => EmotionManager.TeachEmotion(emotion));
-    // Util.Log(StartEmotions);
-    // EmotionManager.TeachEmotion(EmotionType.Curiosity);
-    // EmotionManager.TeachEmotion(EmotionType.Compassion);
-    // EmotionManager.TeachEmotion(EmotionType.Affection);
-    // EmotionManager.TeachEmotion(EmotionType.Remorse);
+    EmotionManager.TeachEmotions(StartEmotions);
 
     Player.transform.position = InTownPosition.transform.position;
   }

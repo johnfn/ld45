@@ -69,6 +69,10 @@ public class EmotionManager: MonoBehaviour {
     return EmotionCueObject;
   }
 
+  public static void TeachEmotions(List<EmotionType> Emotions) {
+    Emotions.ForEach((Emotion) => EmotionManager.TeachEmotion(Emotion));
+  }
+
   /// Teach emotion to player.
   /// Returns boolean: whether or not anything changed.
   public static bool TeachEmotion(EmotionType emotion) {
