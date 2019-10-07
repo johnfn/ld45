@@ -535,9 +535,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPrefab: {fileID: 5903884507917441638, guid: 14537079c180b4c66895b7e47f1a3b8a,
     type: 3}
+  interactIndicatorPrefab: {fileID: 144725954080593182, guid: 799f2a7f89ff4d641a6da12adb6ef433,
+    type: 3}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
   Player: {fileID: 1022136880}
+  interactIndicatorParent: {fileID: 627771852}
   bar1: {fileID: 873884953}
   bar2: {fileID: 818058941}
   OtherGuy: {fileID: 1529586512}
@@ -707,6 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67cab16bbc704bc19e3886847d86c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicator: {fileID: 0}
   myEmotionType: 1
 --- !u!1 &519420028
 GameObject:
@@ -1184,6 +1188,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instruction: 
+--- !u!1 &627771851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627771852}
+  m_Layer: 0
+  m_Name: Indicators
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &627771852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627771851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695601341
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -544}
+  m_AnchoredPosition: {x: 0, y: -621}
   m_SizeDelta: {x: 800, y: 644.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &818058943
@@ -1412,7 +1446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 549}
+  m_AnchoredPosition: {x: 0, y: 633}
   m_SizeDelta: {x: 800, y: 644.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &873884955
@@ -2432,7 +2466,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.044481814, y: -0.057552338}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2443,7 +2477,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1.6149179, y: 3.9289932}
   m_EdgeRadius: 0
 --- !u!212 &1529586514
 SpriteRenderer:
@@ -2520,6 +2554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e9e129e9a0346379aeabf503d48be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicator: {fileID: 0}
 --- !u!114 &1529586517
 MonoBehaviour:
   m_ObjectHideFlags: 0

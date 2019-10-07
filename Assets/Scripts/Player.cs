@@ -182,7 +182,7 @@ public class Player: MonoBehaviour {
         continue;
       }
 
-      if(x.collider.GetComponent<TutTrigger>() != null) {
+      if(x.collider.GetComponent<TutTrigger>() != null || x.collider.GetComponent<Character>() != null) {
         continue;
       }
 
