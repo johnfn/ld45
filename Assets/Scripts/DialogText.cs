@@ -33,6 +33,10 @@ public class DialogText {
     return $"<color=#6699ff>{ s }</color>";
   }
 
+  private static string Compassion(string s) {
+    return $"<color=#ff9999>{ s }</color>";
+  }
+
   private static string Ash(string s) {
     return $"<color=#999999>{ s }</color>";
   }
@@ -202,18 +206,24 @@ public class DialogText {
     }
   );
 
-  public static List<DialogEvent> AshThree = MakeAshQuestionList(
-    beforeDialog: new List<DialogEvent> {
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("We’re halfway there! Hit me.") },
-    },
-    questionText: "...with another question. Don't actually hit me.",
-    afterDialog: new List<DialogEvent> {
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("...") },
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Well, I'll see you soon!") },
-      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Last one up is a rotten egg!") }
-    }
-  );
+  public static List<DialogEvent> AshThree = new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("You know...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Long ago, Lake Rasa was a popular place.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Married frogs walking their frog babies up and down the vines was a common sight.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("But now?") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Just look around.") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = Curious("What changed?") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = Compassion("Empty houses and not a frog in sight.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Hey, was that a little bit of ") + Compassion("compassion?") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Looks like you learned another emotion! You can use this one by pressing 2.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Anyways, we're about halfway there.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Last one up is a rotten egg!"), instruct = "Press 2 to toggle compassion." }
+  };
 
+  
   public static List<DialogEvent> AshFour = MakeAshQuestionList(
     beforeDialog: new List<DialogEvent> {
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I have some bad news.") },

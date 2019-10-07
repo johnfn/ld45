@@ -4,7 +4,9 @@ using TMPro;
 
 public enum GameState {
   Introduction,
-  FirstGameplay
+  FirstGameplay,
+  WithCompassion,
+  InTown
 }
 
 public class Manager: MonoBehaviour {
@@ -59,6 +61,10 @@ public class Manager: MonoBehaviour {
 
   public GameObject FirstGameplayPlayerPosition;
 
+  public GameObject WithCompassionPosition;
+
+  public GameObject InTownPosition;
+
   [Header("Objects used to fade game in and out")]
 
   public GameObject FullFade;
@@ -86,6 +92,12 @@ public class Manager: MonoBehaviour {
         break;
       case GameState.FirstGameplay:
         StartFirstGameplay();
+        break;
+      case GameState.WithCompassion:
+        StartFirstGameplayWithCompassion();
+        break;
+      case GameState.InTown:
+        StartInTown();
         break;
     }
   }
@@ -140,6 +152,30 @@ public class Manager: MonoBehaviour {
     };
 
     Player.transform.position = FirstGameplayPlayerPosition.transform.position;
+  }
+
+  void StartFirstGameplayWithCompassion() {
+    Player.Emotions = new EmotionState {
+      Curiosity = true,
+      Compassion = true,
+      Affection = false,
+      Remorse = false,
+      Betrayal = false,
+    };
+
+    Player.transform.position = WithCompassionPosition.transform.position;
+  }
+
+  void StartInTown() {
+    Player.Emotions = new EmotionState {
+      Curiosity = true,
+      Compassion = true,
+      Affection = false,
+      Remorse = false,
+      Betrayal = false,
+    };
+
+    Player.transform.position = InTownPosition.transform.position;
   }
 
   void Update() {

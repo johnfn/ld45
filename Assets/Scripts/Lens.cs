@@ -29,6 +29,10 @@ public class Lens: MonoBehaviour {
       newEmotion = EmotionType.Curiosity;
     }
 
+    if (Input.GetKeyDown("2") && player.Emotions.Compassion) {
+      newEmotion = EmotionType.Compassion;
+    }
+
     if (newEmotion != null) {
       if (ActiveEmotion == newEmotion) {
         ActiveEmotion = EmotionType.None;
@@ -56,6 +60,11 @@ public class Lens: MonoBehaviour {
       case EmotionType.Curiosity:
         spriteRenderer.color = new Color(.3f, .6f, 1f, 0.3f);
         go.text = "Curiosity Lens";
+
+        break;
+      case EmotionType.Compassion:
+        spriteRenderer.color = new Color(1f, .7f, .7f, 0.3f);
+        go.text = "Compassion Lens";
 
         break;
     }
