@@ -115,6 +115,8 @@ public class Player: MonoBehaviour {
   private Animator anim;
   private SpriteRenderer spriteRenderer;
 
+  private bool didStartJump = false;
+
   private bool isActivelyJumping = false;
   private bool didCancelJump = false;
 
@@ -190,7 +192,7 @@ public class Player: MonoBehaviour {
         continue;
       }
 
-      if(x.collider.GetComponent<TutTrigger>() != null || x.collider.GetComponent<Character>() != null) {
+      if (x.collider.GetComponent<TutTrigger>() != null || x.collider.GetComponent<Character>() != null) {
         continue;
       }
 
@@ -259,8 +261,13 @@ public class Player: MonoBehaviour {
 
   /// Call to trigger jump.
   void startJump() {
-    accelerationY = JumpStrength / 2;
-    velocityY = JumpStrength * 5;
+    isActivelyJumping = true;
+    accelerationY = JumpStrength / 4;
+    velocityY = JumpStrength * 3;
+  }
+
+  void endJump() {
+    isActivelyJumping = false;
   }
 
   bool checkIsMidair() {
@@ -268,13 +275,47 @@ public class Player: MonoBehaviour {
   }
 
   // Check if able to jump (Y acceleration is near zero.)
-  bool checkIsGrounded() { 
-    return (!isActivelyJumping && Mathf.Abs(accelerationY) < 0.01f);
+  // bool checkIsGrounded() { 
+  //   return (!isActivelyJumping && Mathf.Abs(accelerationY) < 0.01f);
+  // }
+
+  bool checkIsMidjump() {
+    // return Mathf.Abs(accelerationY) >= 0.01f;
+    return !hitFlags.HitBottom() && isActivelyJumping;
+  }
+
+  bool checkIsGrounded() {
+    return hitFlags.HitBottom() && !checkIsMidjump();
+    // return hitFlags.HitBottom();
+  }
+
+  void updateJump() {
+    if (Input.GetKeyDown("space") && checkIsGrounded()) {
+      startJump();
+      Util.Log("JUMP!!!", isActivelyJumping);
+    }
+    if (Input.GetKeyUp("space")) {
+      endJump();
+      Util.Log("End jump", isActivelyJumping);
+    }
+
+    // if (isTouchingLadder) {
+
+    // } else if (checkIsGrounded()) {
+    //   isActivelyJumping = false;
+    //   // Util.Log("Grounded");
+    //   // accelerationY = 0f;
+
+      
+    // } else {
+    //   // Util.Log("NOT grounded");
+    // }
   }
 
   Vector3 calculateVelocity() {
     var dx = 0f;
     var dy = 0f;
+
 
     if (Input.GetKey("a")) {
       dx -= 1;
@@ -285,6 +326,7 @@ public class Player: MonoBehaviour {
       SetLookingDirection(new Vector3(1f, 0, 0));
     }
 
+    /// On ladder
     if (isTouchingLadder) {
       if (Input.GetKey("w")) { 
         dy += 1; 
@@ -305,6 +347,17 @@ public class Player: MonoBehaviour {
           startJump();
         }
       }
+    /// On ground
+    } else if (checkIsGrounded()) {
+      // dy = 0;
+
+      // Must set some downwards velocity or will unground
+      if (hitFlags.HitBottom()) {
+        velocityY = -0.01f;
+      }
+      dy = velocityY;
+
+    /// In midair
     } else {
       velocityY += accelerationY;
       accelerationY /= gravityScaleFactor;
@@ -321,9 +374,9 @@ public class Player: MonoBehaviour {
 
       dy = velocityY;
 
-      if (Input.GetKey("space") && hitFlags.HitBottom()) { 
-        startJump();
-      }
+      // if (Input.GetKey("space") && hitFlags.HitBottom()) {
+      //   startJump();
+      // }
     }
 
     var result = new Vector3(dx, dy, 0) * MovementSpeed;
@@ -383,10 +436,19 @@ public class Player: MonoBehaviour {
     transform.position = lastSafeSpot;
   }
 
+  void Update() {
+    updateJump();
+  }
+
   void FixedUpdate() {
-    velocityY -= 0.3f;
+    velocityY += FallingSpeed;
 
     var desiredMovement = calculateVelocity();
+
+    // Logs
+    // Log velocity
+    // Util.Log(desiredMovement, "velocityY", velocityY, "accelY", accelerationY);
+
 
     // Set Animator parameters based on new and previous states
 
@@ -396,6 +458,7 @@ public class Player: MonoBehaviour {
     bool nextWalk = Mathf.Abs(desiredMovement.x) > 0, 
          nextJump = !isTouchingLadder && checkIsMidair(),
          nextClimb = isTouchingLadder;
+    // Util.Log(prevWalk, prevJump, prevClimb, nextWalk, nextJump, nextClimb);
 
     if (!prevClimb && nextClimb) leaves.Play();
     if (prevClimb && !nextClimb) leaves.Stop();
@@ -470,9 +533,6 @@ public class Player: MonoBehaviour {
       // Show emotion
     }
 
-    // Logs
-    // Log velocity
-    Util.Log(desiredMovement);
   }
 
 

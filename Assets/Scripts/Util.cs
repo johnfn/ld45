@@ -177,6 +177,14 @@ public static class Util {
     Debug.Log(Util.ConvertToString(o1, 0) + ", " + Util.ConvertToString(o2, 0) + ", " + Util.ConvertToString(o3, 0) + ", " + Util.ConvertToString(o4, 0));
   }
 
+  public static void Log(object o1, object o2, object o3, object o4, object o5) {
+    Debug.Log(Util.ConvertToString(o1, 0) + ", " + Util.ConvertToString(o2, 0) + ", " + Util.ConvertToString(o3, 0) + ", " + Util.ConvertToString(o4, 0) + ", " + Util.ConvertToString(o5, 0));
+  }
+
+  public static void Log(object o1, object o2, object o3, object o4, object o5, object o6) {
+    Debug.Log(Util.ConvertToString(o1, 0) + ", " + Util.ConvertToString(o2, 0) + ", " + Util.ConvertToString(o3, 0) + ", " + Util.ConvertToString(o4, 0) + ", " + Util.ConvertToString(o5, 0) + ", " + Util.ConvertToString(o6, 0));
+  }
+
   public static void DrawPoint(Vector3 pt, Color c = default(Color)) {
     if (c == default(Color)) c = Color.cyan;
 
