@@ -85,7 +85,6 @@ public class Manager: MonoBehaviour {
         StartIntroduction();
         break;
       case GameState.FirstGameplay:
-        
         StartFirstGameplay();
         break;
     }
@@ -99,7 +98,6 @@ public class Manager: MonoBehaviour {
     public void SetInstruction(string instructText)
     {
         CanvasGroup canvasGroup = InstructObj.GetComponent<CanvasGroup>();
-
         canvasGroup.alpha = 0;
         InstructObj.gameObject.SetActive(true);
         LeanTween.alphaCanvas(canvasGroup, 0.5f, 0.6f).setEaseInOutQuad().setOnComplete(() => {

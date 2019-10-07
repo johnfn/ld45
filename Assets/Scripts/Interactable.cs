@@ -18,13 +18,15 @@ public class Interactable: MonoBehaviour {
 
   virtual public void ShowAsInteractable() {
     interactIndicator = Instantiate(Manager.Instance.interactIndicatorPrefab, new Vector3(xPos, transform.position.y+3, 0), Quaternion.identity, Manager.Instance.interactIndicatorParent);
+    Manager.Instance.SetInstruction("Press X to interact.");
     interactIndicator.SetActive(true);
   }
 
   virtual public void ShowAsNormal() {
     Destroy(interactIndicator);
     interactIndicator.SetActive(false);
-    }
+    Manager.Instance.HideInstruction();
+  }
 
   virtual public void Interact() {
 
