@@ -182,12 +182,6 @@ public class Manager: MonoBehaviour {
 
   }
 
-  /* Learned emotions */
-
-
-
-
-
   /* Misc */
 
   public static Dialog CreateNewDialog(
