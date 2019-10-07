@@ -11,6 +11,8 @@ public class Manager: MonoBehaviour {
   // Prefabs 
   public GameObject DialogPrefab;
 
+  public GameObject DialogReactionPrefab;
+
   public GameObject CuriosityCuePrefab;
 
   // Objects
@@ -119,7 +121,11 @@ public class Manager: MonoBehaviour {
 
   }
 
-  public static Dialog CreateNewDialog(string text, GameObject target, Dictionary<EmotionType, List<DialogEvent>> emotionReactions) {
+  public static Dialog CreateNewDialog(
+    string text, 
+    GameObject target, 
+    List<(EmotionType, string, List<DialogEvent>)> emotionReactions = null
+  ) {
     var dialogGO = GameObject.Instantiate(
       Instance.DialogPrefab,
       target.transform.position,

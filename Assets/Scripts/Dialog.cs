@@ -26,7 +26,7 @@ public class Dialog: MonoBehaviour {
   private DialogState state;
   private string entireDialog;
   private int tick = 0;
-  private Dictionary<EmotionType, List<DialogEvent>> emotionReactions;
+  private List<(EmotionType, string, List<DialogEvent>)> emotionReactions = null;
 
   private string currentTagName = "";
 
@@ -54,6 +54,9 @@ public class Dialog: MonoBehaviour {
 
   public float Height { get { return this.sprite.bounds.size.y; } }
 
+  private float TextWidth;
+  private float TextHeight;
+
   void Start() {
     ReactionText.gameObject.SetActive(false);
     ReactionIcon.gameObject.SetActive(false);
@@ -67,17 +70,17 @@ public class Dialog: MonoBehaviour {
 
     generationSettings.generationExtents = new Vector2(maxDialogWidth, 10000);
 
-    float width = textGen.GetPreferredWidth(dialog, generationSettings);
-    float height = textGen.GetPreferredHeight(dialog, generationSettings);
+    TextWidth  = textGen.GetPreferredWidth(dialog, generationSettings);
+    TextHeight = textGen.GetPreferredHeight(dialog, generationSettings);
 
     canvas.GetComponent<RectTransform>().sizeDelta = new Vector2(
-      width / textScaleFactor,
-      height / textScaleFactor
+      TextWidth / textScaleFactor,
+      TextHeight / textScaleFactor
     );
 
     sprite.size = new Vector2(
-      width / textScaleFactor,
-      height / textScaleFactor
+      TextWidth / textScaleFactor,
+      TextHeight / textScaleFactor
     );
   }
 
@@ -85,7 +88,10 @@ public class Dialog: MonoBehaviour {
     return state;
   }
 
-  public void StartDialog(string dialog, Dictionary<EmotionType, List<DialogEvent>> emotionReactions = null) {
+  public void StartDialog(
+    string dialog, 
+    List<(EmotionType, string, List<DialogEvent>)> emotionReactions = null
+  ) {
     visibleDialog = "";
     entireDialog = dialog;
 
@@ -158,12 +164,25 @@ public class Dialog: MonoBehaviour {
     currentTagName = "";
     visibleDialog = entireDialog;
 
-    if (this.emotionReactions != null) {
-      foreach (var reaction in emotionReactions) {
-        ReactionText.gameObject.SetActive(true);
-        ReactionIcon.gameObject.SetActive(true);
+    if (emotionReactions != null) {
+      var count = 0f;
 
-        ReactionText.text = $"z: { reaction.Key.ToString() }";
+      foreach (var (emotionType, interactionText, dialogTree) in emotionReactions) {
+        count++;
+
+        var dialogOptionGO = GameObject.Instantiate(
+          Manager.Instance.DialogReactionPrefab,
+          text.transform.position + new Vector3(
+            0f,
+            count * -1f,
+            0f
+          ),
+          Quaternion.identity,
+          canvas.transform
+        );
+
+        dialogOptionGO.GetComponent<DialogOption>().SetReactionText(interactionText);
+        dialogOptionGO.GetComponent<DialogOption>().SetReactionIconType(emotionType);
       }
     }
   }

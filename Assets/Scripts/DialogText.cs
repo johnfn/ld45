@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public enum CharacterName {
   Blank,
   Ash,
-
   Trudy
 }
 
@@ -20,7 +20,7 @@ public class DialogEvent {
 
   // other events that can happen during dialog
 
-  public Dictionary<EmotionType, List<DialogEvent>> EmotionReactions = null;
+  public List<(EmotionType, string, List<DialogEvent>)> Responses = null;
   public Fade Fade = null;
   public EmotionType ReceiveEmotion = EmotionType.None; 
   public string instruct = null;
@@ -74,17 +74,26 @@ public class DialogText {
   };
 
   public static List<DialogEvent> Trudialog = new List<DialogEvent> {
-    new DialogEvent { Name = CharacterName.Blank, Contents = "<color=red>Um... hi.</color>" },
+    new DialogEvent { Name = CharacterName.Blank, Contents = "Um..." },
     new DialogEvent { 
       Name = CharacterName.Trudy, 
       Contents = "Hewwwwoooo",
-      EmotionReactions = new Dictionary<EmotionType, List<DialogEvent>> {
-        { 
+      Responses = new List<(EmotionType, string, List<DialogEvent>)> {
+        ( 
           EmotionType.Curiosity, 
+          "Curiosity",
           new List<DialogEvent> {
             new DialogEvent { Name = CharacterName.Blank, Contents = "I'm really curious about your lack of non w consonant sounds" },
           }
-        }
+        ),
+
+        ( 
+          EmotionType.None, 
+          "No Emotion",
+          new List<DialogEvent> {
+            new DialogEvent { Name = CharacterName.Blank, Contents = "Bored now, bye" },
+          }
+        ),
       }
     }
   };
