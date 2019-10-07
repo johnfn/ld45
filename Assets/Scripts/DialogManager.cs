@@ -26,6 +26,8 @@ public class DialogManager: MonoBehaviour {
 
   private Dialog currentDialogObject;
 
+  private DialogEvent currentDialogItem;
+
   private DialogManagerState state;
 
   private SpriteRenderer rectangleFade;
@@ -66,9 +68,18 @@ public class DialogManager: MonoBehaviour {
         break;
       case DialogManagerState.ShowingDialog:
         if (currentDialogObject.GetDialogState() == DialogState.Done) {
-          if (currentSequence.Count == 0) {
-            FinishDialogSequence();
+          var emotionResponse = currentDialogObject.getEmotionResponse();
+
+          if (emotionResponse == EmotionType.None) {
+            if (currentSequence.Count == 0) {
+              FinishDialogSequence();
+            } else {
+              state = DialogManagerState.ShouldShowNextDialog;
+            }
           } else {
+            var nextSequence = currentDialogItem.EmotionReactions[emotionResponse];
+
+            currentSequence = nextSequence;
             state = DialogManagerState.ShouldShowNextDialog;
           }
         }
@@ -92,7 +103,7 @@ public class DialogManager: MonoBehaviour {
       GameObject.Destroy(currentDialogObject.gameObject);
     }
 
-    var currentDialogItem = currentSequence.First();
+    currentDialogItem = currentSequence.First();
 
     currentSequence = currentSequence.Skip(1).ToList();
 

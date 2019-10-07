@@ -18,6 +18,8 @@ public class Dialog: MonoBehaviour {
   public float textScaleFactor;
   public float maxDialogWidth;
 
+  private EmotionType selectedEmotionResponse = EmotionType.None;
+
   [Header("Smaller is faster")]
   public int textSpeed;
 
@@ -31,6 +33,10 @@ public class Dialog: MonoBehaviour {
   private string visibleDialog = "";
 
   private int index = 0;
+
+  public EmotionType getEmotionResponse() {
+    return selectedEmotionResponse;
+  }
 
   char? getNextChar() {
     if (index >= entireDialog.Length) {
@@ -197,6 +203,12 @@ public class Dialog: MonoBehaviour {
       case DialogState.FinishedAndWaitingForInput:
         if (Input.GetKeyDown("x")) {
           state = DialogState.Done;
+        }
+
+        // TODO: Make sure this is actually valid...
+        if (Input.GetKeyDown("z")) {
+          state = DialogState.Done;
+          selectedEmotionResponse = EmotionType.Curiosity;
         }
 
         break;
