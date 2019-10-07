@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Lens: MonoBehaviour {
-  private EmotionType activeEmotion = EmotionType.None;
+  [HideInInspector]
+  public EmotionType ActiveEmotion = EmotionType.None;
+
   private Player player;
   private SpriteRenderer spriteRenderer;
 
+  public static Lens Instance;
+
+  public GameObject LensNameObject;
+
   void Start() {
+    Instance = this;
+
     player = Manager.Instance.Player;
     spriteRenderer = GetComponent<SpriteRenderer>();
   }
@@ -21,10 +30,10 @@ public class Lens: MonoBehaviour {
     }
 
     if (newEmotion != null) {
-      if (activeEmotion == newEmotion) {
-        activeEmotion = EmotionType.None;
+      if (ActiveEmotion == newEmotion) {
+        ActiveEmotion = EmotionType.None;
       } else {
-        activeEmotion = (EmotionType) newEmotion;
+        ActiveEmotion = (EmotionType) newEmotion;
       }
     }
   }
@@ -36,12 +45,18 @@ public class Lens: MonoBehaviour {
 
     CheckForNewEmotion();
 
-    switch (activeEmotion) {
+    var go = LensNameObject.gameObject.GetComponent<TextMeshProUGUI>();
+
+    switch (ActiveEmotion) {
       case EmotionType.None:
         spriteRenderer.color = new Color(0f, 0f, 0f, 0f);
+        go.text = "";
+
         break;
       case EmotionType.Curiosity:
         spriteRenderer.color = new Color(.3f, .6f, 1f, 0.3f);
+        go.text = "Curiosity Lens";
+
         break;
     }
   }
