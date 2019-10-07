@@ -128,8 +128,58 @@ public class DialogText {
     }
   };
 
-  public static List<DialogEvent> AshTwo = new List<DialogEvent> {
-    new DialogEvent { Name = CharacterName.Ash, Contents = Ash("This is ash two") },
-    new DialogEvent { Name = CharacterName.Ash, Contents = "Um..." },
-  };
+  private static List<DialogEvent> MakeAshQuestionList(string firstMessage) {
+    return (
+      new List<DialogEvent> {
+        new DialogEvent {
+          Name = CharacterName.Ash, 
+          Contents = "Congrats, you made it! You win a question.",
+          Responses = new List<(EmotionType, string, List<DialogEvent>)> {
+            ( 
+              EmotionType.Curiosity, 
+              Curious("So, is Ash short for anything?"),
+              new List<DialogEvent> {
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Yeah it’s short for") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Why do you keep ASHING me that") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("LOL") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("okay sorry i’ll stop") },
+              }
+            ),
+
+            ( 
+              EmotionType.Curiosity, 
+              Curious("What's this city we're headed to?"),
+              new List<DialogEvent> {
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("It’s called ‘New Hylidae.’ More of a town than a city, really.") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("You’ll like the people there, I think. They’re all super nice!") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = "<size=12>(except Marv)</size>" },
+              }
+            ),
+
+            ( 
+              EmotionType.Curiosity, 
+              Curious("How did I end up in the lake?"),
+              new List<DialogEvent> {
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I don’t know!") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("I heard a big splash and rushed down to make sure no one was hurt. It’s a pretty long fall.") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Honestly, it’s incredible that you didn’t shatter your spine. Or get flattened on impact with the water and turn into a pancake of blood and viscera.") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash(":D") },
+              }
+            ),
+
+            ( 
+              EmotionType.Curiosity, 
+              Curious("Have you been here a long time?"),
+              new List<DialogEvent> {
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Yeah. I’ve lived in town for quite a while.") },
+                new DialogEvent { Name = CharacterName.Ash, Contents = Ash("It seems small at first, but I think eventually you’ll love it as much as I do!") },
+              }
+            ),
+          }
+        }
+      }
+    );
+  }
+
+  public static List<DialogEvent> AshTwo = MakeAshQuestionList("Congrats, you made it! You win a question.");
 }
