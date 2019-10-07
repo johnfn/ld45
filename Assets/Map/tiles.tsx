@@ -28,17 +28,17 @@
  </tile>
  <tile id="8">
   <objectgroup draworder="index">
-   <object id="1" x="25.3333" y="77.3333" width="236" height="153.333"/>
+   <object id="1" x="25.3333" y="56" width="236" height="153.333"/>
   </objectgroup>
  </tile>
  <tile id="9">
   <objectgroup draworder="index">
-   <object id="1" x="-2.66667" y="77.3333" width="264" height="153.333"/>
+   <object id="1" x="0" y="56" width="264" height="153.333"/>
   </objectgroup>
  </tile>
  <tile id="10">
   <objectgroup draworder="index">
-   <object id="1" x="-2.66667" y="77.3333" width="225.333" height="153.333"/>
+   <object id="1" x="-2.66667" y="56" width="225.333" height="153.333"/>
   </objectgroup>
  </tile>
  <tile id="11">
@@ -48,22 +48,22 @@
  </tile>
  <tile id="16">
   <objectgroup draworder="index">
-   <object id="1" x="49.3333" y="77.3333" width="216" height="190.667"/>
+   <object id="1" x="49.3333" y="56" width="216" height="190.667"/>
   </objectgroup>
  </tile>
  <tile id="17">
   <objectgroup draworder="index">
-   <object id="1" x="-20" y="77.3333" width="285.333" height="190.667"/>
+   <object id="1" x="0" y="56" width="285.333" height="190.667"/>
   </objectgroup>
  </tile>
  <tile id="18">
   <objectgroup draworder="index">
-   <object id="2" x="-20" y="77.3333" width="225.333" height="190.667"/>
+   <object id="2" x="0" y="56" width="225.333" height="190.667"/>
   </objectgroup>
  </tile>
  <tile id="19">
   <objectgroup draworder="index">
-   <object id="1" x="40.6667" y="83.3333" width="181.333" height="182"/>
+   <object id="1" x="40.6667" y="56" width="181.333" height="182"/>
   </objectgroup>
  </tile>
  <tile id="24">
@@ -114,6 +114,16 @@
  <tile id="48">
   <objectgroup draworder="index">
    <object id="1" x="32" y="5" width="186.667" height="250.667"/>
+  </objectgroup>
+ </tile>
+ <tile id="50">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="56" width="256" height="200"/>
+  </objectgroup>
+ </tile>
+ <tile id="51">
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="56" width="256" height="200"/>
   </objectgroup>
  </tile>
  <tile id="52">
