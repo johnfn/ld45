@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour {
   public GameObject player;
-  public static int numLayers = 4;
+  public static int numLayers = 5;
   public GameObject[] layers = new GameObject[numLayers];
   private Renderer[] layerRenderers = new Renderer[numLayers];
 
