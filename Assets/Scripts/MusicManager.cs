@@ -19,6 +19,14 @@ public class MusicManager: MonoBehaviour {
   public AudioSource LR2;
   public AudioSource LR3;
 
+  public AudioSource NHWelcomeLol;
+  public AudioSource NHBase;
+  public AudioSource NHAsh;
+  public AudioSource NHAffection;
+  public AudioSource NHCompassion;
+  public AudioSource NHRemorse;
+
+
   public static MusicManager Instance;
 
   void Awake() {
