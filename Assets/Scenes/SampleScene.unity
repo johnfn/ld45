@@ -435,7 +435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &69343092
 Transform:
   m_ObjectHideFlags: 0
@@ -907,7 +907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &199150103
 Transform:
   m_ObjectHideFlags: 0
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   tutTriggersParent: {fileID: 339955222}
   LearnedEmotions: {fileID: 0}
   Camera: {fileID: 519420031}
-  CurrentGameState: 0
+  CurrentGameState: 5
   IntroductionPlayerPosition: {fileID: 1699614726}
   FirstGameplayPlayerPosition: {fileID: 324968617}
   WithCompassionPosition: {fileID: 775783052}
@@ -2512,7 +2512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &746766213
 Transform:
   m_ObjectHideFlags: 0
@@ -4587,7 +4587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1176067726
 Transform:
   m_ObjectHideFlags: 0
@@ -17653,7 +17653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2013386290
 Transform:
   m_ObjectHideFlags: 0
