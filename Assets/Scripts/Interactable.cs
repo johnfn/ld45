@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 public class Interactable: MonoBehaviour {
-
+  [HideInInspector]
   public GameObject interactIndicator;
   public float xPos;
 
