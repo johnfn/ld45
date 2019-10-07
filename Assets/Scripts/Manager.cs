@@ -13,6 +13,7 @@ public class Manager: MonoBehaviour {
     public GameObject interactIndicatorPrefab;
 
   public GameObject CuriosityCuePrefab;
+  public GameObject RemorseCuePrefab;
 
   // Objects
 
@@ -145,6 +146,9 @@ public class Manager: MonoBehaviour {
     switch (emotionType) {
       case EmotionType.Curiosity:
         OriginalPrefab = Instance.CuriosityCuePrefab;
+        break;
+      case EmotionType.Remorse:
+        OriginalPrefab = Instance.RemorseCuePrefab;
         break;
     }
     if (OriginalPrefab == null) {
