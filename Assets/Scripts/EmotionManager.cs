@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EmotionManager: MonoBehaviour {
 
+  [Header("UI Elements. Appear above player's head when near interactable")]
   public GameObject AffectionCuePrefab;
   public GameObject BetrayalCuePrefab;
   public GameObject CompassionCuePrefab;
@@ -18,7 +19,6 @@ public class EmotionManager: MonoBehaviour {
   public GameObject LearnedForgivenessIcon;
   public GameObject LearnedRemorseIcon;
   
-
   private GameObject GetEmotionPrefab(EmotionType emotionType) {
     switch (emotionType) {
       case EmotionType.Affection:
