@@ -37,6 +37,10 @@ public class DialogText {
     return $"<color=#999999>{ s }</color>";
   }
 
+  public static List<DialogEvent> BookDialog = new List<DialogEvent> {
+    new DialogEvent { Name = CharacterName.Blank, Contents = "It's some old books." }
+  };
+
   public static List<DialogEvent> FirstDialog = new List<DialogEvent> {
     new DialogEvent { Fade = new Fade { Immediate = true, RectangleFadeOpacity = 1.0f } },
 
