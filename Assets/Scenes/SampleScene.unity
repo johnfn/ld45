@@ -556,12 +556,16 @@ MonoBehaviour:
     type: 3}
   AffectionCuePrefab: {fileID: 6711652922937176221, guid: 368e549f1c7a547cc969dea2cc65c823,
     type: 3}
-  BetrayalCuePrefab: {fileID: 0}
-  CompassionCuePrefab: {fileID: 0}
+  BetrayalCuePrefab: {fileID: 6711652922937176221, guid: 7a09566e2644d4342b19ca39c857c53a,
+    type: 3}
+  CompassionCuePrefab: {fileID: 6711652922937176221, guid: 5c60dfda4519746ceaf2e7e46fdce98b,
+    type: 3}
   CuriosityCuePrefab: {fileID: 6711652922937176221, guid: 8beaa63ddaa2444939d8eabfad19728f,
     type: 3}
-  ForgivenessCuePrefab: {fileID: 0}
-  RemorseCuePrefab: {fileID: 0}
+  ForgivenessCuePrefab: {fileID: 6711652922937176221, guid: faa90bfb6714346c3aeca4b53bfd74a4,
+    type: 3}
+  RemorseCuePrefab: {fileID: 6711652922937176221, guid: d329f80d0e55943b6aa2c16a3f7ad20c,
+    type: 3}
   Player: {fileID: 1022136880}
   interactIndicatorParent: {fileID: 627771852}
   bar1: {fileID: 873884953}
@@ -715,7 +719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514880180}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.2, y: -67.2, z: 0}
+  m_LocalPosition: {x: 51.9, y: -65.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
