@@ -310,7 +310,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 438005836}
         m_MethodName: LimitInput
         m_Mode: 1
         m_Arguments:
