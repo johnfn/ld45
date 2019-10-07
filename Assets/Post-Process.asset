@@ -121,7 +121,7 @@ MonoBehaviour:
         neutralWhiteLevel: 5.3
         neutralWhiteClip: 10
       basic:
-        postExposure: 0.38
+        postExposure: 0.22
         temperature: 0.9
         tint: 0
         hueShift: 0
@@ -157,8 +157,8 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.16465864
-              value: 0.14225942
+              time: 0.22736418
+              value: 0.17226893
               inSlope: 1.4212699
               outSlope: 1.4212699
               tangentMode: 0
@@ -166,8 +166,8 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.311245
-              value: 0.30125523
+              time: 0.3420523
+              value: 0.31512606
               inSlope: 1.2833263
               outSlope: 1.2833263
               tangentMode: 0
