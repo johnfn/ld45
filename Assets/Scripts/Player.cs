@@ -60,6 +60,10 @@ public class EmotionState {
   public bool Betrayal = false;
 
   public bool Forgiveness = false;
+
+  public bool BasicallyHasThemAll() {
+    return Curiosity && Compassion && Affection && Remorse;
+  }
 }
 
 [RequireComponent(typeof(BoxCollider2D))]

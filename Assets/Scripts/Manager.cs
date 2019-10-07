@@ -7,7 +7,8 @@ public enum GameState {
   FirstGameplay,
   WithCompassion,
   InTown,
-  InTownWithAffection
+  InTownWithAffection,
+  InTownWithAll
 }
 
 public class Manager: MonoBehaviour {
@@ -103,6 +104,9 @@ public class Manager: MonoBehaviour {
       case GameState.InTownWithAffection:
         StartInTownWithAffection();
         break;
+      case GameState.InTownWithAll:
+        StartInTownWithAll();
+        break;
     }
   }
 
@@ -188,6 +192,18 @@ public class Manager: MonoBehaviour {
       Compassion = true,
       Affection = true,
       Remorse = false,
+      Betrayal = false,
+    };
+
+    Player.transform.position = InTownPosition.transform.position;
+  }
+
+  void StartInTownWithAll() {
+    Player.Emotions = new EmotionState {
+      Curiosity = true,
+      Compassion = true,
+      Affection = true,
+      Remorse = true,
       Betrayal = false,
     };
 

@@ -324,4 +324,11 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("That's what they say.") },
   };
 
+  public static List<DialogEvent> AshSix = new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("Your ability to feel emotion!") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("It surpasses even my own!") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash, Contents = Ash("This gate may just open for you. Try and see!") },
+  };
+
 }

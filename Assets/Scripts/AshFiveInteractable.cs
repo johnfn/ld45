@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class AshFiveInteractable: FpcInteractable {
   override public void Interact() {
-    DialogManager.Instance.StartDialogSequence(DialogText.AshFive);
+    var player = Manager.Instance.Player;
+
+    if (player.Emotions.BasicallyHasThemAll()) {
+      DialogManager.Instance.StartDialogSequence(DialogText.AshSix);
+    } else {
+      DialogManager.Instance.StartDialogSequence(DialogText.AshFive);
+    }
   }
 
   void Update() {
