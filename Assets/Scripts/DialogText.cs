@@ -311,4 +311,17 @@ public class DialogText {
       new DialogEvent { Name = CharacterName.Ash, Contents = Ash("The city is right up here. Come on!") }
     }
   );
+
+  public static List<DialogEvent> AshFive = new List<DialogEvent> {
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("It might not look like it...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("But this right here is a gate.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("Us, we're trapped in here.") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("But if someone were to become master over all four of their emotions...") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("It's said that this gate will open!") },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("And through the gate, you'll pass on from this town and beyond, into the outer world.") },
+      new DialogEvent { Name = CharacterName.Blank, Contents = "Back to my home." },
+      new DialogEvent { Name = CharacterName.Ash  , Contents = Ash("That's what they say.") },
+  };
+
 }
